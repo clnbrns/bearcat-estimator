@@ -1,0 +1,18 @@
+{
+  "_note": "Partner accounts for the partner portal. Each partner gets a unique slug → URL: /partners/{slug}. margin_pct is the GROSS margin Bearcat keeps; the partner adds their own markup on top.",
+  "partners": [
+    {
+      "slug": "demo-pools",
+      "name": "Demo Pools & Outdoor",
+      "contact_name": "Demo Partner",
+      "contact_email": "demo@example.com",
+      "contact_phone": "555-555-0100",
+      "logo_text": "DEMO POOLS",
+      "logo_url": null,
+      "margin_pct": 20,
+      "auto_approve_under_sf": 1500,
+      "active": true,
+      "created_at": "2026-04-24"
+    }
+  ]
+}

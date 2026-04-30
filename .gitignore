@@ -1,0 +1,8 @@
+node_modules/
+.env
+data/estimates/*.json
+output/*.pdf
+output/*.html
+.DS_Store
+dist/
+build/

@@ -1,0 +1,16 @@
+{
+  "name": "bearcat-estimator-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^2.1.1"
+  }
+}

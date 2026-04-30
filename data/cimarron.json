@@ -1,0 +1,2451 @@
+{
+  "_source": "src/data/cimarron/products.ts (Cimarron 2024 Price List)",
+  "_note": "wholesale2024 = Bearcat dealer cost. map2024 = Minimum Advertised Price.",
+  "count": 284,
+  "products": [
+    {
+      "sku": "302024TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 30x12x10 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 229,
+      "map2024": 299,
+      "length": 30,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "402024TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 40x12x10 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 279,
+      "map2024": 379,
+      "length": 40,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "502024TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 50x12x10 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 329,
+      "map2024": 449,
+      "length": 50,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "602024TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 60x12x10 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 399,
+      "map2024": 529,
+      "length": 60,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "552224TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x12x12 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 399,
+      "map2024": 559,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "554224TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x14x12 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 429,
+      "map2024": 599,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "702224TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x12x12 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 509,
+      "map2024": 719,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "704224TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x12 #24 Twisted Poly Batting Cage Net",
+      "wholesale2024": 529,
+      "map2024": 729,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "352242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 35x12x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 369,
+      "map2024": 509,
+      "length": 35,
+      "width": 12,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "354242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 35x14x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 389,
+      "map2024": 549,
+      "length": 35,
+      "width": 14,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "552242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x12x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 529,
+      "map2024": 759,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "554242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x14x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 569,
+      "map2024": 809,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "702242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x12x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 639,
+      "map2024": 859,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "704242TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x12 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 679,
+      "map2024": 899,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 42
+    },
+    {
+      "sku": "702442TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x12x14 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 679,
+      "map2024": 949,
+      "length": 70,
+      "width": 12,
+      "height": 14,
+      "gauge": 42
+    },
+    {
+      "sku": "704442TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x14 #42 Twisted Poly Batting Cage Net",
+      "wholesale2024": 719,
+      "map2024": 999,
+      "length": 70,
+      "width": 14,
+      "height": 14,
+      "gauge": 42
+    },
+    {
+      "sku": "552245TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x12x12 Commercial #45 Twisted Poly Batting Cage Net",
+      "wholesale2024": 589,
+      "map2024": 809,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 45
+    },
+    {
+      "sku": "554245TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x14x12 Commercial #45 Twisted Poly Batting Cage Net",
+      "wholesale2024": 629,
+      "map2024": 859,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 45
+    },
+    {
+      "sku": "702245TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x12x12 Commercial #45 Twisted Poly Batting Cage Net",
+      "wholesale2024": 689,
+      "map2024": 939,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 45
+    },
+    {
+      "sku": "704245TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x12 Commercial #45 Twisted Poly Batting Cage Net",
+      "wholesale2024": 739,
+      "map2024": 999,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 45
+    },
+    {
+      "sku": "702260TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x12x12 #60 Twisted Poly Batting Cage Net",
+      "wholesale2024": 909,
+      "map2024": 1199,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 60
+    },
+    {
+      "sku": "704260TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x12 #60 Twisted Poly Batting Cage Net",
+      "wholesale2024": 959,
+      "map2024": 1259,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 60
+    },
+    {
+      "sku": "1042GNIA",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 10x14x12 Golf Net Insert with Archery Back",
+      "wholesale2024": 219,
+      "map2024": 299,
+      "length": 10,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "HANGERS25",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron Net Hangers - (25 Ct.)",
+      "wholesale2024": 29,
+      "map2024": 49
+    },
+    {
+      "sku": "234CLIPS50",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron Carabiners - (50 Ct.)",
+      "wholesale2024": 39,
+      "map2024": 59
+    },
+    {
+      "sku": "234CLIPS100",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron Carabiners - (100 Ct.)",
+      "wholesale2024": 69,
+      "map2024": 99
+    },
+    {
+      "sku": "55CABKIT",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 55' Cable Kit",
+      "wholesale2024": 99,
+      "map2024": 139
+    },
+    {
+      "sku": "70CABKIT",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 70' Cable Kit",
+      "wholesale2024": 119,
+      "map2024": 159
+    },
+    {
+      "sku": "55CBKP",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 55' Cable Kit - Premier 1/8\"",
+      "wholesale2024": 149,
+      "map2024": 189
+    },
+    {
+      "sku": "70CBKP",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 70' Cable Kit - Premier 1/8\"",
+      "wholesale2024": 159,
+      "map2024": 219
+    },
+    {
+      "sku": "55CBKP4",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 55' Cable Kit - Premier 1/4\"",
+      "wholesale2024": 169,
+      "map2024": 229
+    },
+    {
+      "sku": "70CBKP4",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron 70' Cable Kit - Premier 1/4\"",
+      "wholesale2024": 189,
+      "map2024": 239
+    },
+    {
+      "sku": "RepairKit",
+      "category": "Batting Cage Accessories",
+      "name": "Cimarron Batting Cage Repair Kit",
+      "wholesale2024": 25,
+      "map2024": 25
+    },
+    {
+      "sku": "302024TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 30x12x10 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 399,
+      "map2024": 499,
+      "length": 30,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "402024TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 40x12x10 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 469,
+      "map2024": 589,
+      "length": 40,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "502024TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 50x12x10 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 569,
+      "map2024": 719,
+      "length": 50,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "602024TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 60x12x10 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 599,
+      "map2024": 809,
+      "length": 60,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "552224TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x12x12 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 689,
+      "map2024": 899,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "554224TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x14x12 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 709,
+      "map2024": 959,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "702224TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x12x12 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 859,
+      "map2024": 1109,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "704224TPC",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x14x12 #24 Batting Cage & Frame Corners",
+      "wholesale2024": 919,
+      "map2024": 1209,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "302024TPCFSP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 30x12x10 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 859,
+      "map2024": 1209,
+      "length": 30,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "302024TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 30x12x10 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 1159,
+      "map2024": 1309,
+      "length": 30,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "402024TPCFSP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 40x12x10 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1009,
+      "map2024": 1509,
+      "length": 40,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "402024TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 40x12x10 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 1909,
+      "map2024": 2309,
+      "length": 40,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "502024TPCFSP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 50x12x10 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1159,
+      "map2024": 1709,
+      "length": 50,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "502024TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 50x12x10 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2059,
+      "map2024": 2409,
+      "length": 50,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "602024TPCFSP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 60x12x10 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1209,
+      "map2024": 1809,
+      "length": 60,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "602024TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 60x12x10 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2079,
+      "map2024": 2509,
+      "length": 60,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "552224TPCF1.5SP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x12x12 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1359,
+      "map2024": 2009,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "552224TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x12x12 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2059,
+      "map2024": 2459,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "554224TPCF1.5SP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x14x12 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1409,
+      "map2024": 2109,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "554224TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 55x14x12 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2109,
+      "map2024": 2509,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "702224TPCF1.5SP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x12x12 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1659,
+      "map2024": 2409,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "702224TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x12x12 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2309,
+      "map2024": 2709,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "704224TPCF1.5SP",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x14x12 #24 Batting Cage & Complete Snap-Pin Frame",
+      "wholesale2024": 1809,
+      "map2024": 2659,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "704224TPCF1.5",
+      "category": "Batting Cage Net + Frame Combos",
+      "name": "Cimarron 70x14x12 #24 Batting Cage & Complete Frame HD",
+      "wholesale2024": 2409,
+      "map2024": 2809,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "30Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 30x12x10 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 759,
+      "map2024": 1019,
+      "length": 30,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "40Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 40x12x10 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 929,
+      "map2024": 1249,
+      "length": 40,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "50Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 50x12x10 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 1029,
+      "map2024": 1409,
+      "length": 50,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "60Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 60x12x10 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 1179,
+      "map2024": 1619,
+      "length": 60,
+      "width": 12,
+      "height": 10,
+      "gauge": 24
+    },
+    {
+      "sku": "5512Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 55x12x12 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 1199,
+      "map2024": 1579,
+      "length": 55,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "7012Rookie",
+      "category": "Rookie Cage Nets + Cable Frames",
+      "name": "Cimarron 70x12x12 #24 Rookie Batting Cage and Cable Frame",
+      "wholesale2024": 1299,
+      "map2024": 1729,
+      "length": 70,
+      "width": 12,
+      "height": 12,
+      "gauge": 24
+    },
+    {
+      "sku": "5522FC1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x12x12 1-1/2” Frame Corners",
+      "wholesale2024": 359,
+      "map2024": 459,
+      "length": 55,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "5542FC1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14x12 1-1/2” Frame Corners",
+      "wholesale2024": 379,
+      "map2024": 479,
+      "length": 55,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "7022FC1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x12x12 1-1/2” Frame Corners",
+      "wholesale2024": 409,
+      "map2024": 509,
+      "length": 70,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "7042FC1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14x12 1-1/2” Frame Corners",
+      "wholesale2024": 429,
+      "map2024": 529,
+      "length": 70,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "5522Comfr1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x12x12 1-1/2” Complete Frame HD",
+      "wholesale2024": 1709,
+      "map2024": 2109,
+      "length": 55,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "5522Comfr1.5SP",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x12x12 1-1/2” Complete Snap-Pin Frame",
+      "wholesale2024": 969,
+      "map2024": 1449,
+      "length": 55,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "5542Comfr1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14x12 1-1/2” Complete Frame HD",
+      "wholesale2024": 1859,
+      "map2024": 2209,
+      "length": 55,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "5542Comfr1.5SP",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14x12 1-1/2” Complete Snap-Pin Frame",
+      "wholesale2024": 989,
+      "map2024": 1509,
+      "length": 55,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "7022Comfr1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x12x12 1-1/2” Complete Frame HD",
+      "wholesale2024": 2109,
+      "map2024": 2509,
+      "length": 70,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "7022Comfr1.5SP",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x12x12 1-1/2” Complete Snap-Pin Frame",
+      "wholesale2024": 1159,
+      "map2024": 1559,
+      "length": 70,
+      "width": 12,
+      "height": 12
+    },
+    {
+      "sku": "7042Comfr1.5",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14x12 1-1/2” Complete Frame HD",
+      "wholesale2024": 2159,
+      "map2024": 2609,
+      "length": 70,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "7042Comfr1.5SP",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14x12 1-1/2” Complete Snap-Pin Frame",
+      "wholesale2024": 1309,
+      "map2024": 1929,
+      "length": 70,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "5542CCFAS225",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x15.5x12 Deluxe Complete Commercial Frame",
+      "wholesale2024": 1609,
+      "map2024": 2009
+    },
+    {
+      "sku": "7042CCFAS225",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x15.5x12 Deluxe Complete Commercial Frame",
+      "wholesale2024": 1909,
+      "map2024": 2309
+    },
+    {
+      "sku": "5542CFKAS225",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x15.5x12 Deluxe Commercial Frame Kit",
+      "wholesale2024": 609,
+      "map2024": 759
+    },
+    {
+      "sku": "7042CFKAS225",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x15.5x12 Deluxe Commercial Frame Kit",
+      "wholesale2024": 709,
+      "map2024": 889
+    },
+    {
+      "sku": "5542CSAF15",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14x12 Commercial 1.5\" Stand-Alone Frame",
+      "wholesale2024": 1199,
+      "map2024": 1649,
+      "length": 55,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "5542CSAF20",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14x12 Commercial 2\" Stand-Alone Frame",
+      "wholesale2024": 1599,
+      "map2024": 2099,
+      "length": 55,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "7042CSAF15",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14x12 Commercial 1.5\" Stand-Alone Frame",
+      "wholesale2024": 1399,
+      "map2024": 1949,
+      "length": 70,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "7042CSAF20",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14x12 Commercial 2\" Stand-Alone Frame",
+      "wholesale2024": 1849,
+      "map2024": 2299,
+      "length": 70,
+      "width": 14,
+      "height": 12
+    },
+    {
+      "sku": "55302CSAF20DW",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x30x12 Commercial 2\" Stand-Alone Frame - Double Wide",
+      "wholesale2024": 2299,
+      "map2024": 2849,
+      "length": 55,
+      "width": 30,
+      "height": 12
+    },
+    {
+      "sku": "70302CSAF20DW",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x30x12 Commercial 2\" Stand Alone Frame - Double Wide",
+      "wholesale2024": 2649,
+      "map2024": 3449,
+      "length": 70,
+      "width": 30,
+      "height": 12
+    },
+    {
+      "sku": "55462CSAF20TW",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x45x12 Commercial 2\" Stand-Alone Frame - Triple Wide",
+      "wholesale2024": 2949,
+      "map2024": 3749,
+      "length": 55,
+      "width": 45,
+      "height": 12
+    },
+    {
+      "sku": "70462CSAF20TW",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x45x2 Commercial 2\" Stand-Alone Frame - Triple Wide",
+      "wholesale2024": 3549,
+      "map2024": 4599,
+      "length": 70,
+      "width": 45,
+      "height": 2
+    },
+    {
+      "sku": "5522AIRF",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x12 Air Frame Complete with TW-2000 Winch",
+      "wholesale2024": 3699,
+      "map2024": 4999
+    },
+    {
+      "sku": "5542AIRF",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14 Air Frame Complete with TW-2000 Winch",
+      "wholesale2024": 3699,
+      "map2024": 5049
+    },
+    {
+      "sku": "7022AIRF",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x12 Air Frame Complete with TW-2000 Winch",
+      "wholesale2024": 3899,
+      "map2024": 5299
+    },
+    {
+      "sku": "7042AIRF",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14 Air Frame Complete with TW-2000 Winch",
+      "wholesale2024": 3899,
+      "map2024": 5349
+    },
+    {
+      "sku": "5512SFRM",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x12 Suspended Frame",
+      "wholesale2024": 1199,
+      "map2024": 1449
+    },
+    {
+      "sku": "5514SFRM",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 55x14 Suspended Frame",
+      "wholesale2024": 1199,
+      "map2024": 1499
+    },
+    {
+      "sku": "7012SFRM",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x12 Suspended Frame",
+      "wholesale2024": 1399,
+      "map2024": 1649
+    },
+    {
+      "sku": "7014SFRM",
+      "category": "Batting Cage Frames",
+      "name": "Cimarron 70x14 Suspended Frame",
+      "wholesale2024": 1399,
+      "map2024": 1699
+    },
+    {
+      "sku": "BBP7",
+      "category": "Baseball Bundles",
+      "name": "55x14x12 Commercial 1.5\" Stand Alone Frame, 55x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2059,
+      "map2024": 2749,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "BBP8",
+      "category": "Baseball Bundles",
+      "name": "70x14x12 Commercial 1.5\" Stand Alone Frame, 70x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2359,
+      "map2024": 3139,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "BBP9",
+      "category": "Baseball Bundles",
+      "name": "55x14x12 Commercial 2\" Stand Alone Frame, 55x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2399,
+      "map2024": 2999,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "BBP10",
+      "category": "Baseball Bundles",
+      "name": "70x14x12 Commercial 2\" Stand Alone Frame, 70x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2749,
+      "map2024": 3489,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "BBP11",
+      "category": "Baseball Bundles",
+      "name": "55' Deluxe Commercial Complete Frame, 55x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2409,
+      "map2024": 3099,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "BBP12",
+      "category": "Baseball Bundles",
+      "name": "70' Deluxe Commercial Complete Frame, 70x14x12 Commercial #45 Batting Cage Net, 7x4 #84 L-Net & Commercial Frame, 5x7 Vinyl Backstop w Batter's Image & Pro 6x12 Homeplate Mat",
+      "wholesale2024": 2819,
+      "map2024": 3589,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 45,
+      "isBundle": true
+    },
+    {
+      "sku": "4x6VBS",
+      "category": "Backstops",
+      "name": "Cimarron 4x6 Vinyl Backstop",
+      "wholesale2024": 69,
+      "map2024": 99
+    },
+    {
+      "sku": "4x6CVBS",
+      "category": "Backstops",
+      "name": "Cimarron 4x6 Vinyl Backstop with Catcher Image",
+      "wholesale2024": 69,
+      "map2024": 99
+    },
+    {
+      "sku": "5X7VBS",
+      "category": "Backstops",
+      "name": "Cimarron 5x7 Vinyl Backstop",
+      "wholesale2024": 79,
+      "map2024": 109
+    },
+    {
+      "sku": "5X7BVBS",
+      "category": "Backstops",
+      "name": "Cimarron 5x7 Vinyl Backstop with Batters Image",
+      "wholesale2024": 79,
+      "map2024": 109
+    },
+    {
+      "sku": "4x6RBS",
+      "category": "Backstops",
+      "name": "Cimarron 4x6 Rubber Backstop",
+      "wholesale2024": 79,
+      "map2024": 119
+    },
+    {
+      "sku": "5x7RBS",
+      "category": "Backstops",
+      "name": "Cimarron 5x7 Rubber Backstop",
+      "wholesale2024": 89,
+      "map2024": 129
+    },
+    {
+      "sku": "6x8RBS",
+      "category": "Backstops",
+      "name": "Cimarron 6x8 Rubber Backstop",
+      "wholesale2024": 109,
+      "map2024": 159
+    },
+    {
+      "sku": "12x1484BD",
+      "category": "Backstops",
+      "name": "Cimarron 12x14 #84 Twisted Poly Backdrop",
+      "wholesale2024": 129,
+      "map2024": 179,
+      "gauge": 84
+    },
+    {
+      "sku": "12x1442BD",
+      "category": "Backstops",
+      "name": "Cimarron 12x14 #42 Twisted Poly Backdrop",
+      "wholesale2024": 59,
+      "map2024": 99,
+      "gauge": 42
+    },
+    {
+      "sku": "5512ND",
+      "category": "Backstops",
+      "name": "Cimarron 57x13 #42 Net Divider",
+      "wholesale2024": 209,
+      "map2024": 299,
+      "gauge": 42
+    },
+    {
+      "sku": "7012ND",
+      "category": "Backstops",
+      "name": "Cimarron 72x13 #42 Net Divider",
+      "wholesale2024": 269,
+      "map2024": 399,
+      "gauge": 42
+    },
+    {
+      "sku": "6x4SN",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Safety Net Only",
+      "wholesale2024": 39,
+      "map2024": 59,
+      "gauge": 42
+    },
+    {
+      "sku": "7x642LN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x6 #42 L-Net Only",
+      "wholesale2024": 59,
+      "map2024": 89,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net Only",
+      "wholesale2024": 49,
+      "map2024": 79,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net Only",
+      "wholesale2024": 49,
+      "map2024": 79,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net Only",
+      "wholesale2024": 59,
+      "map2024": 99,
+      "gauge": 42
+    },
+    {
+      "sku": "8x8FieldN",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #42 Fielder Net Only",
+      "wholesale2024": 99,
+      "map2024": 159,
+      "gauge": 42
+    },
+    {
+      "sku": "6x4SN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #84 Safety Net Only",
+      "wholesale2024": 79,
+      "map2024": 119,
+      "gauge": 84
+    },
+    {
+      "sku": "7x484LN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 L-Net Only",
+      "wholesale2024": 59,
+      "map2024": 89,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784LN",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 L-Net Only",
+      "wholesale2024": 69,
+      "map2024": 109,
+      "gauge": 84
+    },
+    {
+      "sku": "7x7FieldN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Fielder Net Only",
+      "wholesale2024": 109,
+      "map2024": 169,
+      "gauge": 84
+    },
+    {
+      "sku": "7x7SBN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Softball Net Only",
+      "wholesale2024": 159,
+      "map2024": 269,
+      "gauge": 84
+    },
+    {
+      "sku": "7x7SockN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Sock Net Only",
+      "wholesale2024": 179,
+      "map2024": 299,
+      "gauge": 84
+    },
+    {
+      "sku": "7x584ZNet",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x5 # 84 Z-Net Only",
+      "wholesale2024": 79,
+      "map2024": 119
+    },
+    {
+      "sku": "8x8FieldN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Fielder Net Only",
+      "wholesale2024": 109,
+      "map2024": 219,
+      "gauge": 84
+    },
+    {
+      "sku": "10x10FieldN84",
+      "category": "Protection Screens",
+      "name": "Cimarron 10x10 #84 Fielder Net Only",
+      "wholesale2024": 169,
+      "map2024": 269,
+      "gauge": 84
+    },
+    {
+      "sku": "6x4SNF",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Safety Net and Frame",
+      "wholesale2024": 119,
+      "map2024": 179,
+      "gauge": 42
+    },
+    {
+      "sku": "6x4SNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Safety Net and Frame with Wheels",
+      "wholesale2024": 169,
+      "map2024": 259,
+      "gauge": 42
+    },
+    {
+      "sku": "6x4SNFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Safety Net and Frame with Padding",
+      "wholesale2024": 189,
+      "map2024": 289,
+      "gauge": 42
+    },
+    {
+      "sku": "6x4SNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Safety Net and Frame with Wheels and Padding",
+      "wholesale2024": 249,
+      "map2024": 359,
+      "gauge": 42
+    },
+    {
+      "sku": "7x642LNF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x6 #42 L-Net and Frame",
+      "wholesale2024": 129,
+      "map2024": 189,
+      "gauge": 42
+    },
+    {
+      "sku": "7x642LNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x6 #42 L-Net and Frame with Wheels",
+      "wholesale2024": 189,
+      "map2024": 269,
+      "gauge": 42
+    },
+    {
+      "sku": "7x642LNFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x6 #42 L-Net and Frame with Padding",
+      "wholesale2024": 209,
+      "map2024": 299,
+      "gauge": 42
+    },
+    {
+      "sku": "7x642LNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x6 #42 L-Net and Frame with Wheels and Padding",
+      "wholesale2024": 259,
+      "map2024": 369,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Frame",
+      "wholesale2024": 149,
+      "map2024": 209,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Frame with Wheels",
+      "wholesale2024": 199,
+      "map2024": 289,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Frame with Padding",
+      "wholesale2024": 219,
+      "map2024": 319,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 269,
+      "map2024": 389,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Frame",
+      "wholesale2024": 159,
+      "map2024": 229,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Frame with Wheels",
+      "wholesale2024": 209,
+      "map2024": 309,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Frame with Padding",
+      "wholesale2024": 229,
+      "map2024": 339,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Frame with Wheels and Padding",
+      "wholesale2024": 279,
+      "map2024": 409,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Frame",
+      "wholesale2024": 149,
+      "map2024": 209,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Frame with Wheels",
+      "wholesale2024": 199,
+      "map2024": 289,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Frame with Padding",
+      "wholesale2024": 219,
+      "map2024": 319,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Frame with Wheels and Padding",
+      "wholesale2024": 269,
+      "map2024": 389,
+      "gauge": 42
+    },
+    {
+      "sku": "7X484LNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 L-Net and Commercial Frame",
+      "wholesale2024": 189,
+      "map2024": 259,
+      "gauge": 84
+    },
+    {
+      "sku": "7X484LNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 L-Net and Commercial Frame with Wheels",
+      "wholesale2024": 239,
+      "map2024": 339,
+      "gauge": 84
+    },
+    {
+      "sku": "7X484LNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 L-Net and Commercial Frame with Padding",
+      "wholesale2024": 259,
+      "map2024": 369,
+      "gauge": 84
+    },
+    {
+      "sku": "7X484LNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 L-Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 309,
+      "map2024": 449,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784LNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 L-Net and Commercial Frame",
+      "wholesale2024": 229,
+      "map2024": 319,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784LNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 L-Net and Commercial Frame with Wheels",
+      "wholesale2024": 279,
+      "map2024": 399,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784LNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 L-Net and Commercial Frame with Padding",
+      "wholesale2024": 299,
+      "map2024": 429,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784LNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 L-Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 349,
+      "map2024": 499,
+      "gauge": 84
+    },
+    {
+      "sku": "7x7FieldNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Commercial Frame",
+      "wholesale2024": 189,
+      "map2024": 279,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Commercial Frame with Wheels",
+      "wholesale2024": 239,
+      "map2024": 359,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Commercial Frame with Padding",
+      "wholesale2024": 259,
+      "map2024": 389,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7FieldNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Fielder Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 309,
+      "map2024": 469,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Commercial Frame",
+      "wholesale2024": 209,
+      "map2024": 299,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Commercial Frame with Wheels",
+      "wholesale2024": 249,
+      "map2024": 379,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Commercial Frame with Padding",
+      "wholesale2024": 269,
+      "map2024": 409,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SockNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Sock Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 319,
+      "map2024": 489,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Commercial Frame",
+      "wholesale2024": 199,
+      "map2024": 279,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Commercial Frame with Wheels",
+      "wholesale2024": 249,
+      "map2024": 359,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Commercial Frame with Padding",
+      "wholesale2024": 269,
+      "map2024": 389,
+      "gauge": 42
+    },
+    {
+      "sku": "7x7SBNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Softball Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 319,
+      "map2024": 469,
+      "gauge": 42
+    },
+    {
+      "sku": "8x8FieldNCF",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Fielder Net and Commercial Frame",
+      "wholesale2024": 249,
+      "map2024": 369,
+      "gauge": 84
+    },
+    {
+      "sku": "8x8FieldNCFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Fielder Net and Commercial Frame with Wheels",
+      "wholesale2024": 299,
+      "map2024": 449,
+      "gauge": 84
+    },
+    {
+      "sku": "8x8FieldNCFP",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Fielder Net and Commercial Frame with Padding",
+      "wholesale2024": 319,
+      "map2024": 479,
+      "gauge": 84
+    },
+    {
+      "sku": "8x8FieldNCFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Fielder Net and Commercial Frame with Wheels and Padding",
+      "wholesale2024": 369,
+      "map2024": 499,
+      "gauge": 84
+    },
+    {
+      "sku": "7X584ZFRAME",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x5 #84 Commercial Z-Frame",
+      "wholesale2024": 199,
+      "map2024": 299,
+      "gauge": 84
+    },
+    {
+      "sku": "7x584ZFRAMEW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x5 #84 Commercial Z-Frame with Wheels",
+      "wholesale2024": 249,
+      "map2024": 379,
+      "gauge": 84
+    },
+    {
+      "sku": "7x584ZFRAMEP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x5 #84 Commercial Z-Frame with Padding",
+      "wholesale2024": 269,
+      "map2024": 409,
+      "gauge": 84
+    },
+    {
+      "sku": "7x584ZFRAMEWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x5 #84 Commercial Z-Frame with Wheels and Padding",
+      "wholesale2024": 319,
+      "map2024": 489,
+      "gauge": 84
+    },
+    {
+      "sku": "6x442PSNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Premier Safety Net and Frame with Wheels",
+      "wholesale2024": 289,
+      "map2024": 439,
+      "gauge": 42
+    },
+    {
+      "sku": "6x442PSNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #42 Premier Safety Net and Frame with Wheels and Padding",
+      "wholesale2024": 339,
+      "map2024": 469,
+      "gauge": 42
+    },
+    {
+      "sku": "6x484PSNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #84 Premier Safety Net and Frame with Wheels",
+      "wholesale2024": 359,
+      "map2024": 489,
+      "gauge": 84
+    },
+    {
+      "sku": "6x484PSNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 4x6 #84 Premier Safety Net and Frame with Wheels and Padding",
+      "wholesale2024": 409,
+      "map2024": 509,
+      "gauge": 84
+    },
+    {
+      "sku": "7x484PLNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 Premier L-Net and Frame with Wheels",
+      "wholesale2024": 329,
+      "map2024": 449,
+      "gauge": 84
+    },
+    {
+      "sku": "7x484PLNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x4 #84 Premier L-Net and Frame with Wheels and Padding",
+      "wholesale2024": 369,
+      "map2024": 509,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784PLNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier L-Net and Frame with Wheels",
+      "wholesale2024": 359,
+      "map2024": 509,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784PLNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier L-Net and Frame with Wheels and Padding",
+      "wholesale2024": 409,
+      "map2024": 579,
+      "gauge": 84
+    },
+    {
+      "sku": "7x742PFieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Fielder Net and Frame with Wheels",
+      "wholesale2024": 339,
+      "map2024": 479,
+      "gauge": 42
+    },
+    {
+      "sku": "7x742PFieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 399,
+      "map2024": 559,
+      "gauge": 42
+    },
+    {
+      "sku": "7x784PFieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Fielder Net and Frame with Wheels",
+      "wholesale2024": 399,
+      "map2024": 549,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784PFieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 459,
+      "map2024": 629,
+      "gauge": 84
+    },
+    {
+      "sku": "8x842PFieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #42 Premier Fielder Net and Frame with Wheels",
+      "wholesale2024": 389,
+      "map2024": 569,
+      "gauge": 42
+    },
+    {
+      "sku": "8x842PFieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #42 Premier Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 459,
+      "map2024": 659,
+      "gauge": 42
+    },
+    {
+      "sku": "8x884PFieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Premier Fielder Net and Frame with Wheels",
+      "wholesale2024": 529,
+      "map2024": 749,
+      "gauge": 84
+    },
+    {
+      "sku": "8x884PFieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 8x8 #84 Premier Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 609,
+      "map2024": 859,
+      "gauge": 84
+    },
+    {
+      "sku": "10x1084PFieldNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 10x10 #84 Premier Fielder Net and Frame with Wheels",
+      "wholesale2024": 679,
+      "map2024": 899,
+      "gauge": 84
+    },
+    {
+      "sku": "10x1084PFieldNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 10x10 #84 Premier Fielder Net and Frame with Wheels and Padding",
+      "wholesale2024": 739,
+      "map2024": 1009,
+      "gauge": 84
+    },
+    {
+      "sku": "7x742PSBNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Softball Net and Frame with Wheels",
+      "wholesale2024": 349,
+      "map2024": 499,
+      "gauge": 42
+    },
+    {
+      "sku": "7x742PSBNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Softball Net and Frame with Wheels and Padding",
+      "wholesale2024": 409,
+      "map2024": 569,
+      "gauge": 42
+    },
+    {
+      "sku": "7x784PSBNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Softball Net and Frame with Wheels",
+      "wholesale2024": 429,
+      "map2024": 569,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784PSBNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Softball Net and Frame with Wheels and Padding",
+      "wholesale2024": 489,
+      "map2024": 639,
+      "gauge": 84
+    },
+    {
+      "sku": "7x742PSockNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Sock Net and Frame with Wheels",
+      "wholesale2024": 439,
+      "map2024": 559,
+      "gauge": 42
+    },
+    {
+      "sku": "7x742PSockNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #42 Premier Sock Net and Frame with Wheels and Padding",
+      "wholesale2024": 449,
+      "map2024": 609,
+      "gauge": 42
+    },
+    {
+      "sku": "7x784PSockNFW",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Sock Net and Frame with Wheels",
+      "wholesale2024": 489,
+      "map2024": 639,
+      "gauge": 84
+    },
+    {
+      "sku": "7x784PSockNFWP",
+      "category": "Protection Screens",
+      "name": "Cimarron 7x7 #84 Premier Sock Net and Frame with Wheels and Padding",
+      "wholesale2024": 509,
+      "map2024": 699,
+      "gauge": 84
+    },
+    {
+      "sku": "WHEELS2",
+      "category": "Protection Screens",
+      "name": "Cimarron Universal Frame Wheels",
+      "wholesale2024": 59,
+      "map2024": 89
+    },
+    {
+      "sku": "LNPAD-3",
+      "category": "Protection Screens",
+      "name": "Cimarron Frame Padding (1- 3 ½' piece and 3- 7' long pieces)",
+      "wholesale2024": 79,
+      "map2024": 119
+    },
+    {
+      "sku": "LNPAD-1",
+      "category": "Protection Screens",
+      "name": "Cimarron Frame Padding (1- 7' Piece)",
+      "wholesale2024": 19,
+      "map2024": 49
+    },
+    {
+      "sku": "PPRNET",
+      "category": "Training Aids",
+      "name": "Cimarron Pro Pitchback Net Only",
+      "wholesale2024": 39,
+      "map2024": 59
+    },
+    {
+      "sku": "PROPB",
+      "category": "Training Aids",
+      "name": "Cimarron Pro Pitchback Net and Frame",
+      "wholesale2024": 109,
+      "map2024": 179
+    },
+    {
+      "sku": "DLXEKIT",
+      "category": "Training Aids",
+      "name": "Cimarron Deluxe Fastener Kit for Pro Pitchback (40)",
+      "wholesale2024": 19,
+      "map2024": 39
+    },
+    {
+      "sku": "2SPCBS",
+      "category": "Training Aids",
+      "name": "Cimarron 2-Sport Catcher Vinyl Backstop",
+      "wholesale2024": 89,
+      "map2024": 129
+    },
+    {
+      "sku": "2SPCBSF",
+      "category": "Training Aids",
+      "name": "Cimarron 2-Sport Catcher Vinyl Backstop with Frame",
+      "wholesale2024": 149,
+      "map2024": 229
+    },
+    {
+      "sku": "SZT",
+      "category": "Training Aids",
+      "name": "Cimarron Strike Zone Trainer Net, Frame, and Padding",
+      "wholesale2024": 209,
+      "map2024": 299
+    },
+    {
+      "sku": "Ballcart",
+      "category": "Training Aids",
+      "name": "Ball Cart",
+      "wholesale2024": 199,
+      "map2024": 279
+    },
+    {
+      "sku": "6x12GHPMTD",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Deluxe 6x12 Home Plate Mat w Throw Down Home Plate - Green",
+      "wholesale2024": 299,
+      "map2024": 359
+    },
+    {
+      "sku": "6x12CHPMTD",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Deluxe 6x12 Home Plate Mat w Throw Down Home Plate - Clay",
+      "wholesale2024": 299,
+      "map2024": 359
+    },
+    {
+      "sku": "7x12GHPMTD",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Deluxe 7x12 Home Plate Mat w Throw Down Home Plate - Green",
+      "wholesale2024": 339,
+      "map2024": 419
+    },
+    {
+      "sku": "7x12CHPMTD",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Deluxe 7x12 Home Plate Mat w Throw Down Home Plate - Clay",
+      "wholesale2024": 339,
+      "map2024": 419
+    },
+    {
+      "sku": "6x12CHPMI",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Pro 6x12 Home Plate Mat w Inlaid Home Plate - Clay",
+      "wholesale2024": 349,
+      "map2024": 399
+    },
+    {
+      "sku": "6x12GHPMI",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Pro 6x12 Home Plate Mat w Inlaid Home Plate - Green",
+      "wholesale2024": 349,
+      "map2024": 399
+    },
+    {
+      "sku": "7x12CHPMI",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Pro 7x12 Home Plate Mat w Inlaid Home Plate - Clay",
+      "wholesale2024": 379,
+      "map2024": 499
+    },
+    {
+      "sku": "7x12GHPMI",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron Pro 7x12 Home Plate Mat w Inlaid Home Plate - Green",
+      "wholesale2024": 379,
+      "map2024": 499
+    },
+    {
+      "sku": "AL-ODC5G",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 5' On Deck Circle - Green",
+      "wholesale2024": 189,
+      "map2024": 219
+    },
+    {
+      "sku": "AL-ODC5C",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 5' On Deck Circle - Clay",
+      "wholesale2024": 189,
+      "map2024": 219
+    },
+    {
+      "sku": "AL-ODC6G",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 6' On Deck Circle - Green",
+      "wholesale2024": 199,
+      "map2024": 249
+    },
+    {
+      "sku": "AL-ODC6C",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 6' On Deck Circle - Clay",
+      "wholesale2024": 199,
+      "map2024": 249
+    },
+    {
+      "sku": "AL-4x6NSTANCEG",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 4x6 Stance Mat - Green",
+      "wholesale2024": 129,
+      "map2024": 169
+    },
+    {
+      "sku": "AL-4x6NSTANCEGC",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 4x6 Stance Mat - Clay",
+      "wholesale2024": 129,
+      "map2024": 169
+    },
+    {
+      "sku": "AL-4x12NSTANCEG",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 4x12 Stance Mat - Green",
+      "wholesale2024": 259,
+      "map2024": 299
+    },
+    {
+      "sku": "AL-4x12NSTANCEC",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 4x12 Stance Mat - Clay",
+      "wholesale2024": 259,
+      "map2024": 299
+    },
+    {
+      "sku": "AL-6x12NSTANCEG",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 6x12 Stance Mat - Green",
+      "wholesale2024": 329,
+      "map2024": 399
+    },
+    {
+      "sku": "AL-6x12NSTANCEC",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 6x12 Stance Mat - Clay",
+      "wholesale2024": 329,
+      "map2024": 399
+    },
+    {
+      "sku": "AL-3x10SBPMG",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 3x10 Softball Pitchers Mat with Power Line – Green",
+      "wholesale2024": 239,
+      "map2024": 299
+    },
+    {
+      "sku": "AL-3x10SBPMTC",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 3x10 Softball Pitchers Mat with Power Line – Clay",
+      "wholesale2024": 239,
+      "map2024": 299
+    },
+    {
+      "sku": "AL-3x11SBPMG",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 3x11 Softball Pitchers Mat with Power Line – Green",
+      "wholesale2024": 259,
+      "map2024": 309
+    },
+    {
+      "sku": "AL-3x11SBPMTC",
+      "category": "Baseball Mats & Turf",
+      "name": "Cimarron 3x11 Softball Pitchers Mat with Power Line – Clay",
+      "wholesale2024": 259,
+      "map2024": 309
+    },
+    {
+      "sku": "ULTGM",
+      "category": "Golf Mats",
+      "name": "Cimarron 4' x 6' Ultimate Golf Mat",
+      "wholesale2024": 229,
+      "map2024": 279
+    },
+    {
+      "sku": "5x5KGM",
+      "category": "Golf Mats",
+      "name": "Cimarron 5' x 5' Premier Golf Mat",
+      "wholesale2024": 179,
+      "map2024": 269
+    },
+    {
+      "sku": "5x5TeeLine",
+      "category": "Golf Mats",
+      "name": "Cimarrron 5' x 5' Tee-Line High Density Golf Mat",
+      "wholesale2024": 269,
+      "map2024": 359
+    },
+    {
+      "sku": "BALLTRAY",
+      "category": "Golf Mats",
+      "name": "Cimarron Golf Ball Tray",
+      "wholesale2024": 39,
+      "map2024": 49
+    },
+    {
+      "sku": "5x10SIM",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Tour Simulator Golf Net",
+      "wholesale2024": 269,
+      "map2024": 399,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10SIMK",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Tour Simulator Golf Net with Frame Kit",
+      "wholesale2024": 299,
+      "map2024": 449,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10SIMCFSP",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Tour Simulator Golf Net with Complete Snap Pin Frame",
+      "wholesale2024": 579,
+      "map2024": 949,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10SIMCF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Tour Simulator Golf Net with Complete Frame",
+      "wholesale2024": 899,
+      "map2024": 1149,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10CHGN",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Clubhouse Golf Net",
+      "wholesale2024": 199,
+      "map2024": 299,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10CHGNC",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Clubhouse Golf Net with Frame Kit",
+      "wholesale2024": 279,
+      "map2024": 399,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10CHGNCFSP",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Clubhouse Golf Net and Complete Snap Pin Frame",
+      "wholesale2024": 549,
+      "map2024": 899,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "5x10CHGNCF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 5x10x10 Clubhouse Golf Net and Complete Frame",
+      "wholesale2024": 799,
+      "map2024": 999,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS10GN",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 10x10x10 Masters Golf Net",
+      "wholesale2024": 179,
+      "map2024": 269,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS10GNTC",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 10x10x10 Masters Golf Net with Frame Kit",
+      "wholesale2024": 249,
+      "map2024": 379,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS10GNCFSP",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 10x10x10 Masters Golf Net with Complete Snap Pin Frame",
+      "wholesale2024": 569,
+      "map2024": 899,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS10GNCF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 10x10x10 Masters Golf Net with Complete Frame",
+      "wholesale2024": 799,
+      "map2024": 999,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "10x10GNS",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Masters Tour Simulator Golf Net",
+      "wholesale2024": 269,
+      "map2024": 399
+    },
+    {
+      "sku": "10x10GNSK",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Masters Tour Simulator Golf Net with Frame Kit",
+      "wholesale2024": 329,
+      "map2024": 449
+    },
+    {
+      "sku": "10x10GNSKFSP",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Masters Tour Simulator Golf Net with Complete Snap Pin Frame",
+      "wholesale2024": 679,
+      "map2024": 999
+    },
+    {
+      "sku": "10x10GNSKF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Masters Tour Simulator Golf Net with Complete Frame",
+      "wholesale2024": 949,
+      "map2024": 1199
+    },
+    {
+      "sku": "MAS20GN",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 20x10x10 Masters Golf Net",
+      "wholesale2024": 249,
+      "map2024": 379,
+      "length": 20,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS20GNTC",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 20x10x10 Masters Golf Net with Frame Kit",
+      "wholesale2024": 339,
+      "map2024": 499,
+      "length": 20,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS20GNCFSP",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 20x10x10 Masters Golf Net with Complete Snap Pin Frame",
+      "wholesale2024": 799,
+      "map2024": 1199,
+      "length": 20,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "MAS20GNCF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 20x10x10 Masters Golf Net with Complete Frame",
+      "wholesale2024": 1119,
+      "map2024": 1449,
+      "length": 20,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "10GFC",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 10x10x10 Golf Frame Corner Kit",
+      "wholesale2024": 89,
+      "map2024": 129,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "20GFC",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron 20x10x10 Golf Frame Corner Kit",
+      "wholesale2024": 119,
+      "map2024": 169,
+      "length": 20,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "SN",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Swing Master Replacement Net",
+      "wholesale2024": 59,
+      "map2024": 99
+    },
+    {
+      "sku": "SNF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Swing Master Golf Net & Frame",
+      "wholesale2024": 149,
+      "map2024": 229
+    },
+    {
+      "sku": "SSN",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Super Swing Master Golf Net Only",
+      "wholesale2024": 109,
+      "map2024": 159
+    },
+    {
+      "sku": "SSNF",
+      "category": "Golf Frames & Nets",
+      "name": "Cimarron Super Swing Master Golf Net & Frame",
+      "wholesale2024": 209,
+      "map2024": 309
+    },
+    {
+      "sku": "GP1",
+      "category": "Golf Bundles",
+      "name": "10x10x10 Masters Golf Net w Frame Kit, 4x6 Ultimate Golf Mat, & Ball Tray",
+      "wholesale2024": 409,
+      "map2024": 549,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "GP2",
+      "category": "Golf Bundles",
+      "name": "10x10x10 Masters Golf Net w Frame Kit, 5x5 TeeLine Golf Mat, & Ball Tray",
+      "wholesale2024": 449,
+      "map2024": 599,
+      "length": 10,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "GP3",
+      "category": "Golf Bundles",
+      "name": "5x10x10 Tour Simulator Golf Net Frame Kit, 5x5 TeeLine Golf Mat, & Ball Tray",
+      "wholesale2024": 469,
+      "map2024": 649,
+      "length": 5,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "sku": "GP4",
+      "category": "Golf Bundles",
+      "name": "Swing Master Golf Net & Frame & 4x6 Ultimate Golf Mat",
+      "wholesale2024": 299,
+      "map2024": 399
+    },
+    {
+      "sku": "BAR25X50",
+      "category": "Golf Netting",
+      "name": "Cimarron 25x50 Golf Barrier Netting",
+      "wholesale2024": 229,
+      "map2024": 349
+    },
+    {
+      "sku": "BAR15x150",
+      "category": "Golf Netting",
+      "name": "Cimarron 15x150 Golf Barrier Netting",
+      "wholesale2024": 369,
+      "map2024": 539
+    },
+    {
+      "sku": "BAR25x100",
+      "category": "Golf Netting",
+      "name": "Cimarron 25x100 Golf Barrier Netting",
+      "wholesale2024": 419,
+      "map2024": 589
+    },
+    {
+      "sku": "BAR25x150",
+      "category": "Golf Netting",
+      "name": "Cimarron 25x150 Golf Barrier Netting",
+      "wholesale2024": 539,
+      "map2024": 789
+    },
+    {
+      "sku": "25x50CBK",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Barrier Netting Cable Kit - 25x50",
+      "wholesale2024": 89,
+      "map2024": 119
+    },
+    {
+      "sku": "25x100CBK",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Barrier Netting Cable Kit - 25x100",
+      "wholesale2024": 149,
+      "map2024": 229
+    },
+    {
+      "sku": "25x150CBK",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Barrier Netting Cable Kit - 25x150",
+      "wholesale2024": 189,
+      "map2024": 269
+    },
+    {
+      "sku": "15x150CBK",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Barrier Netting Cable Kit - 15x150",
+      "wholesale2024": 189,
+      "map2024": 269
+    },
+    {
+      "sku": "INVI",
+      "category": "Golf Netting",
+      "name": "Cimarron Invisi-Netting 12' wide x 50' long",
+      "wholesale2024": 199,
+      "map2024": 279
+    },
+    {
+      "sku": "GNTAR",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Net Target",
+      "wholesale2024": 19,
+      "map2024": 29
+    },
+    {
+      "sku": "GNB",
+      "category": "Golf Netting",
+      "name": "Cimarron Golf Net Baffle",
+      "wholesale2024": 89,
+      "map2024": 139
+    },
+    {
+      "sku": "100IS",
+      "category": "Golf Netting",
+      "name": "Cimarron 10' x 10' Impact Projection Screen",
+      "wholesale2024": 169,
+      "map2024": 269
+    },
+    {
+      "sku": "252-10P",
+      "category": "Golf Netting",
+      "name": "Cimarron #252 Netting – 10' wide x 1 linear foot",
+      "wholesale2024": 3.39,
+      "map2024": 4.69
+    },
+    {
+      "sku": "252-20P",
+      "category": "Golf Netting",
+      "name": "Cimarron #252 Netting – 20' wide x 1 linear foot",
+      "wholesale2024": 5.49,
+      "map2024": 7.69
+    },
+    {
+      "sku": "ArchNetP10",
+      "category": "Golf Netting",
+      "name": "Cimarron 10x1 Poly Archery Netting – Minimum order of 10'",
+      "wholesale2024": 6.99,
+      "map2024": 9.99
+    },
+    {
+      "sku": "ArchNetP",
+      "category": "Golf Netting",
+      "name": "Cimarron 12x1 Poly Archery Netting – Minimum order of 10'",
+      "wholesale2024": 7.99,
+      "map2024": 10.99
+    },
+    {
+      "sku": "ArchNetP20",
+      "category": "Golf Netting",
+      "name": "Cimarron 20x1 Poly Archery Netting – Minimum order of 10'",
+      "wholesale2024": 12.49,
+      "map2024": 17.99
+    }
+  ]
+}
