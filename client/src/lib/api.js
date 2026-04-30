@@ -69,6 +69,16 @@ export async function listPartnerJobs() {
   return r.json();
 }
 
+export async function appendToVoiceCorpus(description, estimate_id) {
+  const r = await fetch(`${base}/api/voice-corpus/append`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ description, estimate_id }),
+  });
+  if (!r.ok) throw new Error((await r.json()).error || 'Append failed');
+  return r.json();
+}
+
 export async function generateQuickbooksDescription(estimate, intake) {
   const r = await fetch(`${base}/api/quickbooks-description`, {
     method: 'POST',

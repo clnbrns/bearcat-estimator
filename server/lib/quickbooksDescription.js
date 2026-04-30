@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,6 +14,30 @@ async function loadCorpus() {
   const raw = await readFile(CORPUS_PATH, 'utf8');
   cachedCorpus = JSON.parse(raw);
   return cachedCorpus;
+}
+
+// Append a description to the voice corpus so future generations get smarter
+// over time. Dedupes against existing examples (case-insensitive prefix match).
+export async function appendToCorpus(description, meta = {}) {
+  if (!description || description.trim().length < 50) {
+    throw new Error('Description too short to add to corpus (minimum 50 chars).');
+  }
+  const corpus = await loadCorpus();
+  const trimmed = description.trim();
+  // Dedupe: skip if first 80 chars (case-insensitive) already exist
+  const head = trimmed.slice(0, 80).toLowerCase();
+  const exists = (corpus.examples || []).some(e => e.toLowerCase().includes(head));
+  if (exists) {
+    return { added: false, reason: 'Already in corpus (duplicate detected).', total: corpus.examples.length };
+  }
+  // Newest first so few-shot picks the most recent (likely most representative)
+  corpus.examples = [trimmed, ...(corpus.examples || [])];
+  corpus._count = corpus.examples.length;
+  corpus._last_appended_at = new Date().toISOString();
+  if (meta.estimate_id) corpus._last_appended_from = meta.estimate_id;
+  await writeFile(CORPUS_PATH, JSON.stringify(corpus, null, 2));
+  cachedCorpus = corpus;
+  return { added: true, total: corpus.examples.length };
 }
 
 const SYSTEM_PROMPT = `You write QuickBooks line-item descriptions for Bearcat Turf, a DFW artificial turf installer. The user pastes your output directly into QuickBooks.

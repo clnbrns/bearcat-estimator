@@ -1,8 +1,17 @@
 node_modules/
 .env
+.env.local
+.env.*.local
+
+# Customer + partner data — contains PII, never commit
 data/estimates/*.json
+data/partner-jobs/*.json
+
 output/*.pdf
 output/*.html
 .DS_Store
 dist/
 build/
+
+# Server logs
+*.log

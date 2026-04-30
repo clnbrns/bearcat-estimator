@@ -28,7 +28,7 @@ import { calculateEstimate } from './lib/calculate.js';
 import { parseMeasurement } from './lib/parseMeasurement.js';
 import { parseVoiceIntake } from './lib/parseVoiceIntake.js';
 import { generateProjectPlan } from './lib/projectPlan.js';
-import { generateQuickbooksDescription } from './lib/quickbooksDescription.js';
+import { generateQuickbooksDescription, appendToCorpus } from './lib/quickbooksDescription.js';
 
 const app = express();
 app.use(cors());
@@ -123,6 +123,15 @@ app.post('/api/quickbooks-description', async (req, res, next) => {
     const { estimate, intake } = req.body || {};
     if (!estimate || !intake) return res.status(400).json({ error: 'estimate and intake required' });
     const result = await generateQuickbooksDescription(estimate, intake);
+    res.json(result);
+  } catch (e) { next(e); }
+});
+
+app.post('/api/voice-corpus/append', async (req, res, next) => {
+  try {
+    const { description, estimate_id } = req.body || {};
+    if (!description) return res.status(400).json({ error: 'description required' });
+    const result = await appendToCorpus(description, { estimate_id });
     res.json(result);
   } catch (e) { next(e); }
 });

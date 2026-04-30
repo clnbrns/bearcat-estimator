@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fmt, saveEstimate, generateQuickbooksDescription } from '../lib/api.js';
+import { fmt, saveEstimate, generateQuickbooksDescription, appendToVoiceCorpus } from '../lib/api.js';
 import ProjectPlan from './ProjectPlan.jsx';
 
 export default function EstimateOutput({ estimate, intake, company, onBack }) {
@@ -10,6 +10,7 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
   const [qbBusy, setQbBusy] = useState(false);
   const [qbError, setQbError] = useState(null);
   const [qbCopied, setQbCopied] = useState(false);
+  const [corpusStatus, setCorpusStatus] = useState(null);
   const today = new Date().toLocaleDateString();
 
   const generateQbDescription = async () => {
@@ -32,6 +33,18 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
       setTimeout(() => setQbCopied(false), 2000);
     } catch {
       setQbError('Could not copy — select the text and copy manually.');
+    }
+  };
+
+  const teachThis = async () => {
+    setCorpusStatus({ busy: true });
+    try {
+      const r = await appendToVoiceCorpus(qbDesc);
+      setCorpusStatus(r.added
+        ? { ok: true, msg: `✓ Added. Voice corpus now has ${r.total} examples — future drafts will get smarter.` }
+        : { warn: true, msg: r.reason || 'Already in corpus.' });
+    } catch (e) {
+      setCorpusStatus({ err: true, msg: e.message });
     }
   };
 
@@ -191,8 +204,18 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
                 className="bg-sage/30 text-hunter px-3 py-2 rounded text-sm">
                 {qbBusy ? 'Re-generating…' : '↻ Re-draft'}
               </button>
+              <button onClick={teachThis} disabled={corpusStatus?.busy}
+                title="Save this description to the voice corpus so future drafts learn from it"
+                className="bg-hunter text-offwhite px-3 py-2 rounded text-sm">
+                {corpusStatus?.busy ? 'Saving…' : '🧠 Teach This'}
+              </button>
               <span className="text-xs text-hunter/50 ml-2">{qbDesc.length} characters</span>
             </div>
+            {corpusStatus && !corpusStatus.busy && (
+              <div className={`mt-2 text-xs ${corpusStatus.err ? 'text-burnt' : corpusStatus.warn ? 'text-hunter/60' : 'text-hunter'}`}>
+                {corpusStatus.msg}
+              </div>
+            )}
           </>
         )}
       </section>
