@@ -40,6 +40,31 @@ export default function App() {
     setStep(0);
   };
 
+  // Bypass: jump straight into cage-only intake with project type pre-set
+  const newCageQuote = () => {
+    setIntake({
+      _quick_cage: true,
+      project_type: 'Cage Install (no turf)',
+      no_turf: true,
+      customer_name: '',
+      project_address: '',
+      product_name: '',
+      total_sf: 0,
+      narrow_dim_ft: '',
+      long_dim_ft: '',
+      yard_shape: 'squares',
+      zones: [{ label: '', sf: '' }],
+      attachments: [],
+      notes: '',
+      cage_config: null,
+      supply_only: false,
+      equipment_install_fee: '',
+    });
+    setEstimate(null);
+    setShowHistory(false);
+    setStep(0);
+  };
+
   return (
     <div className="min-h-screen">
       <header className="no-print bg-hunter text-offwhite px-6 py-4 flex items-center justify-between">
@@ -72,6 +97,13 @@ export default function App() {
             className="px-3 py-1 rounded text-sm bg-sage/30 text-offwhite hover:bg-sage/50"
           >
             + New
+          </button>
+          <button
+            onClick={newCageQuote}
+            title="Skip the full intake — go straight to a cage-only quote"
+            className="px-3 py-1 rounded text-sm bg-burnt/80 text-white hover:bg-burnt"
+          >
+            ⚾ Quick Cage
           </button>
           <Link to="/admin/partners" className="px-3 py-1 rounded text-sm bg-sage/30 text-offwhite hover:bg-sage/50">
             🤝 Partners

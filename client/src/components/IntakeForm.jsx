@@ -108,10 +108,19 @@ export default function IntakeForm({ products, initial, onSubmit }) {
     });
   };
 
+  // Cage-only mode: cage project type + no turf → hide all turf-specific fields
+  const isCageOnly = form.no_turf && CAGE_TYPES.has(form.project_type);
+
   return (
     <form onSubmit={submit} className="space-y-6 bg-white border border-sageMuted rounded-lg p-6 shadow-sm">
-      <h2 className="text-xl font-semibold text-hunter">Project Intake</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold text-hunter">{isCageOnly ? '⚾ Quick Cage Quote' : 'Project Intake'}</h2>
+        {isCageOnly && (
+          <span className="text-xs text-hunter/60">Cage-only mode · turf fields hidden</span>
+        )}
+      </div>
 
+      {!isCageOnly && (
       <div className="space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs uppercase tracking-wider text-hunter/60">
           <div>① Speak it</div>
@@ -164,6 +173,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           </div>
         </div>
       </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label="Customer name">
@@ -195,6 +205,8 @@ export default function IntakeForm({ products, initial, onSubmit }) {
         )}
       </div>
 
+      {!isCageOnly && (
+      <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         <Field label="Narrow dimension (ft)">
           <input type="number" min="0" step="any" className="input"
@@ -235,6 +247,8 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           ))}
         </div>
       </div>
+      </>
+      )}
 
       {CAGE_TYPES.has(form.project_type) && (
         <CageQuickSetup value={form.cage_config} onChange={v => setForm({ ...form, cage_config: v })} />
@@ -252,6 +266,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
         </label>
       )}
 
+      {!isCageOnly && (
       <div>
         <div className="text-sm font-medium text-hunter mb-2">Yard shape (drives turf waste allowance)</div>
         <div className="flex gap-4">
@@ -268,13 +283,14 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           ))}
         </div>
       </div>
+      )}
 
       <Field label="Notes / scope">
         <textarea className="input min-h-[80px]" value={form.notes} onChange={e => update('notes', e.target.value)} />
       </Field>
 
       <div className="flex justify-end">
-        <button type="submit" disabled={form.no_turf ? false : (!computedSf || !form.product_name)}
+        <button type="submit" disabled={isCageOnly ? !form.customer_name : (form.no_turf ? !form.customer_name : (!computedSf || !form.product_name))}
           className="bg-burnt text-white px-6 py-2 rounded font-semibold hover:bg-burnt/90 disabled:opacity-40">
           Continue to Estimate →
         </button>
