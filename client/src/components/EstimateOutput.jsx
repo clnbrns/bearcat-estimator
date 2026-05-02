@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { fmt, saveEstimate, generateQuickbooksDescription, appendToVoiceCorpus } from '../lib/api.js';
 import ProjectPlan from './ProjectPlan.jsx';
+import MaterialCrossSection from './MaterialCrossSection.jsx';
+import ClientPresentationMode from './ClientPresentationMode.jsx';
 
 export default function EstimateOutput({ estimate, intake, company, onBack }) {
   const [showDetail, setShowDetail] = useState(true);
   const [saved, setSaved] = useState(false);
-  const [view, setView] = useState('estimate'); // 'estimate' | 'plan'
+  const [view, setView] = useState('estimate'); // 'estimate' | 'plan' | 'present'
   const [qbDesc, setQbDesc] = useState('');
   const [qbBusy, setQbBusy] = useState(false);
   const [qbError, setQbError] = useState(null);
@@ -51,6 +53,9 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
   if (view === 'plan') {
     return <ProjectPlan estimate={estimate} intake={intake} onBack={() => setView('estimate')} />;
   }
+  if (view === 'present') {
+    return <ClientPresentationMode estimate={estimate} intake={intake} company={company} onBack={() => setView('estimate')} />;
+  }
 
   const save = async () => {
     await saveEstimate({ intake, estimate });
@@ -71,6 +76,10 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
           </button>
           <button onClick={() => setView('plan')} className="bg-hunter text-offwhite px-4 py-2 rounded font-semibold">
             Project Plan
+          </button>
+          <button onClick={() => setView('present')} className="bg-burnt/80 text-white px-4 py-2 rounded font-semibold"
+            title="Hand the screen to the customer — big numbers, no internal cost detail">
+            🎯 Present to Client
           </button>
           <button onClick={() => window.print()} className="bg-burnt text-white px-4 py-2 rounded font-semibold">
             Print / Save PDF
@@ -174,6 +183,10 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
           </div>
         </section>
       </article>
+
+      <div className="max-w-3xl mx-auto">
+        <MaterialCrossSection estimate={estimate} intake={intake} />
+      </div>
 
       <section className="no-print mt-6 max-w-3xl mx-auto bg-white border border-sageMuted rounded-lg p-6">
         <div className="flex items-center justify-between mb-3">

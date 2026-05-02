@@ -121,11 +121,12 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </div>
 
       {!isCageOnly && (
+      <Section number="1" title="Quick capture (optional)" subtitle="Skip the form — speak it, upload a PDF, or snap a photo. AI fills in the rest.">
       <div className="space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs uppercase tracking-wider text-hunter/60">
-          <div>① Speak it</div>
-          <div>② Upload measurement PDF</div>
-          <div>③ Snap a yard photo</div>
+          <div>Speak it</div>
+          <div>Upload measurement PDF</div>
+          <div>Snap a yard photo</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -173,8 +174,10 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           </div>
         </div>
       </div>
+      </Section>
       )}
 
+      <Section number={isCageOnly ? "1" : "2"} title="Customer & project">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label="Customer name">
           <input className="input" value={form.customer_name} onChange={e => update('customer_name', e.target.value)} required />
@@ -188,12 +191,11 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           </select>
         </Field>
         {form.no_turf ? (
-          <Field label="Equipment installation labor (flat $)">
-            <input type="number" min="0" step="any" className="input"
-              value={form.equipment_install_fee}
-              onChange={e => update('equipment_install_fee', e.target.value)}
-              placeholder="e.g. 850" />
-          </Field>
+          <NumFieldRanged label="Equipment installation labor (flat $)"
+            value={form.equipment_install_fee}
+            onChange={v => update('equipment_install_fee', v)}
+            placeholder="e.g. 850"
+            warnAbove={50000} warnAboveMsg="Unusually high — verify it's not a typo (>$50K labor)" />
         ) : (
           <Field label="Turf product">
             <select className="input" value={form.product_name} onChange={e => update('product_name', e.target.value)}>
@@ -204,31 +206,27 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           </Field>
         )}
       </div>
+      </Section>
 
       {!isCageOnly && (
-      <>
+      <Section number="3" title="Measure" subtitle="Dimensions drive accurate turf waste + seam tape math.">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-        <Field label="Narrow dimension (ft)">
-          <input type="number" min="0" step="any" className="input"
-            value={form.narrow_dim_ft} onChange={e => update('narrow_dim_ft', e.target.value)}
-            placeholder="e.g. 30" />
-        </Field>
-        <Field label="Long dimension (ft)">
-          <input type="number" min="0" step="any" className="input"
-            value={form.long_dim_ft} onChange={e => update('long_dim_ft', e.target.value)}
-            placeholder="e.g. 50" />
-        </Field>
-        <Field label={`Total SF ${dimsSf > 0 && !form.total_sf ? `(from dims: ${dimsSf})` : zoneSum > 0 && !form.total_sf ? `(from zones: ${zoneSum})` : ''}`}>
-          <input
-            type="number" min="0" step="any" className="input"
-            value={form.total_sf} onChange={e => update('total_sf', e.target.value)}
-            placeholder={dimsSf > 0 ? String(dimsSf) : zoneSum > 0 ? String(zoneSum) : '0'}
-          />
-        </Field>
+        <NumFieldRanged label="Narrow dimension (ft)" value={form.narrow_dim_ft}
+          onChange={v => update('narrow_dim_ft', v)} placeholder="e.g. 30"
+          warnAbove={200} warnAboveMsg="Unusually wide — most yards <100 ft narrow. Confirm." />
+        <NumFieldRanged label="Long dimension (ft)" value={form.long_dim_ft}
+          onChange={v => update('long_dim_ft', v)} placeholder="e.g. 50"
+          warnAbove={500} warnAboveMsg="Unusually long — confirm not a typo." />
+        <NumFieldRanged
+          label={`Total SF ${dimsSf > 0 && !form.total_sf ? `(from dims: ${dimsSf})` : zoneSum > 0 && !form.total_sf ? `(from zones: ${zoneSum})` : ''}`}
+          value={form.total_sf}
+          onChange={v => update('total_sf', v)}
+          placeholder={dimsSf > 0 ? String(dimsSf) : zoneSum > 0 ? String(zoneSum) : '0'}
+          warnAbove={20000} warnAboveMsg="Large project (>20K SF) — confirm SF, not yards."
+          warnBelow={50} warnBelowMsg="Tiny project (<50 SF) — confirm SF, not yards." />
       </div>
-      <p className="text-xs text-hunter/60 -mt-2">Dims drive accurate turf waste &amp; seam tape calc. Skip them and we fall back to a flat overage estimate.</p>
 
-      <div>
+      <div className="mt-4">
         <div className="flex items-center justify-between mb-2">
           <label className="font-medium text-hunter">Zones (optional)</label>
           <button type="button" onClick={addZone} className="text-sm text-burnt hover:underline">+ Add zone</button>
@@ -247,15 +245,18 @@ export default function IntakeForm({ products, initial, onSubmit }) {
           ))}
         </div>
       </div>
-      </>
+      </Section>
       )}
 
       {CAGE_TYPES.has(form.project_type) && (
-        <CageQuickSetup value={form.cage_config} onChange={v => setForm({ ...form, cage_config: v })} />
+        <Section number={isCageOnly ? "2" : "4"} title="Equipment & cage spec">
+          <CageQuickSetup value={form.cage_config} onChange={v => setForm({ ...form, cage_config: v })} />
+        </Section>
       )}
 
-      {!form.no_turf && (
-        <label className={`flex items-start gap-3 p-3 border-2 rounded cursor-pointer hover:bg-sageMuted/20 ${form.supply_only ? 'border-burnt bg-burnt/10' : 'border-sageMuted'}`}>
+      {!form.no_turf && !isCageOnly && (
+      <Section number="4" title="Site conditions" subtitle="What we're working with on the ground.">
+        <label className={`flex items-start gap-3 p-3 border-2 rounded cursor-pointer hover:bg-sageMuted/20 mb-3 ${form.supply_only ? 'border-burnt bg-burnt/10' : 'border-sageMuted'}`}>
           <input type="checkbox" checked={form.supply_only}
             onChange={e => update('supply_only', e.target.checked)}
             className="accent-burnt mt-1" />
@@ -264,10 +265,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
             <div className="text-xs text-hunter/60">Customer or contractor installs. Bills turf + accessories only — skips labor, sub-base, demo, grading.</div>
           </div>
         </label>
-      )}
 
-      {!isCageOnly && (
-      <div>
         <div className="text-sm font-medium text-hunter mb-2">Yard shape (drives turf waste allowance)</div>
         <div className="flex gap-4">
           {[
@@ -282,12 +280,13 @@ export default function IntakeForm({ products, initial, onSubmit }) {
             </label>
           ))}
         </div>
-      </div>
+      </Section>
       )}
 
-      <Field label="Notes / scope">
-        <textarea className="input min-h-[80px]" value={form.notes} onChange={e => update('notes', e.target.value)} />
-      </Field>
+      <Section number={isCageOnly ? "3" : (CAGE_TYPES.has(form.project_type) ? "5" : "5")} title="Notes & scope">
+        <textarea className="input min-h-[80px]" value={form.notes} onChange={e => update('notes', e.target.value)}
+          placeholder="Slope, access constraints, drainage notes, special requests, anything the crew needs to know…" />
+      </Section>
 
       <div className="flex justify-end">
         <button type="submit" disabled={isCageOnly ? !form.customer_name : (form.no_turf ? !form.customer_name : (!computedSf || !form.product_name))}
@@ -306,5 +305,35 @@ function Field({ label, children }) {
       <div className="text-sm font-medium text-hunter mb-1">{label}</div>
       {children}
     </label>
+  );
+}
+
+function Section({ number, title, subtitle, children }) {
+  return (
+    <section className="border-l-2 border-burnt/40 pl-4 -ml-4">
+      <div className="flex items-baseline gap-3 mb-1">
+        <div className="text-xs font-bold text-burnt tracking-wider">STEP {number}</div>
+        <h3 className="text-base font-semibold text-hunter">{title}</h3>
+      </div>
+      {subtitle && <p className="text-xs text-hunter/60 mb-3">{subtitle}</p>}
+      <div className="space-y-3">{children}</div>
+    </section>
+  );
+}
+
+function NumFieldRanged({ label, value, onChange, placeholder, warnAbove, warnAboveMsg, warnBelow, warnBelowMsg }) {
+  const num = Number(value);
+  const aboveWarn = warnAbove && num > 0 && num > warnAbove;
+  const belowWarn = warnBelow && num > 0 && num < warnBelow;
+  const warning = aboveWarn ? warnAboveMsg : belowWarn ? warnBelowMsg : null;
+  return (
+    <Field label={label}>
+      <input type="number" min="0" step="any"
+        className={`input ${warning ? 'border-burnt ring-1 ring-burnt/40' : ''}`}
+        value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} />
+      {warning && (
+        <div className="text-xs text-burnt mt-1">⚠ {warning}</div>
+      )}
+    </Field>
   );
 }
