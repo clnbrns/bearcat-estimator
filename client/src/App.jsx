@@ -65,53 +65,55 @@ export default function App() {
     setStep(0);
   };
 
+  const navBtn = (active) =>
+    `px-3 py-1.5 rounded-md text-sm font-semibold transition ${
+      active
+        ? 'bg-brand-action text-white shadow-sm ring-1 ring-brand-action/30'
+        : 'text-brand-green hover:bg-brand-green/5'
+    } disabled:opacity-40 disabled:cursor-not-allowed`;
+
   return (
-    <div className="min-h-screen">
-      <header className="no-print bg-hunter text-offwhite px-6 py-4 flex items-center justify-between">
-        <div>
-          <div className="text-2xl font-bold">Bearcat Turf Estimator</div>
-          <div className="text-sageMuted text-sm">Internal estimating tool</div>
-        </div>
-        <nav className="flex gap-2 items-center">
-          {STEPS.map((s, i) => (
-            <button
-              key={s}
-              onClick={() => { setShowHistory(false); setStep(i); }}
-              disabled={i > 0 && !intake}
-              className={`px-3 py-1 rounded text-sm ${
-                !showHistory && i === step ? 'bg-burnt text-white' : 'bg-sage/30 text-offwhite hover:bg-sage/50'
-              } disabled:opacity-40`}
-            >
-              {i + 1}. {s}
+    <div className="min-h-screen flex flex-col">
+      <header className="no-print sticky top-0 z-30 border-b border-brand-green/10 bg-white/95 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-6 py-3 flex items-center justify-between gap-4">
+          <div className="flex items-baseline gap-3">
+            <div className="text-xl font-bold text-brand-green tracking-tight">
+              Bearcat Turf <span className="text-brand-action">·</span> Estimator
+            </div>
+            <div className="hidden md:block text-xs uppercase tracking-[0.14em] text-brand-green/50">
+              Internal tool
+            </div>
+          </div>
+          <nav className="flex gap-1.5 items-center flex-wrap">
+            {STEPS.map((s, i) => (
+              <button
+                key={s}
+                onClick={() => { setShowHistory(false); setStep(i); }}
+                disabled={i > 0 && !intake}
+                className={navBtn(!showHistory && i === step)}
+              >
+                {i + 1}. {s}
+              </button>
+            ))}
+            <span className="text-brand-green/20 mx-1">·</span>
+            <button onClick={() => setShowHistory(true)} className={navBtn(showHistory)}>
+              📋 History
             </button>
-          ))}
-          <span className="text-sageMuted/50">·</span>
-          <button
-            onClick={() => setShowHistory(true)}
-            className={`px-3 py-1 rounded text-sm ${showHistory ? 'bg-burnt text-white' : 'bg-sage/30 text-offwhite hover:bg-sage/50'}`}
-          >
-            📋 History
-          </button>
-          <button
-            onClick={newEstimate}
-            className="px-3 py-1 rounded text-sm bg-sage/30 text-offwhite hover:bg-sage/50"
-          >
-            + New
-          </button>
-          <button
-            onClick={newCageQuote}
-            title="Skip the full intake — go straight to a cage-only quote"
-            className="px-3 py-1 rounded text-sm bg-burnt/80 text-white hover:bg-burnt"
-          >
-            ⚾ Quick Cage
-          </button>
-          <Link to="/admin/partners" className="px-3 py-1 rounded text-sm bg-sage/30 text-offwhite hover:bg-sage/50">
-            🤝 Partners
-          </Link>
-        </nav>
+            <button onClick={newEstimate} className={navBtn(false)}>
+              + New
+            </button>
+            <button onClick={newCageQuote} title="Skip the full intake — cage-only quote"
+              className="px-3 py-1.5 rounded-md text-sm font-semibold bg-brand-orange text-white shadow-sm transition hover:brightness-110">
+              ⚾ Quick Cage
+            </button>
+            <Link to="/admin/partners" className={navBtn(false)}>
+              🤝 Partners
+            </Link>
+          </nav>
+        </div>
       </header>
 
-      <main className="max-w-5xl mx-auto p-6">
+      <main className="flex-1 max-w-5xl w-full mx-auto p-6">
         {showHistory ? (
           <EstimateHistory onOpen={openSavedEstimate} onClose={() => setShowHistory(false)} />
         ) : (

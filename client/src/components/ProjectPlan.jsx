@@ -21,7 +21,7 @@ export default function ProjectPlan({ estimate, intake, onBack }) {
     <div>
       <div className="no-print mb-4 flex flex-wrap gap-2 items-center justify-between">
         <button onClick={onBack} className="text-hunter underline">← Back to Estimate</button>
-        <button onClick={() => window.print()} className="bg-burnt text-white px-4 py-2 rounded font-semibold">
+        <button onClick={() => window.print()} className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
           Print / Save PDF
         </button>
       </div>

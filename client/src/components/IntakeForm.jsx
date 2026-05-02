@@ -150,7 +150,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
             <div className="font-medium text-hunter mb-1">📐 Upload PDF or 📸 Photo</div>
             <div className="text-xs text-hunter/60 mb-2">CamToPlan PDFs auto-extract dims. Yard photos identify area, surface, slope, obstructions.</div>
             <input type="file" accept=".pdf,image/*" multiple onChange={handleUpload}
-              className="block text-sm text-hunter file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-burnt file:text-white file:cursor-pointer file:hover:bg-burnt/90 mb-2" />
+              className="block text-sm text-hunter file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-brand-action file:text-white file:cursor-pointer file:hover:brightness-110 file:font-semibold file:rounded-md file:shadow-sm mb-2" />
             <input type="file" accept="image/*" capture="environment" onChange={handleUpload}
               className="block text-sm text-hunter file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-sage file:text-hunter file:cursor-pointer file:hover:bg-sage/80" />
             <div className="text-xs text-hunter/50 italic mt-1">Second button opens camera on mobile.</div>
@@ -290,7 +290,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
 
       <div className="flex justify-end">
         <button type="submit" disabled={isCageOnly ? !form.customer_name : (form.no_turf ? !form.customer_name : (!computedSf || !form.product_name))}
-          className="bg-burnt text-white px-6 py-2 rounded font-semibold hover:bg-burnt/90 disabled:opacity-40">
+          className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 disabled:opacity-40">
           Continue to Estimate →
         </button>
       </div>

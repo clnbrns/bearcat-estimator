@@ -170,7 +170,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
         <div className="flex justify-between pt-4">
           <button onClick={onBack} className="text-hunter underline">← Back</button>
           <button onClick={() => onComplete(result)} disabled={!result}
-            className="bg-burnt text-white px-6 py-2 rounded font-semibold hover:bg-burnt/90 disabled:opacity-40">
+            className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 disabled:opacity-40">
             Generate Output →
           </button>
         </div>

@@ -96,7 +96,7 @@ export default function PartnerAdmin() {
         <section className="bg-white border border-sageMuted rounded-lg overflow-hidden">
           <header className="bg-hunter text-offwhite px-4 py-2 flex justify-between items-center">
             <div className="font-semibold">🤝 Partner Accounts</div>
-            <button onClick={newPartner} className="bg-burnt text-white px-3 py-1 rounded text-sm">+ New partner</button>
+            <button onClick={newPartner} className="bg-brand-action text-white px-3 py-1 rounded-md text-sm font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">+ New partner</button>
           </header>
           <table className="w-full text-sm">
             <thead className="bg-sageMuted/30 text-xs uppercase text-hunter/70">
@@ -186,7 +186,7 @@ function PartnerEditor({ partner, onSave, onCancel }) {
 
         <div className="mt-6 flex justify-end gap-2">
           <button onClick={onCancel} className="px-4 py-2 text-hunter underline">Cancel</button>
-          <button onClick={() => onSave(p)} className="bg-burnt text-white px-6 py-2 rounded font-semibold">Save</button>
+          <button onClick={() => onSave(p)} className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">Save</button>
         </div>
 
         {p.slug && (

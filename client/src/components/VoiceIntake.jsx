@@ -94,12 +94,12 @@ export default function VoiceIntake({ onParsed }) {
       <div className="flex gap-2 mb-3">
         {!listening ? (
           <button type="button" onClick={start}
-            className="bg-burnt text-white px-4 py-2 rounded font-semibold flex items-center gap-2">
+            className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 flex items-center gap-2">
             🎙 Start
           </button>
         ) : (
           <button type="button" onClick={stop}
-            className="bg-burnt text-white px-4 py-2 rounded font-semibold flex items-center gap-2 animate-pulse">
+            className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 flex items-center gap-2 animate-pulse">
             ⏹ Stop
           </button>
         )}

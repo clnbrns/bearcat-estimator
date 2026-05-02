@@ -81,7 +81,7 @@ export default function EstimateHistory({ onOpen, onClose }) {
                     <td className="px-4 py-2 text-right font-semibold">{t.final_price ? fmt(t.final_price) : '—'}</td>
                     <td className="px-4 py-2 text-right text-hunter/70">{t.profit ? fmt(t.profit) : '—'}</td>
                     <td className="px-4 py-2 text-right">
-                      <button onClick={() => onOpen(it)} className="bg-burnt text-white px-3 py-1 rounded text-xs font-semibold hover:bg-burnt/90">
+                      <button onClick={() => onOpen(it)} className="bg-brand-action text-white px-3 py-1 rounded-md text-xs font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
                         Open
                       </button>
                     </td>

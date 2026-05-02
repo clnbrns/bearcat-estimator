@@ -71,17 +71,17 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
             <input type="checkbox" checked={showDetail} onChange={e => setShowDetail(e.target.checked)} className="accent-burnt" />
             Show line-item detail
           </label>
-          <button onClick={save} className="bg-sage text-hunter px-4 py-2 rounded font-semibold">
+          <button onClick={save} className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
             {saved ? '✓ Saved' : 'Save'}
           </button>
-          <button onClick={() => setView('plan')} className="bg-hunter text-offwhite px-4 py-2 rounded font-semibold">
+          <button onClick={() => setView('plan')} className="bg-brand-green text-white px-4 py-2 rounded-md font-semibold shadow-sm transition hover:brightness-110">
             Project Plan
           </button>
-          <button onClick={() => setView('present')} className="bg-burnt/80 text-white px-4 py-2 rounded font-semibold"
+          <button onClick={() => setView('present')} className="bg-brand-orange text-white px-4 py-2 rounded-md font-semibold shadow-sm transition hover:brightness-110"
             title="Hand the screen to the customer — big numbers, no internal cost detail">
             🎯 Present to Client
           </button>
-          <button onClick={() => window.print()} className="bg-burnt text-white px-4 py-2 rounded font-semibold">
+          <button onClick={() => window.print()} className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
             Print / Save PDF
           </button>
         </div>
@@ -196,7 +196,7 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
           </div>
           {!qbDesc && (
             <button onClick={generateQbDescription} disabled={qbBusy}
-              className="bg-hunter text-offwhite px-4 py-2 rounded font-semibold disabled:opacity-40">
+              className="bg-brand-green text-white px-4 py-2 rounded-md font-semibold shadow-sm transition hover:brightness-110 disabled:opacity-40">
               {qbBusy ? 'Generating…' : 'Generate'}
             </button>
           )}
@@ -210,7 +210,7 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
               className="w-full min-h-[200px] border border-sageMuted rounded p-3 text-sm bg-offwhite font-sans focus:outline-none focus:ring-2 focus:ring-sage" />
             <div className="flex gap-2 mt-2 items-center">
               <button onClick={copyQbDescription}
-                className="bg-burnt text-white px-4 py-2 rounded font-semibold">
+                className="bg-brand-action text-white px-4 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
                 {qbCopied ? '✓ Copied' : '📋 Copy to clipboard'}
               </button>
               <button onClick={generateQbDescription} disabled={qbBusy}

@@ -99,7 +99,7 @@ export default function ClientPresentationMode({ estimate, intake, company, onBa
         {/* Print button (visible only to owner) */}
         <div className="no-print mt-6 flex justify-center gap-3">
           <button onClick={() => window.print()}
-            className="bg-burnt text-white px-6 py-2 rounded font-semibold">
+            className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
             Print / Save PDF
           </button>
         </div>

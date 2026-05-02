@@ -2,13 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .input { @apply border border-sageMuted rounded px-3 py-2 w-full bg-offwhite focus:outline-none focus:ring-2 focus:ring-sage; }
+/* Foundation — synced with bearcatturf.com */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f5f0e8;
+  background-color: #ffffff;
   color: #1b3d24;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #c85c18;
+  color: #ffffff;
+}
+
+@layer components {
+  .input {
+    @apply border border-brand-sage-muted rounded-md px-3 py-2 w-full bg-brand-cream/40
+           focus:outline-none focus:border-brand-action focus:ring-1 focus:ring-brand-action/30
+           transition-colors;
+  }
+
+  /* Primary "go" CTA — bright action green, matches website "Free Quote" buttons */
+  .btn-action {
+    @apply rounded-md bg-brand-action px-4 py-2 text-sm font-semibold text-white
+           shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  /* Secondary CTA — burnt orange accent for highlights */
+  .btn-accent {
+    @apply rounded-md bg-brand-orange px-4 py-2 text-sm font-semibold text-white
+           shadow-sm transition hover:brightness-110
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  /* Ghost / quiet button */
+  .btn-ghost {
+    @apply rounded-md border border-brand-green/20 bg-white px-4 py-2 text-sm
+           font-semibold text-brand-green transition hover:bg-brand-green/5;
+  }
+
+  /* Card surface — used wherever the website uses white cards on white bg */
+  .card {
+    @apply bg-white border border-brand-green/10 rounded-md shadow-sm;
+  }
 }
 
 @media print {

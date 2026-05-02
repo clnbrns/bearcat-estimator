@@ -83,7 +83,7 @@ export default function CimarronPicker({ items, onChange }) {
                     <div className="text-xs text-hunter/60">{p.sku} · cost {fmt(p.wholesale2024)} · MAP {fmt(p.map2024)}</div>
                   </div>
                   <button type="button" onClick={() => addItem(p.sku)} disabled={!!added}
-                    className="bg-burnt text-white px-2 py-0.5 rounded text-xs font-semibold disabled:opacity-40">
+                    className="bg-brand-action text-white px-2 py-0.5 rounded-md text-xs font-semibold shadow-sm transition hover:brightness-110 disabled:opacity-40">
                     {added ? 'Added' : 'Add'}
                   </button>
                 </div>

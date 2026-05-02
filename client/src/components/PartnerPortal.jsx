@@ -119,7 +119,7 @@ export default function PartnerPortal() {
         </div>
         <div className="mt-6">
           <button onClick={() => { setSubmitted(null); setEstimate(null); setForm({ ...form, customer_name: '', customer_email: '', customer_phone: '', project_address: '', total_sf: '', narrow_dim_ft: '', long_dim_ft: '', notes: '' }); }}
-            className="bg-burnt text-white px-6 py-2 rounded font-semibold">
+            className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110">
             Submit Another
           </button>
         </div>
@@ -201,7 +201,7 @@ export default function PartnerPortal() {
           <div className="mt-4 flex justify-end">
             <button onClick={computeEstimate}
               disabled={!form.customer_name || calcing || (!form.total_sf && (!form.narrow_dim_ft || !form.long_dim_ft))}
-              className="bg-burnt text-white px-6 py-2 rounded font-semibold disabled:opacity-40">
+              className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 disabled:opacity-40">
               {calcing ? 'Calculating…' : 'Calculate Quote'}
             </button>
           </div>
@@ -232,7 +232,7 @@ export default function PartnerPortal() {
 
             <div className="mt-4 flex flex-wrap gap-3">
               <button onClick={submitToBearcat} disabled={submitting}
-                className="bg-burnt text-white px-6 py-2 rounded font-semibold disabled:opacity-40">
+                className="bg-brand-action text-white px-6 py-2 rounded-md font-semibold shadow-sm ring-1 ring-brand-action/30 transition hover:brightness-110 disabled:opacity-40">
                 {submitting ? 'Submitting…' : 'Submit to Bearcat for booking →'}
               </button>
               <button onClick={() => window.print()}
