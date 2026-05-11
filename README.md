@@ -13,7 +13,7 @@ Full-stack estimating app for Bearcat Turf (DFW). Customer intake → cost calc 
 
 ## Not yet built (later phases)
 
-- Phase 2: AI photo/PDF parsing (Claude API) to pre-fill intake
+- Phase 2: AI photo/PDF parsing (Gemini API) to pre-fill intake
 - Phase 3: Estimate history list + duplicate/edit + CSV export
 - Phase 4: Settings/Admin panel for editing cost defaults in-app
 - Phase 5: QuickBooks integration (see notes below)

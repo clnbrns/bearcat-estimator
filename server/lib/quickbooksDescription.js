@@ -1,12 +1,10 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { geminiGenerate } from './gemini.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CORPUS_PATH = path.resolve(__dirname, '../../data/voice_corpus.json');
-
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929';
 
 let cachedCorpus = null;
 async function loadCorpus() {
@@ -26,7 +24,7 @@ export async function appendToCorpus(description, meta = {}) {
   const trimmed = description.trim();
   // Dedupe: skip if first 80 chars (case-insensitive) already exist
   const head = trimmed.slice(0, 80).toLowerCase();
-  const exists = (corpus.examples || []).some(e => e.toLowerCase().includes(head));
+  const exists = (corpus.examples || []).some((e) => e.toLowerCase().includes(head));
   if (exists) {
     return { added: false, reason: 'Already in corpus (duplicate detected).', total: corpus.examples.length };
   }
@@ -60,22 +58,18 @@ OUTPUT:
 - Just the description, ready to paste into QuickBooks.`;
 
 export async function generateQuickbooksDescription(estimate, intake) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set.');
-  const client = new Anthropic({ apiKey });
-
   const corpus = await loadCorpus();
   // Use top 8 examples (most varied) as few-shot
   const examples = (corpus.examples || []).slice(0, 8).map((e, i) => `EXAMPLE ${i + 1}:\n${e}`).join('\n\n');
 
   // Strip pricing from line items — descriptions describe SCOPE, not money
   const safeLines = (estimate.lines || [])
-    .filter(l => !l.cimarron) // leave Cimarron items aside; mention manually
-    .map(l => `${l.label} — ${l.qty} ${l.unit}`)
+    .filter((l) => !l.cimarron) // leave Cimarron items aside; mention manually
+    .map((l) => `${l.label} — ${l.qty} ${l.unit}`)
     .join('\n');
   const cimarronLines = (estimate.lines || [])
-    .filter(l => l.cimarron)
-    .map(l => `${l.label} (qty ${l.qty})`)
+    .filter((l) => l.cimarron)
+    .map((l) => `${l.label} (qty ${l.qty})`)
     .join('\n');
 
   const project = {
@@ -109,13 +103,11 @@ Now write a QuickBooks description for this NEW project. Match the voice + forma
 PROJECT DATA:
 ${JSON.stringify(project, null, 2)}`;
 
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 1000,
+  const { text, model } = await geminiGenerate({
     system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: userMsg }],
+    parts: [{ text: userMsg }],
+    maxOutputTokens: 1000,
   });
 
-  const text = resp.content.find(c => c.type === 'text')?.text || '';
-  return { description: text.trim(), _model: MODEL, _example_count: Math.min(8, corpus.examples.length) };
+  return { description: text.trim(), _model: model, _example_count: Math.min(8, corpus.examples.length) };
 }

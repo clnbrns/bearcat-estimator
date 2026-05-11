@@ -1,6 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
-
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929';
+import { geminiGenerate } from './gemini.js';
 
 const SYSTEM_PROMPT = `You write bilingual (English + Spanish) project plans for the install crew at Bearcat Turf, an artificial turf installer in DFW, Texas.
 
@@ -36,12 +34,8 @@ Output JSON ONLY in this shape (no markdown wrapping):
 }`;
 
 export async function generateProjectPlan(estimate, intake) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set.');
-  const client = new Anthropic({ apiKey });
-
   // Strip pricing from line items before sending to model
-  const safeLines = (estimate.lines || []).map(l => ({
+  const safeLines = (estimate.lines || []).map((l) => ({
     item: l.label,
     quantity: l.qty,
     unit: l.unit,
@@ -64,17 +58,12 @@ export async function generateProjectPlan(estimate, intake) {
     line_items_no_pricing: safeLines,
   };
 
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 4000,
+  const { text } = await geminiGenerate({
     system: SYSTEM_PROMPT,
-    messages: [{
-      role: 'user',
-      content: `Generate a bilingual project plan for the crew leader from this estimate data:\n\n${JSON.stringify(payload, null, 2)}`,
-    }],
+    parts: [{ text: `Generate a bilingual project plan for the crew leader from this estimate data:\n\n${JSON.stringify(payload, null, 2)}` }],
+    maxOutputTokens: 4000,
   });
 
-  const text = resp.content.find(c => c.type === 'text')?.text || '';
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error('No JSON in plan response: ' + text.slice(0, 200));
   return JSON.parse(jsonMatch[0]);

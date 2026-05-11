@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 // .env self-loader — runs BEFORE any module reads process.env. Always wins
 // against inherited shell vars (Node's --env-file does not). This fixes the
-// "parent shell exports empty ANTHROPIC_API_KEY" footgun once and for all.
+// "parent shell exports empty GEMINI_API_KEY" footgun once and for all.
 (function loadEnv() {
   const here = path.dirname(fileURLToPath(import.meta.url));
   const envPath = path.join(here, '.env');
@@ -34,12 +34,32 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '25mb' }));
 
+app.get('/api/health', (_req, res) => res.json({ ok: true }));
+
+// ── HTTP Basic Auth ─────────────────────────────────────
+// Set APP_USER and APP_PASS in env to enable. /api/health is registered
+// above so Render's health check doesn't need credentials.
+const APP_USER = process.env.APP_USER;
+const APP_PASS = process.env.APP_PASS;
+if (APP_USER && APP_PASS) {
+  app.use((req, res, next) => {
+    const hdr = req.headers.authorization || '';
+    if (hdr.startsWith('Basic ')) {
+      const [u, p] = Buffer.from(hdr.slice(6), 'base64').toString().split(':');
+      if (u === APP_USER && p === APP_PASS) return next();
+    }
+    res.set('WWW-Authenticate', 'Basic realm="Bearcat Estimator"');
+    res.status(401).send('Authentication required');
+  });
+  console.log('Basic auth enabled');
+} else {
+  console.log('⚠️  APP_USER/APP_PASS not set — running with NO auth (dev only)');
+}
+
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 20 * 1024 * 1024, files: 5 }, // 20 MB per file, up to 5 files
 });
-
-app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
 app.get('/api/products', async (_req, res, next) => {
   try { res.json(await loadProducts()); } catch (e) { next(e); }
@@ -144,6 +164,17 @@ app.post('/api/project-plan', async (req, res, next) => {
     res.json(plan);
   } catch (e) { next(e); }
 });
+
+// ── Serve built React app (single-service deploy) ───────
+const here = path.dirname(fileURLToPath(import.meta.url));
+const clientDist = path.resolve(here, '../client/dist');
+if (existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  // SPA fallback for non-API routes
+  app.get(/^\/(?!api\/).*/, (_req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
 
 app.use((err, _req, res, _next) => {
   console.error(err);

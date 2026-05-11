@@ -8,8 +8,8 @@ html {
 }
 
 body {
-  background-color: #ffffff;
-  color: #1b3d24;
+  background-color: #f3f1ec;  /* warm gray so white cards pop */
+  color: #0f2417;             /* deeper ink for readable body text */
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,8 +23,9 @@ body {
 
 @layer components {
   .input {
-    @apply border border-brand-sage-muted rounded-md px-3 py-2 w-full bg-brand-cream/40
-           focus:outline-none focus:border-brand-action focus:ring-1 focus:ring-brand-action/30
+    @apply border-2 border-brand-green/25 rounded-md px-3 py-2 w-full bg-white text-brand-green
+           placeholder:text-brand-green/40
+           focus:outline-none focus:border-brand-action focus:ring-2 focus:ring-brand-action/30
            transition-colors;
   }
 
@@ -48,7 +49,7 @@ body {
 
   /* Card surface — used wherever the website uses white cards on white bg */
   .card {
-    @apply bg-white border border-brand-green/10 rounded-md shadow-sm;
+    @apply bg-white border border-brand-green/20 rounded-md shadow-sm;
   }
 }
 

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: bearcat-estimator
+    runtime: node
+    plan: starter           # $7/mo — needed for persistent disk
+    region: oregon          # change to ohio if you want east-coast latency
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1             # $0.25/GB/mo — JSON files are tiny
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATA_DIR
+        value: /var/data
+      - key: APP_USER
+        sync: false         # set in Render dashboard
+      - key: APP_PASS
+        sync: false         # set in Render dashboard
+      - key: GEMINI_API_KEY
+        sync: false         # set in Render dashboard
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash

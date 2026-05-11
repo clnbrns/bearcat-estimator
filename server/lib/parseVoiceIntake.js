@@ -1,6 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
-
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929';
+import { geminiGenerate } from './gemini.js';
 
 const SYSTEM_PROMPT = `You convert a crew leader's spoken description of a turf job into a structured intake JSON. The user is at Bearcat Turf in DFW, Texas — they walk a yard, talk into their phone, and you extract everything they said.
 
@@ -40,19 +38,14 @@ Rules:
 - "high" confidence = explicit, clear values. "medium" = inferred. "low" = guessed.`;
 
 export async function parseVoiceIntake(transcript) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set.');
   if (!transcript || transcript.trim().length < 5) throw new Error('Transcript too short to parse.');
 
-  const client = new Anthropic({ apiKey });
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 1500,
+  const { text, model } = await geminiGenerate({
     system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: `Spoken description from the field:\n\n"${transcript}"\n\nExtract the structured intake JSON.` }],
+    parts: [{ text: `Spoken description from the field:\n\n"${transcript}"\n\nExtract the structured intake JSON.` }],
+    maxOutputTokens: 1500,
   });
 
-  const text = resp.content.find(c => c.type === 'text')?.text || '';
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error('No JSON in model response: ' + text.slice(0, 200));
 
@@ -64,5 +57,5 @@ export async function parseVoiceIntake(transcript) {
   if (typeof parsed.total_sf === 'number' && parsed.total_sf > 0) {
     parsed.total_sf = Math.ceil(parsed.total_sf / 10) * 10;
   }
-  return { ...parsed, _model: MODEL, _transcript: transcript };
+  return { ...parsed, _model: model, _transcript: transcript };
 }

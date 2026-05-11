@@ -1,6 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
-
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929';
+import { geminiGenerate, fileToPart } from './gemini.js';
 
 const SYSTEM_PROMPT = `You are an estimating assistant for Bearcat Turf, an artificial turf installer in DFW, Texas. The user uploads PDF floor plans (often from CamToPlan iPhone app) or photos of yards. Extract everything useful for an installation estimate.
 
@@ -45,54 +43,43 @@ Rules:
 - Photos always = "low" confidence on dimensions unless a measurement reference is visible.`;
 
 export async function parseMeasurement(files) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set. Add it to server/.env or your environment.');
+  // Gemini accepts both PDFs and images as inline_data parts.
+  const parts = files
+    .filter((f) => f.mimetype === 'application/pdf' || f.mimetype.startsWith('image/'))
+    .map(fileToPart);
+  parts.push({ text: 'Extract estimate data from these documents and return the JSON described in your instructions.' });
 
-  const client = new Anthropic({ apiKey });
-
-  const content = [];
-  for (const f of files) {
-    const base64 = f.buffer.toString('base64');
-    if (f.mimetype === 'application/pdf') {
-      content.push({
-        type: 'document',
-        source: { type: 'base64', media_type: 'application/pdf', data: base64 },
-      });
-    } else if (f.mimetype.startsWith('image/')) {
-      content.push({
-        type: 'image',
-        source: { type: 'base64', media_type: f.mimetype, data: base64 },
-      });
-    }
-  }
-  content.push({ type: 'text', text: 'Extract estimate data from these documents and return the JSON described in your instructions.' });
-
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 2000,
+  const { text, usage, model } = await geminiGenerate({
     system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content }],
+    parts,
+    maxOutputTokens: 8000,
+    json: true,
   });
 
-  const text = resp.content.find(c => c.type === 'text')?.text || '';
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error('No JSON in model response: ' + text.slice(0, 200));
-
   let parsed;
-  try { parsed = JSON.parse(jsonMatch[0]); }
-  catch (e) { throw new Error('Model returned invalid JSON: ' + e.message); }
+  try { parsed = JSON.parse(text); }
+  catch (e) {
+    // Fallback: pull first {...} block in case the model wrapped it
+    const m = text.match(/\{[\s\S]*\}/);
+    if (m) {
+      try { parsed = JSON.parse(m[0]); }
+      catch (e2) { throw new Error('Model returned invalid JSON: ' + e2.message + ' — raw: ' + text.slice(0, 400)); }
+    } else {
+      throw new Error('Model returned invalid JSON: ' + e.message + ' — raw: ' + text.slice(0, 400));
+    }
+  }
 
   // Round all square-foot values UP to the nearest 10 to match crew ordering practice
   const roundUp10 = (n) => (typeof n === 'number' && n > 0) ? Math.ceil(n / 10) * 10 : n;
   if (parsed.total_sf) parsed.total_sf = roundUp10(parsed.total_sf);
   if (Array.isArray(parsed.zones)) {
-    parsed.zones = parsed.zones.map(z => ({ ...z, sf: roundUp10(z.sf) }));
+    parsed.zones = parsed.zones.map((z) => ({ ...z, sf: roundUp10(z.sf) }));
   }
 
   return {
     ...parsed,
-    _model: MODEL,
+    _model: model,
     _file_count: files.length,
-    _usage: resp.usage,
+    _usage: usage,
   };
 }
