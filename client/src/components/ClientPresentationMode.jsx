@@ -40,7 +40,7 @@ export default function ClientPresentationMode({ estimate, intake, company, onBa
         </header>
 
         {/* Customer + project header */}
-        <div className="grid grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-12">
           <div>
             <div className="text-xs uppercase text-hunter/50 tracking-wider mb-1">Prepared for</div>
             <div className="text-2xl font-semibold text-hunter">{intake.customer_name}</div>
@@ -56,7 +56,7 @@ export default function ClientPresentationMode({ estimate, intake, company, onBa
         {/* THE BIG NUMBER */}
         <div className="text-center my-auto">
           <div className="text-xs uppercase text-hunter/50 tracking-widest mb-3">Your investment</div>
-          <div className="text-7xl md:text-8xl font-bold text-hunter mb-2">
+          <div className="text-5xl sm:text-7xl md:text-8xl font-bold text-hunter mb-2">
             {fmt(total)}
           </div>
           {sf > 0 && (
@@ -80,7 +80,7 @@ export default function ClientPresentationMode({ estimate, intake, company, onBa
         </section>
 
         {/* Warranties */}
-        <section className="mt-6 grid grid-cols-2 gap-6 text-center">
+        <section className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-center">
           <div className="bg-hunter text-offwhite rounded-lg p-6">
             <div className="text-3xl font-bold">15</div>
             <div className="text-xs uppercase tracking-wider text-sageMuted mt-1">Year manufacturer warranty on turf</div>

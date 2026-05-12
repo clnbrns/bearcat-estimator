@@ -99,7 +99,7 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
           </div>
         </header>
 
-        <section className="grid grid-cols-2 gap-4 mb-6 text-sm">
+        <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 text-sm print:grid-cols-2">
           <div>
             <div className="text-hunter/60 uppercase text-xs">Customer</div>
             <div className="font-semibold">{intake.customer_name}</div>

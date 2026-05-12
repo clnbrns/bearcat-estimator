@@ -89,7 +89,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
       <section className="bg-white border border-sageMuted rounded-lg p-6 space-y-6">
         <h2 className="text-xl font-semibold text-hunter">Configure Estimate</h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <NumField label="Total SF" value={opts.total_sf} onChange={v => set('total_sf', Number(v))} />
           <NumField label="Perimeter LF (blank = auto)" value={opts.perimeter_lf}
             onChange={v => set('perimeter_lf', v)} placeholder={result ? String(result.perimeter_lf) : ''} />

@@ -154,7 +154,7 @@ function PartnerEditor({ partner, onSave, onCancel }) {
       <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <h3 className="text-xl font-semibold text-hunter mb-4">{partner.created_at === new Date().toISOString().slice(0, 10) ? 'New Partner' : 'Edit Partner'}</h3>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Slug (URL part — no spaces)">
             <input className="input" value={p.slug} onChange={e => update('slug', e.target.value.toLowerCase().replace(/\s+/g, '-'))} />
           </Field>

@@ -75,7 +75,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="no-print sticky top-0 z-30 border-b border-brand-green/10 bg-white/95 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-6 py-3 flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3 sm:gap-4 flex-wrap">
           <div className="flex items-baseline gap-3">
             <div className="text-xl font-bold text-brand-green tracking-tight">
               Bearcat Turf <span className="text-brand-action">·</span> Estimator
@@ -113,7 +113,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 max-w-5xl w-full mx-auto p-6">
+      <main className="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6">
         {showHistory ? (
           <EstimateHistory onOpen={openSavedEstimate} onClose={() => setShowHistory(false)} />
         ) : (
