@@ -86,14 +86,20 @@ export function calculateEstimate(input, products, components, cimarron = []) {
   // fills ≥85% of its bounding box → treat as rectangular; else flat overage.
   const boundingBoxArea = haveDims ? narrow_dim_ft * long_dim_ft : 0;
   const fillRatio = boundingBoxArea > 0 ? total_sf / boundingBoxArea : 1;
-  const useBoundingBox = haveDims && fillRatio >= 0.85;
+  // Bounding-box roll math only valid when total_sf is roughly == narrow×long.
+  // - fillRatio < 0.85  → irregular yard (e.g. kidney). Bounding box over-orders.
+  // - fillRatio > 1.05  → multi-zone job; dims represent one zone only.
+  //   Bounding box UNDER-orders by ignoring the other zones.
+  // In both cases, fall back to flat per-SF overage on actual total.
+  const useBoundingBox = haveDims && fillRatio >= 0.85 && fillRatio <= 1.05;
   const turfOrderSf = no_turf ? 0 : (useBoundingBox
     ? turfOrderSfFromDims(narrow_dim_ft, long_dim_ft, rollWidth)
     : total_sf * (1 + turf_overage_pct / 100));
   const turfWastePct = total_sf > 0 && !no_turf ? round(((turfOrderSf - total_sf) / total_sf) * 100, 1) : 0;
+  const multiZone = haveDims && fillRatio > 1.05;
   const turfLabel = no_turf ? '' : (useBoundingBox
     ? `Turf material — ${product.name} (${narrow_dim_ft}'×${long_dim_ft}' from ${rollWidth}' rolls, ${turfWastePct}% waste)`
-    : `Turf material — ${product.name} (${total_sf} SF + ${turf_overage_pct}% waste${haveDims ? ', irregular shape' : ''})`);
+    : `Turf material — ${product.name} (${total_sf} SF + ${turf_overage_pct}% waste${multiZone ? ', multi-zone — dims cover only one zone' : haveDims ? ', irregular shape' : ''})`);
   if (!no_turf) {
     lines.push({
       key: 'turf',
@@ -430,7 +436,7 @@ export function calculateEstimate(input, products, components, cimarron = []) {
       type_floor: typeFloor,
       project_type,
     } : null,
-    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, supply_only, sizeFloor, typeFloor, project_type, lines, margin }),
+    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin }),
   };
 }
 
@@ -449,7 +455,7 @@ function priceAtMargin(cost, marginPct) {
   return round(cost / (1 - m), 2);
 }
 
-function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, supply_only, sizeFloor, typeFloor, project_type, lines, margin }) {
+function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin }) {
   const w = [];
   if (total_sf > 50000) w.push('Large project (>50,000 SF) — recommend manual review.');
   if (total_sf > 0 && total_sf < 100) w.push('Very small project (<100 SF) — verify minimums.');
@@ -468,6 +474,9 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
   }
   if (!haveDims && total_sf > 0) {
     w.push('No yard dimensions provided — turf waste & seam tape are estimates. Add dims for accurate quantities.');
+  }
+  if (multiZone) {
+    w.push('Total SF exceeds narrow×long bounding box — treating as multi-zone job. Dims cover only one zone; turf material uses flat overage on actual total SF.');
   }
   // MAP-floor check: if standard margin pushes any Cimarron line below its MAP, warn
   if (lines && margin != null && margin < 1) {
