@@ -109,6 +109,9 @@ export default function App() {
             <Link to="/admin/partners" className={navBtn(false)}>
               🤝 Partners
             </Link>
+            <Link to="/admin/quickbooks" className={navBtn(false)}>
+              📒 QuickBooks
+            </Link>
           </nav>
         </div>
       </header>

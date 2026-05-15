@@ -29,6 +29,8 @@ import { parseMeasurement } from './lib/parseMeasurement.js';
 import { parseVoiceIntake } from './lib/parseVoiceIntake.js';
 import { generateProjectPlan } from './lib/projectPlan.js';
 import { generateQuickbooksDescription, appendToCorpus } from './lib/quickbooksDescription.js';
+import * as qb from './lib/quickbooks.js';
+import crypto from 'node:crypto';
 
 const app = express();
 app.use(cors());
@@ -152,6 +154,75 @@ app.post('/api/voice-corpus/append', async (req, res, next) => {
     const { description, estimate_id } = req.body || {};
     if (!description) return res.status(400).json({ error: 'description required' });
     const result = await appendToCorpus(description, { estimate_id });
+    res.json(result);
+  } catch (e) { next(e); }
+});
+
+// ── QuickBooks integration ──────────────────────────────
+const oauthStates = new Map(); // state → { redirect_uri, expires_at }
+function cleanupStates() {
+  const now = Date.now();
+  for (const [k, v] of oauthStates) if (v.expires_at < now) oauthStates.delete(k);
+}
+
+app.get('/api/qb/status', async (_req, res, next) => {
+  try { res.json(await qb.connectionStatus()); } catch (e) { next(e); }
+});
+
+app.get('/api/qb/connect', (req, res) => {
+  cleanupStates();
+  const state = crypto.randomBytes(16).toString('hex');
+  const proto = req.headers['x-forwarded-proto'] || req.protocol;
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  const redirectUri = `${proto}://${host}/api/qb/callback`;
+  oauthStates.set(state, { redirect_uri: redirectUri, expires_at: Date.now() + 10 * 60 * 1000 });
+  res.redirect(qb.buildAuthorizeUrl(redirectUri, state));
+});
+
+app.get('/api/qb/callback', async (req, res, next) => {
+  try {
+    const { code, state, realmId, error } = req.query;
+    if (error) return res.status(400).send(`<h1>QB connect failed</h1><pre>${error}</pre>`);
+    const stateData = oauthStates.get(state);
+    if (!stateData) return res.status(400).send('Invalid or expired state. Restart from /api/qb/connect.');
+    oauthStates.delete(state);
+    if (!code || !realmId) return res.status(400).send('Missing code or realmId.');
+    const tok = await qb.exchangeCodeForTokens({ code, redirectUri: stateData.redirect_uri, realmId });
+    res.send(`<!doctype html><html><head><title>QuickBooks connected</title>
+      <style>body{font-family:system-ui;padding:40px;max-width:600px;margin:0 auto;color:#1b3d24}
+      h1{color:#1fa84c}.box{background:#f3f1ec;padding:20px;border-radius:8px;margin:20px 0}
+      a{color:#c85c18;font-weight:600}</style></head><body>
+      <h1>✓ QuickBooks connected</h1>
+      <div class="box">
+        <div><strong>Company:</strong> ${tok.company_name || '(unknown)'}</div>
+        <div><strong>Realm ID:</strong> ${tok.realm_id}</div>
+        <div><strong>Environment:</strong> ${process.env.QB_ENV || 'production'}</div>
+      </div>
+      <p><a href="/admin/quickbooks">→ Back to QuickBooks admin</a></p>
+      </body></html>`);
+  } catch (e) { next(e); }
+});
+
+app.post('/api/qb/disconnect', async (_req, res, next) => {
+  try { await qb.disconnect(); res.json({ ok: true }); } catch (e) { next(e); }
+});
+
+app.get('/api/qb/customers', async (_req, res, next) => {
+  try { res.json(await qb.listCustomers()); } catch (e) { next(e); }
+});
+
+app.get('/api/qb/items', async (_req, res, next) => {
+  try { res.json(await qb.listItems()); } catch (e) { next(e); }
+});
+
+app.post('/api/qb/push-estimate', async (req, res, next) => {
+  try {
+    const { estimate_id, summary_description, summary_only } = req.body || {};
+    if (!estimate_id) return res.status(400).json({ error: 'estimate_id required' });
+    const all = await listEstimates();
+    const record = all.find(r => r.id === estimate_id);
+    if (!record) return res.status(404).json({ error: 'Estimate not found' });
+    const result = await qb.pushEstimate(record, { summary_description, summary_only });
     res.json(result);
   } catch (e) { next(e); }
 });

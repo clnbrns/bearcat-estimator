@@ -117,5 +117,38 @@ export async function parseMeasurement(files) {
   return r.json();
 }
 
+// ── QuickBooks ──────────────────────────────────────────
+export async function qbStatus() {
+  const r = await fetch(`${base}/api/qb/status`);
+  return r.json();
+}
+
+export async function qbDisconnect() {
+  const r = await fetch(`${base}/api/qb/disconnect`, { method: 'POST' });
+  return r.json();
+}
+
+export async function qbCustomers() {
+  const r = await fetch(`${base}/api/qb/customers`);
+  if (!r.ok) throw new Error((await r.json()).error || 'Failed to load QB customers');
+  return r.json();
+}
+
+export async function qbItems() {
+  const r = await fetch(`${base}/api/qb/items`);
+  if (!r.ok) throw new Error((await r.json()).error || 'Failed to load QB items');
+  return r.json();
+}
+
+export async function qbPushEstimate({ estimate_id, summary_description, summary_only = true }) {
+  const r = await fetch(`${base}/api/qb/push-estimate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ estimate_id, summary_description, summary_only }),
+  });
+  if (!r.ok) throw new Error((await r.json()).error || 'Push to QB failed');
+  return r.json();
+}
+
 export const fmt = (n) =>
   (n ?? 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });

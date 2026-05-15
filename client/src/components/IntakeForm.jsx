@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CageQuickSetup from './CageQuickSetup.jsx';
 import VoiceIntake from './VoiceIntake.jsx';
-import { parseMeasurement } from '../lib/api.js';
+import { parseMeasurement, qbStatus, qbCustomers } from '../lib/api.js';
 
 const PROJECT_TYPES = [
   'Residential', 'Pet Turf', 'Putting Green', 'Batting Cage - Turf Only',
@@ -39,6 +39,29 @@ export default function IntakeForm({ products, initial, onSubmit }) {
   const [parsing, setParsing] = useState(false);
   const [parseResult, setParseResult] = useState(null);
   const [parseError, setParseError] = useState(null);
+  const [qbConn, setQbConn] = useState(null);
+  const [qbCusts, setQbCusts] = useState(null);
+  const [qbPickerOpen, setQbPickerOpen] = useState(false);
+
+  useEffect(() => {
+    qbStatus().then(setQbConn).catch(() => setQbConn({ connected: false }));
+  }, []);
+
+  const openQbPicker = async () => {
+    setQbPickerOpen(true);
+    if (!qbCusts) {
+      try { setQbCusts(await qbCustomers()); }
+      catch (e) { setQbCusts([]); console.error(e); }
+    }
+  };
+  const pickQbCustomer = (c) => {
+    setForm(prev => ({
+      ...prev,
+      customer_name: c.display_name,
+      project_address: c.address || prev.project_address,
+    }));
+    setQbPickerOpen(false);
+  };
 
   const handleUpload = async (e) => {
     const files = Array.from(e.target.files || []);
@@ -179,7 +202,17 @@ export default function IntakeForm({ products, initial, onSubmit }) {
 
       <Section number={isCageOnly ? "1" : "2"} title="Customer & project">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Field label="Customer name">
+        <Field label={
+          <span className="flex items-center justify-between">
+            <span>Customer name</span>
+            {qbConn?.connected && (
+              <button type="button" onClick={openQbPicker}
+                className="text-xs text-burnt hover:underline font-normal">
+                📒 Pick from QuickBooks
+              </button>
+            )}
+          </span>
+        }>
           <input className="input" value={form.customer_name} onChange={e => update('customer_name', e.target.value)} required />
         </Field>
         <Field label="Project address">
@@ -295,7 +328,55 @@ export default function IntakeForm({ products, initial, onSubmit }) {
         </button>
       </div>
 
+      {qbPickerOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-start justify-center p-4 z-50 overflow-y-auto" onClick={() => setQbPickerOpen(false)}>
+          <div className="bg-white rounded-lg p-6 w-full max-w-2xl mt-12" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-semibold text-hunter">📒 Pick a QuickBooks customer</h3>
+              <button type="button" onClick={() => setQbPickerOpen(false)} className="text-hunter/60 hover:text-hunter text-xl">×</button>
+            </div>
+            {!qbCusts ? (
+              <div className="text-sm text-hunter/60">Loading…</div>
+            ) : qbCusts.length === 0 ? (
+              <div className="text-sm text-hunter/60">No customers found, or QB pull failed.</div>
+            ) : (
+              <QbCustomerList customers={qbCusts} onPick={pickQbCustomer} />
+            )}
+          </div>
+        </div>
+      )}
+
     </form>
+  );
+}
+
+function QbCustomerList({ customers, onPick }) {
+  const [q, setQ] = useState('');
+  const filtered = customers.filter(c =>
+    c.display_name?.toLowerCase().includes(q.toLowerCase()) ||
+    c.email?.toLowerCase().includes(q.toLowerCase()) ||
+    c.address?.toLowerCase().includes(q.toLowerCase())
+  );
+  return (
+    <>
+      <input autoFocus className="input mb-3" placeholder="Search by name, email, address…"
+        value={q} onChange={e => setQ(e.target.value)} />
+      <div className="max-h-96 overflow-y-auto border border-sageMuted rounded">
+        {filtered.slice(0, 50).map(c => (
+          <button key={c.id} type="button" onClick={() => onPick(c)}
+            className="block w-full text-left p-3 hover:bg-sageMuted/20 border-b border-sageMuted/40 last:border-b-0">
+            <div className="font-medium text-hunter">{c.display_name}</div>
+            {(c.email || c.phone || c.address) && (
+              <div className="text-xs text-hunter/60">
+                {[c.email, c.phone, c.address].filter(Boolean).join(' · ')}
+              </div>
+            )}
+          </button>
+        ))}
+        {filtered.length === 0 && <div className="p-4 text-sm text-hunter/60">No matches.</div>}
+        {filtered.length > 50 && <div className="p-2 text-xs text-hunter/50 italic">…and {filtered.length - 50} more — refine the search.</div>}
+      </div>
+    </>
   );
 }
 

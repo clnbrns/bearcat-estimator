@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fmt, saveEstimate, generateQuickbooksDescription, appendToVoiceCorpus } from '../lib/api.js';
+import { fmt, saveEstimate, generateQuickbooksDescription, appendToVoiceCorpus, qbStatus, qbPushEstimate } from '../lib/api.js';
 import ProjectPlan from './ProjectPlan.jsx';
 import MaterialCrossSection from './MaterialCrossSection.jsx';
 import ClientPresentationMode from './ClientPresentationMode.jsx';
@@ -13,7 +13,14 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
   const [qbError, setQbError] = useState(null);
   const [qbCopied, setQbCopied] = useState(false);
   const [corpusStatus, setCorpusStatus] = useState(null);
+  const [savedId, setSavedId] = useState(null);
+  const [qbConn, setQbConn] = useState(null);
+  const [qbPush, setQbPush] = useState(null); // { busy, err, result }
   const today = new Date().toLocaleDateString();
+
+  React.useEffect(() => {
+    qbStatus().then(setQbConn).catch(() => setQbConn({ connected: false }));
+  }, []);
 
   const generateQbDescription = async () => {
     setQbBusy(true);
@@ -58,8 +65,30 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
   }
 
   const save = async () => {
-    await saveEstimate({ intake, estimate });
+    const r = await saveEstimate({ intake, estimate });
     setSaved(true);
+    if (r?.id) setSavedId(r.id);
+  };
+
+  const pushToQb = async () => {
+    setQbPush({ busy: true });
+    try {
+      let id = savedId;
+      if (!id) {
+        const r = await saveEstimate({ intake, estimate });
+        id = r.id;
+        setSavedId(id);
+        setSaved(true);
+      }
+      const result = await qbPushEstimate({
+        estimate_id: id,
+        summary_description: qbDesc || undefined,
+        summary_only: true,
+      });
+      setQbPush({ result });
+    } catch (e) {
+      setQbPush({ err: e.message });
+    }
   };
 
   return (
@@ -222,6 +251,13 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
                 className="bg-hunter text-offwhite px-3 py-2 rounded text-sm">
                 {corpusStatus?.busy ? 'Saving…' : '🧠 Teach This'}
               </button>
+              {qbConn?.connected && (
+                <button onClick={pushToQb} disabled={qbPush?.busy}
+                  title="Create a QuickBooks Estimate using this description"
+                  className="bg-brand-orange text-white px-3 py-2 rounded text-sm font-semibold disabled:opacity-40">
+                  {qbPush?.busy ? 'Sending…' : '📒 Send to QuickBooks'}
+                </button>
+              )}
               <span className="text-xs text-hunter/50 ml-2">{qbDesc.length} characters</span>
             </div>
             {corpusStatus && !corpusStatus.busy && (
@@ -229,7 +265,21 @@ export default function EstimateOutput({ estimate, intake, company, onBack }) {
                 {corpusStatus.msg}
               </div>
             )}
+            {qbPush?.err && (
+              <div className="mt-2 text-xs text-burnt">⚠ QuickBooks: {qbPush.err}</div>
+            )}
+            {qbPush?.result && (
+              <div className="mt-2 text-xs text-hunter bg-brand-action/10 border border-brand-action/30 rounded p-2">
+                ✓ Pushed to QuickBooks · Estimate <strong>#{qbPush.result.qb_doc_number}</strong> for {qbPush.result.qb_customer_name} (${qbPush.result.qb_total?.toLocaleString()}).{' '}
+                <a href={qbPush.result.qb_link} target="_blank" rel="noreferrer" className="text-burnt underline">Open in QuickBooks →</a>
+              </div>
+            )}
           </>
+        )}
+        {!qbConn?.connected && qbDesc && (
+          <div className="mt-3 text-xs text-hunter/50 italic">
+            💡 Want to push estimates straight into QuickBooks? <a href="/admin/quickbooks" className="text-burnt underline">Connect QuickBooks</a>
+          </div>
         )}
       </section>
     </div>

@@ -6,6 +6,8 @@ node_modules/
 # Customer + partner data — contains PII, never commit
 data/estimates/*.json
 data/partner-jobs/*.json
+# OAuth tokens (QuickBooks)
+data/qb_tokens.json
 
 output/*.pdf
 output/*.html

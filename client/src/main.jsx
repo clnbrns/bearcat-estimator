@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.jsx';
 import PartnerPortal from './components/PartnerPortal.jsx';
 import PartnerAdmin from './components/PartnerAdmin.jsx';
+import QuickBooksAdmin from './components/QuickBooksAdmin.jsx';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<App />} />
       <Route path="/partners/:slug" element={<PartnerPortal />} />
       <Route path="/admin/partners" element={<PartnerAdmin />} />
+      <Route path="/admin/quickbooks" element={<QuickBooksAdmin />} />
     </Routes>
   </BrowserRouter>
 );

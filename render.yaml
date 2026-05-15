@@ -25,3 +25,9 @@ services:
         sync: false         # set in Render dashboard
       - key: GEMINI_MODEL
         value: gemini-2.5-flash
+      - key: QB_CLIENT_ID
+        sync: false         # Intuit Developer → your app → Keys & OAuth
+      - key: QB_CLIENT_SECRET
+        sync: false         # Intuit Developer → your app → Keys & OAuth
+      - key: QB_ENV
+        value: production   # set to "sandbox" while testing against a sandbox company
