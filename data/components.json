@@ -48,7 +48,7 @@
     "_note": "Plant pricing model: each plant's material cost is billed at 2× wholesale (markup_multiplier). Per-pot install labor is added on top, ranging $40–$80 by size. A warranty + delivery reserve of 5% of plant material is added as a separate line covering 60-day replacement and load/dispatch. Standard project margin_pct wraps the whole basis after those line items, same as turf/Cimarron/etc.",
     "markup_multiplier": 2.0,
     "warranty_reserve_pct": 5,
-    "_labor_note": "Per-plant install labor $40–$80 range covers dig, amend, set, backfill, water-in. B&B + Box specimens need machinery + multi-person crew — labor table returns 0, quote separately.",
+    "_labor_note": "Per-plant install labor $40–$80 range covers dig, amend, set, backfill, water-in for container plants up to 65g. Anything 100g+, B&B, or Box requires machinery + multi-person crew (and often a 2nd visit for staking) — labor table returns 0 for these sizes; quote them as a custom line per job.",
     "install_labor_per_size": {
       "1g":       40,
       "2g":       40,
@@ -66,13 +66,14 @@
       "30g":      80,
       "45g":      80,
       "65g":      80,
-      "100g":     80,
-      "200g":     80,
+      "100g":     0,
+      "200g":     0,
       "B&B":      0,
       "box":      0,
       "flat":     40,
       "unknown":  50
-    }
+    },
+    "custom_quote_tiers": ["100g", "200g", "B&B", "box"]
   },
   "settings": {
     "default_margin_pct": 30,
