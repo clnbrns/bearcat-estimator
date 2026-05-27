@@ -12,7 +12,7 @@
   "seam_tape": { "label": "Seam tape", "cost_per_lf": 0.34, "bulk_cost_per_lf": 0.24, "bulk_threshold_lf": 300, "fallback_cost_per_sf": 0.05, "_note": "TurfHub: 100' rolls $0.34/LF; 1000' bulk rolls $0.24/LF. Auto-switch to bulk above 300 LF." },
   "glue": { "label": "Turf Claw glue", "cost_per_gallon": 65.00, "lf_per_gallon": 200, "_note": "1 gal covers ~200 LF of seams" },
   "turf_roll": { "width_ft": 15, "_note": "TurfHub turf sold in 15' wide rolls cut to length." },
-  "bender_board": { "label": "Bender board (black or brown)", "cost_per_lf": 1.2475, "stick_length_lf": 20, "cost_per_stick": 24.95, "_note": "BendaBoard BP Texturized 1\"x4\"x20' = $24.95/stick. Sold only in 20' increments." },
+  "bender_board": { "label": "Bender board (black or brown)", "cost_per_lf": 1.2975, "stick_length_lf": 20, "cost_per_stick": 25.95, "_note": "BendaBoard BP Texturized 1\"x4\"x20' = $25.95/stick (TurfHub AccBendaBP-BL, confirmed 2026-05-27, was $24.95). Sold only in 20' increments." },
   "lumber_2x4": { "label": "2x4 lumber", "cost_per_lf": 0.65, "_note": "Placeholder default; verify and update" },
   "silica_sand_infill": { "label": "Silica sand infill", "cost_per_sf": 0.12, "_note": "Premium Silica 12/20 ~$6/bag, ~50 SF coverage per bag" },
   "nails": { "label": "5\" nails", "cost_per_box": 59.00, "sf_per_box": 1800, "_note": "Auto-scaled: 1 box per 1,800 SF. Price verified 2026-04. Was $55 in Jan." },

@@ -14,7 +14,7 @@
     { "name": "Tour Pro", "cost_per_sf": 1.59, "use": "Putting green" },
     { "name": "Santa Barbara Pro", "cost_per_sf": 1.69, "use": "Premium residential" },
     { "name": "TH Ultra", "cost_per_sf": 1.79, "use": "High-performance residential" },
-    { "name": "Tour Elite", "cost_per_sf": 1.89, "use": "Premium putting green" },
+    { "name": "Tour Elite", "cost_per_sf": 1.69, "use": "Premium putting green", "_note": "TurfHub TurfTourElite — confirmed 2026-05-27, was $1.89" },
     { "name": "Coastal Blend Elite", "cost_per_sf": 2.29, "use": "Premium coastal blend" },
     { "name": "Performance Pro 5mm Black", "cost_per_sf": 2.59, "use": "Batting cage / hitting" }
   ]
