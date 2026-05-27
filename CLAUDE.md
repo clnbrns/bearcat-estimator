@@ -44,6 +44,23 @@ git checkout main && git merge feat/cage-labor-fix
 
 Use a **separate Gemini API key for local dev** in `server/.env` so localhost testing doesn't bill against the prod key. Flash's free tier (~1,500 req/day) covers all realistic dev volume for free.
 
+## Plants — new product line (May 2026)
+
+Bearcat is starting to sell + install plants. Wholesale catalog lives at
+`data/plants/wolfe_nursery_2026_05.json` (Wolfe Nursery Direct, Fort Worth,
+6327 Silver Saddle Rd — 969 SKUs across trees, shrubs, grasses, perennials,
+cacti/succulents, palms, vines, roses, ferns, and landscape materials).
+
+Pricing in that file is **wholesale at-the-rep**. Retail markup + install
+labor are not yet defined. When that policy lands, capture it in
+`data/components.json` under a new `plant_install` block (analogous to
+`cage_install`).
+
+Catalogs are **dated and disposable** — Wolfe reissues monthly with
+"THIS PRICING CANCELS ALL PREVIOUS LISTS." Treat each catalog as a snapshot:
+new month → new file (`wolfe_nursery_2026_06.json`, etc.), never overwrite,
+so historical estimates can still reference the price they were quoted at.
+
 ## Cage labor — source of truth
 
 Internal estimator (`server/lib/calculate.js`) and public configurator (`bearcatturf/src/pages/batting-cages/configurator.astro`) **must stay aligned** with `/Users/colinmburns/Desktop/cage-labor-matrix.xlsx`. Any change to day rate, tier days, concrete adder, or width multipliers needs to land in both places + the matrix.
