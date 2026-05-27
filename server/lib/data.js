@@ -24,6 +24,24 @@ export async function loadCimarron() {
   return JSON.parse(raw).products;
 }
 
+// Plants — supplier catalogs stored as dated snapshots under
+// data/plants/. Loads the most recent file by default; pass a
+// filename to pin to a specific catalog (e.g. when re-pricing an
+// old estimate against the catalog it was originally quoted on).
+export async function loadPlants(catalogFile) {
+  const dir = path.join(DATA_DIR, 'plants');
+  if (!existsSync(dir)) return { items: [], _source: null };
+  let file = catalogFile;
+  if (!file) {
+    const files = (await readdir(dir)).filter(f => f.endsWith('.json')).sort().reverse();
+    if (!files.length) return { items: [], _source: null };
+    file = files[0];
+  }
+  const raw = await readFile(path.join(dir, file), 'utf8');
+  const data = JSON.parse(raw);
+  return { ...data, _catalog_file: file };
+}
+
 export async function loadPartners() {
   const raw = await readFile(path.join(DATA_DIR, 'partners.json'), 'utf8');
   return JSON.parse(raw).partners;

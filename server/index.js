@@ -23,7 +23,7 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
-import { loadProducts, loadComponents, loadCimarron, saveEstimate, listEstimates, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
+import { loadProducts, loadComponents, loadCimarron, loadPlants, saveEstimate, listEstimates, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
 import { calculateEstimate } from './lib/calculate.js';
 import { parseMeasurement } from './lib/parseMeasurement.js';
 import { parseVoiceIntake } from './lib/parseVoiceIntake.js';
@@ -75,6 +75,10 @@ app.get('/api/cimarron', async (_req, res, next) => {
   try { res.json(await loadCimarron()); } catch (e) { next(e); }
 });
 
+app.get('/api/plants', async (req, res, next) => {
+  try { res.json(await loadPlants(req.query.catalog)); } catch (e) { next(e); }
+});
+
 // ── Partner portal endpoints ─────────────────────────────
 app.get('/api/partners', async (_req, res, next) => {
   try { res.json(await loadPartners()); } catch (e) { next(e); }
@@ -110,8 +114,10 @@ app.get('/api/partner-jobs', async (_req, res, next) => {
 
 app.post('/api/estimate', async (req, res, next) => {
   try {
-    const [products, components, cimarron] = await Promise.all([loadProducts(), loadComponents(), loadCimarron()]);
-    res.json(calculateEstimate(req.body, products, components, cimarron));
+    const [products, components, cimarron, plants] = await Promise.all([
+      loadProducts(), loadComponents(), loadCimarron(), loadPlants(),
+    ]);
+    res.json(calculateEstimate(req.body, products, components, cimarron, plants.items || []));
   } catch (e) { next(e); }
 });
 

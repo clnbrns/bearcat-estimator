@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { calcEstimate, fmt } from '../lib/api.js';
 import CimarronPicker from './CimarronPicker.jsx';
+import PlantPicker from './PlantPicker.jsx';
 
 export default function EstimateBuilder({ intake, products, components, onBack, onComplete }) {
   const defaults = {
@@ -23,6 +24,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     include_shock_pad: intake.project_type === 'Playground',
     // If a cage config came from intake, prefill cimarron_items, labor, margin
     cimarron_items: intake.cage_config?._items || [],
+    plant_items: [],
     no_turf: !!intake.no_turf,
     equipment_install_fee: intake.cage_config?._suggested_labor
       ?? (Number(intake.equipment_install_fee) || 0),
@@ -65,6 +67,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     hitting_mat_count: Number(opts.hitting_mat_count) || 0,
     include_shock_pad: !!opts.include_shock_pad,
     cimarron_items: opts.cimarron_items || [],
+    plant_items: opts.plant_items || [],
     no_turf: !!opts.no_turf,
     equipment_install_fee: Number(opts.equipment_install_fee) || 0,
     turf_overage_pct: Number(opts.turf_overage_pct) || 0,
@@ -129,6 +132,8 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
           label={`Shock pad 8mm — fall-rated ($0.69/SF)${intake.project_type === 'Playground' ? ' · auto-on for Playground' : ''}`} />
 
         <CimarronPicker items={opts.cimarron_items} onChange={v => set('cimarron_items', v)} />
+
+        <PlantPicker items={opts.plant_items} onChange={v => set('plant_items', v)} />
 
         <Check checked={opts.supply_only} onChange={() => toggle('supply_only')}
           label="Supply only / no install (skips labor, sub-base, demo, grading)" />

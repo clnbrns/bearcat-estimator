@@ -10,6 +10,11 @@ export async function getComponents() {
   return r.json();
 }
 
+export async function getPlants() {
+  const r = await fetch(`${base}/api/plants`);
+  return r.json();
+}
+
 export async function calcEstimate(input) {
   const r = await fetch(`${base}/api/estimate`, {
     method: 'POST',

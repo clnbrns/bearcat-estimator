@@ -29,7 +29,7 @@ export function seamLengthFromDims(narrowFt, longFt, rollWidthFt = 15) {
   return (strips - 1) * longFt;
 }
 
-export function calculateEstimate(input, products, components, cimarron = []) {
+export function calculateEstimate(input, products, components, cimarron = [], plants = []) {
   const {
     total_sf = 0,
     product_name,
@@ -60,6 +60,7 @@ export function calculateEstimate(input, products, components, cimarron = []) {
     hitting_mat_count = 0,
     include_shock_pad,
     cimarron_items = [],
+    plant_items = [],
     custom_line_items = [],
     margin_pct = components.settings.default_margin_pct,
     apply_card_fee = components.settings.card_fee_enabled,
@@ -413,6 +414,41 @@ export function calculateEstimate(input, products, components, cimarron = []) {
       cimarron: true,
       map: product.map2024,
     });
+  }
+
+  // Plants — wholesale material line per pot + per-plant install labor by
+  // pot-size tier. Plants ride at wholesale like other materials (project
+  // margin_pct wraps them). For plant-heavy jobs, recommended_margin_pct
+  // suggests bumping the project margin to ~50% (≈2× retail on plant
+  // material), which the UI prompts but doesn't force.
+  for (const pi of plant_items) {
+    const qty = Number(pi.qty) || 0;
+    if (qty <= 0) continue;
+    const plant = plants.find(p => p.id === pi.id);
+    if (!plant) continue;
+    lines.push({
+      key: `plant_${plant.id}`,
+      label: `Plant · ${plant.description}`,
+      qty,
+      unit: 'EA',
+      unit_cost: plant.price,
+      cost: qty * plant.price,
+      plant: true,
+      size_tier: plant.size_tier,
+    });
+    const laborTable = components.plant_install?.install_labor_per_size || {};
+    const laborPer = laborTable[plant.size_tier] ?? laborTable.unknown ?? 0;
+    if (laborPer > 0) {
+      lines.push({
+        key: `plant_labor_${plant.id}`,
+        label: `Install labor — ${plant.description}`,
+        qty,
+        unit: 'EA',
+        unit_cost: laborPer,
+        cost: qty * laborPer,
+        plant_labor: true,
+      });
+    }
   }
 
   for (const item of custom_line_items) {
