@@ -317,15 +317,47 @@ export function calculateEstimate(input, products, components, cimarron = []) {
     });
   }
 
-  // Equipment install fee (cage install, etc.) — billed when no_turf or as add-on
-  if (equipment_install_fee > 0) {
+  // Equipment install fee (cage install, etc.) — billed when no_turf or as add-on.
+  // Auto-fill from cimarron_items when a batting-cage product is present and no
+  // manual fee was entered. This guarantees every cage estimate carries assembly
+  // labor whether the user came in via Quick Cage Setup or hand-picked items.
+  let effectiveInstallFee = equipment_install_fee;
+  let autoCageLabor = null;
+  if (!(effectiveInstallFee > 0) && components.cage_install && cimarron_items?.length) {
+    const cageProducts = cimarron_items
+      .map(ci => ({ ci, product: cimarron.find(p => p.sku === ci.sku) }))
+      .filter(({ product }) => product && /Batting Cage/i.test(product.category) && product.length);
+    if (cageProducts.length) {
+      const maxLen = Math.max(...cageProducts.map(({ product }) => product.length));
+      const isHd = cageProducts.some(({ product }) =>
+        product.sku && product.sku.includes('CF1.5') && !product.sku.endsWith('SP'));
+      const tier = components.cage_install.tiers.find(t => maxLen <= t.max_length_ft)
+        || components.cage_install.tiers[components.cage_install.tiers.length - 1];
+      // Width multiplier from cage-labor matrix: single 1.0, double-wide 1.6,
+      // triple+ 2.2. Internal estimator uses cage-combo qty as the proxy for
+      // installation width (qty 2 = double-wide tunnel, 3+ = triple+).
+      const cageQtyTotal = cageProducts.reduce((s, { ci }) => s + (Number(ci.qty) || 0), 0);
+      const widthMult = cageQtyTotal >= 3 ? 2.2 : cageQtyTotal === 2 ? 1.6 : 1.0;
+      const widthLabel = cageQtyTotal >= 3 ? 'triple+ wide' : cageQtyTotal === 2 ? 'double-wide' : 'single';
+      const baseDays = tier.days + (isHd ? 1 : 0);
+      const baseLabor = baseDays * components.cage_install.day_rate;
+      const totalLabor = Math.round(baseLabor * widthMult);
+      autoCageLabor = { tier, baseDays, baseLabor, widthMult, widthLabel, totalLabor, isHd };
+      effectiveInstallFee = totalLabor;
+    }
+  }
+  if (effectiveInstallFee > 0) {
+    const label = autoCageLabor
+      ? `Cage assembly labor — ${autoCageLabor.tier.label}${autoCageLabor.widthMult > 1 ? `, ${autoCageLabor.widthLabel}` : ''} (${autoCageLabor.baseDays} days × $${components.cage_install.day_rate}/day${autoCageLabor.isHd ? ' incl. concrete-set HD' : ''}${autoCageLabor.widthMult > 1 ? ` × ${autoCageLabor.widthMult} width` : ''}, auto-added)`
+      : 'Equipment installation labor';
     lines.push({
       key: 'equipment_install',
-      label: 'Equipment installation labor',
+      label,
       qty: 1,
       unit: '',
-      unit_cost: equipment_install_fee,
-      cost: equipment_install_fee,
+      unit_cost: effectiveInstallFee,
+      cost: effectiveInstallFee,
+      auto_cage_labor: !!autoCageLabor,
     });
   }
 
@@ -477,6 +509,16 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
   }
   if (multiZone) {
     w.push('Total SF exceeds narrow×long bounding box — treating as multi-zone job. Dims cover only one zone; turf material uses flat overage on actual total SF.');
+  }
+  // Cage-labor safety net: if any batting-cage Cimarron line is on the estimate
+  // but no equipment_install / cage-assembly labor line exists, flag it.
+  if (lines) {
+    const hasCageProduct = lines.some(l =>
+      l.cimarron && typeof l.label === 'string' && /Batting Cage/i.test(l.label));
+    const hasCageLabor = lines.some(l => l.key === 'equipment_install' && (l.cost || 0) > 0);
+    if (hasCageProduct && !hasCageLabor) {
+      w.push('Batting cage hardware is on the estimate but no cage assembly labor is billed. Add an Equipment install fee or use Quick Cage Setup.');
+    }
   }
   // MAP-floor check: if standard margin pushes any Cimarron line below its MAP, warn
   if (lines && margin != null && margin < 1) {
