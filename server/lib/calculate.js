@@ -416,27 +416,33 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     });
   }
 
-  // Plants — wholesale material line per pot + per-plant install labor by
-  // pot-size tier. Plants ride at wholesale like other materials (project
-  // margin_pct wraps them). For plant-heavy jobs, recommended_margin_pct
-  // suggests bumping the project margin to ~50% (≈2× retail on plant
-  // material), which the UI prompts but doesn't force.
+  // Plants — material billed at 2× wholesale (markup_multiplier), per-pot
+  // install labor $40–$80 by size tier, and a 5% warranty + delivery
+  // reserve on the marked-up material total. Standard project margin_pct
+  // wraps the whole basis after.
+  const plantCfg = components.plant_install || {};
+  const plantMarkup = plantCfg.markup_multiplier ?? 1.0;
+  const laborTable = plantCfg.install_labor_per_size || {};
+  let plantMaterialMarkedUp = 0;
   for (const pi of plant_items) {
     const qty = Number(pi.qty) || 0;
     if (qty <= 0) continue;
     const plant = plants.find(p => p.id === pi.id);
     if (!plant) continue;
+    const unitMaterial = plant.price * plantMarkup;
+    const lineMaterial = qty * unitMaterial;
+    plantMaterialMarkedUp += lineMaterial;
     lines.push({
       key: `plant_${plant.id}`,
-      label: `Plant · ${plant.description}`,
+      label: `Plant · ${plant.description} (${plantMarkup}× wholesale)`,
       qty,
       unit: 'EA',
-      unit_cost: plant.price,
-      cost: qty * plant.price,
+      unit_cost: unitMaterial,
+      cost: lineMaterial,
       plant: true,
       size_tier: plant.size_tier,
+      wholesale_unit: plant.price,
     });
-    const laborTable = components.plant_install?.install_labor_per_size || {};
     const laborPer = laborTable[plant.size_tier] ?? laborTable.unknown ?? 0;
     if (laborPer > 0) {
       lines.push({
@@ -449,6 +455,20 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
         plant_labor: true,
       });
     }
+  }
+  // 5% warranty + delivery reserve on marked-up plant material
+  const warrantyPct = plantCfg.warranty_reserve_pct || 0;
+  if (plantMaterialMarkedUp > 0 && warrantyPct > 0) {
+    const reserve = plantMaterialMarkedUp * (warrantyPct / 100);
+    lines.push({
+      key: 'plant_warranty_reserve',
+      label: `Delivery + 60-day plant replacement guarantee (${warrantyPct}% of plant material)`,
+      qty: warrantyPct,
+      unit: '%',
+      unit_cost: reserve,
+      cost: reserve,
+      plant_reserve: true,
+    });
   }
 
   for (const item of custom_line_items) {
