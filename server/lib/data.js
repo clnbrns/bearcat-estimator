@@ -4,23 +4,39 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Two data roots:
+//
+// - STATIC_DATA_DIR: read-only catalog + ruleset data that ships with the
+//   code (products, components, cimarron, plants, rocks, partners-seed).
+//   Always resolves to the repo's data/ dir so a deploy is the only way
+//   to change pricing, components, or catalog SKUs. This file used to be
+//   under DATA_DIR, which on Render meant new catalog files committed to
+//   the repo never reached production because /var/data is persistent
+//   and doesn't sync with git.
+//
+// - DATA_DIR: read/write store for user-generated data (estimates,
+//   partner-jobs, qb_tokens). On Render this is the persistent disk at
+//   /var/data so jobs and tokens survive deploys. Locally it falls back
+//   to the repo's data/ dir for convenience.
+const STATIC_DATA_DIR = path.resolve(__dirname, '../../data');
 const DATA_DIR = process.env.DATA_DIR
   ? path.resolve(process.env.DATA_DIR)
-  : path.resolve(__dirname, '../../data');
+  : STATIC_DATA_DIR;
 const ESTIMATES_DIR = path.join(DATA_DIR, 'estimates');
 
 export async function loadProducts() {
-  const raw = await readFile(path.join(DATA_DIR, 'products.json'), 'utf8');
+  const raw = await readFile(path.join(STATIC_DATA_DIR, 'products.json'), 'utf8');
   return JSON.parse(raw).products;
 }
 
 export async function loadComponents() {
-  const raw = await readFile(path.join(DATA_DIR, 'components.json'), 'utf8');
+  const raw = await readFile(path.join(STATIC_DATA_DIR, 'components.json'), 'utf8');
   return JSON.parse(raw);
 }
 
 export async function loadCimarron() {
-  const raw = await readFile(path.join(DATA_DIR, 'cimarron.json'), 'utf8');
+  const raw = await readFile(path.join(STATIC_DATA_DIR, 'cimarron.json'), 'utf8');
   return JSON.parse(raw).products;
 }
 
@@ -29,7 +45,7 @@ export async function loadCimarron() {
 // filename to pin to a specific catalog (e.g. when re-pricing an
 // old estimate against the catalog it was originally quoted on).
 export async function loadPlants(catalogFile) {
-  const dir = path.join(DATA_DIR, 'plants');
+  const dir = path.join(STATIC_DATA_DIR, 'plants');
   if (!existsSync(dir)) return { items: [], _source: null };
   let file = catalogFile;
   if (!file) {
@@ -45,7 +61,7 @@ export async function loadPlants(catalogFile) {
 // Rocks — supplier catalogs stored as dated snapshots under data/rocks/.
 // Same convention as plants: monthly refresh, never overwrite old files.
 export async function loadRocks(catalogFile) {
-  const dir = path.join(DATA_DIR, 'rocks');
+  const dir = path.join(STATIC_DATA_DIR, 'rocks');
   if (!existsSync(dir)) return { items: [], _source: null };
   let file = catalogFile;
   if (!file) {
