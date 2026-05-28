@@ -5,12 +5,18 @@ import { fmt } from '../lib/api.js';
 // Big numbers. No cost breakdown. No margin. No profit.
 // Designed for in-yard close — owner shows iPad, customer signs.
 export default function ClientPresentationMode({ estimate, intake, company, onBack }) {
-  // Force a clean fullscreen-ish view by hiding scrollbars
+  // Force a clean fullscreen-ish view by hiding scrollbars + give the owner
+  // an Escape-key out (matches every other fullscreen UI on the planet).
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
-  }, []);
+    const onKey = (e) => { if (e.key === 'Escape') onBack?.(); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [onBack]);
 
   const total = estimate.totals.final_price;
   const sf = intake.total_sf;
@@ -25,11 +31,15 @@ export default function ClientPresentationMode({ estimate, intake, company, onBa
     .filter(Boolean);
 
   return (
-    <div className="fixed inset-0 bg-offwhite z-50 overflow-y-auto">
-      {/* Tiny exit button — owner only, top right */}
-      <button onClick={onBack}
-        className="no-print fixed top-4 right-4 text-hunter/40 hover:text-hunter text-sm px-3 py-1 rounded border border-hunter/20 bg-white/80">
-        ← Exit Presentation
+    <div role="region" aria-label="Customer presentation view" className="fixed inset-0 bg-offwhite z-50 overflow-y-auto">
+      {/* Tiny exit button — owner only, top right. Tap target raised to 44×44
+          per WCAG 2.5.5; contrast bumped so it's not invisible to skim-readers. */}
+      <button
+        onClick={onBack}
+        aria-label="Exit presentation mode and return to the estimate"
+        className="no-print fixed top-4 right-4 text-hunter/70 hover:text-hunter text-sm px-3 min-h-[44px] rounded border border-hunter/30 bg-white/90 hover:bg-white shadow-sm"
+      >
+        ← Exit Presentation <span className="text-xs text-hunter/40 ml-1">(Esc)</span>
       </button>
 
       <div className="max-w-4xl mx-auto px-8 py-12 min-h-screen flex flex-col">

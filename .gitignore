@@ -17,3 +17,7 @@ build/
 
 # Server logs
 *.log
+
+# iCloud / Dropbox sync duplicates ("File 2.ext")
+* 2.*
+*\ 2.*

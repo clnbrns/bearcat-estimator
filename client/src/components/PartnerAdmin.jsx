@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { listPartners, savePartners, listPartnerJobs, fmt } from '../lib/api.js';
+import Modal from './Modal.jsx';
 
 export default function PartnerAdmin() {
   const [partners, setPartners] = useState([]);
@@ -148,12 +149,10 @@ export default function PartnerAdmin() {
 function PartnerEditor({ partner, onSave, onCancel }) {
   const [p, setP] = useState(partner);
   const update = (k, v) => setP({ ...p, [k]: v });
+  const title = partner.created_at === new Date().toISOString().slice(0, 10) ? 'New Partner' : 'Edit Partner';
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <h3 className="text-xl font-semibold text-hunter mb-4">{partner.created_at === new Date().toISOString().slice(0, 10) ? 'New Partner' : 'Edit Partner'}</h3>
-
+    <Modal open={true} onClose={onCancel} title={title} maxWidth="max-w-2xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Slug (URL part — no spaces)">
             <input className="input" value={p.slug} onChange={e => update('slug', e.target.value.toLowerCase().replace(/\s+/g, '-'))} />
@@ -195,8 +194,7 @@ function PartnerEditor({ partner, onSave, onCancel }) {
             <code className="text-xs">{window.location.origin}/partners/{p.slug}</code>
           </div>
         )}
-      </div>
-    </div>
+    </Modal>
   );
 }
 

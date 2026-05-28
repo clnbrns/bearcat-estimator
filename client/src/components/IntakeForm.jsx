@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import CageQuickSetup from './CageQuickSetup.jsx';
 import VoiceIntake from './VoiceIntake.jsx';
+import Modal from './Modal.jsx';
 import { parseMeasurement, qbStatus, qbCustomers } from '../lib/api.js';
 
 const PROJECT_TYPES = [
@@ -134,6 +135,24 @@ export default function IntakeForm({ products, initial, onSubmit }) {
   // Cage-only mode: cage project type + no turf → hide all turf-specific fields
   const isCageOnly = form.no_turf && CAGE_TYPES.has(form.project_type);
 
+  // Compute step numbers from which sections are actually rendered. Previously
+  // each section had a hardcoded number which gave duplicate "Step 4"s when a
+  // user picked Batting Cage with turf (equipment + site conditions both 4).
+  const showsCage = CAGE_TYPES.has(form.project_type);
+  const showsSiteConditions = !form.no_turf && !isCageOnly;
+  const showsMeasure = !isCageOnly;
+  const showsQuickCapture = !isCageOnly;
+  let step = 0;
+  const nextStep = () => String(++step);
+  const stepNums = {
+    quickCapture:  showsQuickCapture  ? nextStep() : null,
+    customer:      nextStep(),
+    measure:       showsMeasure       ? nextStep() : null,
+    cageEquipment: showsCage          ? nextStep() : null,
+    siteCond:      showsSiteConditions ? nextStep() : null,
+    notes:         nextStep(),
+  };
+
   return (
     <form onSubmit={submit} className="space-y-6 bg-white border border-sageMuted rounded-lg p-6 shadow-sm">
       <div className="flex items-center justify-between">
@@ -144,7 +163,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </div>
 
       {!isCageOnly && (
-      <Section number="1" title="Quick capture (optional)" subtitle="Skip the form — speak it, upload a PDF, or snap a photo. AI fills in the rest.">
+      <Section number={stepNums.quickCapture} title="Quick capture (optional)" subtitle="Skip the form — speak it, upload a PDF, or snap a photo. AI fills in the rest.">
       <div className="space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs uppercase tracking-wider text-hunter/60">
           <div>Speak it</div>
@@ -200,7 +219,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </Section>
       )}
 
-      <Section number={isCageOnly ? "1" : "2"} title="Customer & project">
+      <Section number={stepNums.customer} title="Customer & project">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label={
           <span className="flex items-center justify-between">
@@ -242,7 +261,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </Section>
 
       {!isCageOnly && (
-      <Section number="3" title="Measure" subtitle="Dimensions drive accurate turf waste + seam tape math.">
+      <Section number={stepNums.measure} title="Measure" subtitle="Dimensions drive accurate turf waste + seam tape math.">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         <NumFieldRanged label="Narrow dimension (ft)" value={form.narrow_dim_ft}
           onChange={v => update('narrow_dim_ft', v)} placeholder="e.g. 30"
@@ -281,14 +300,14 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </Section>
       )}
 
-      {CAGE_TYPES.has(form.project_type) && (
-        <Section number={isCageOnly ? "2" : "4"} title="Equipment & cage spec">
+      {showsCage && (
+        <Section number={stepNums.cageEquipment} title="Equipment & cage spec">
           <CageQuickSetup value={form.cage_config} onChange={v => setForm({ ...form, cage_config: v })} />
         </Section>
       )}
 
-      {!form.no_turf && !isCageOnly && (
-      <Section number="4" title="Site conditions" subtitle="What we're working with on the ground.">
+      {showsSiteConditions && (
+      <Section number={stepNums.siteCond} title="Site conditions" subtitle="What we're working with on the ground.">
         <label className={`flex items-start gap-3 p-3 border-2 rounded cursor-pointer hover:bg-sageMuted/20 mb-3 ${form.supply_only ? 'border-burnt bg-burnt/10' : 'border-sageMuted'}`}>
           <input type="checkbox" checked={form.supply_only}
             onChange={e => update('supply_only', e.target.checked)}
@@ -316,7 +335,7 @@ export default function IntakeForm({ products, initial, onSubmit }) {
       </Section>
       )}
 
-      <Section number={isCageOnly ? "3" : (CAGE_TYPES.has(form.project_type) ? "5" : "5")} title="Notes & scope">
+      <Section number={stepNums.notes} title="Notes & scope">
         <textarea className="input min-h-[80px]" value={form.notes} onChange={e => update('notes', e.target.value)}
           placeholder="Slope, access constraints, drainage notes, special requests, anything the crew needs to know…" />
       </Section>
@@ -328,23 +347,15 @@ export default function IntakeForm({ products, initial, onSubmit }) {
         </button>
       </div>
 
-      {qbPickerOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-start justify-center p-4 z-50 overflow-y-auto" onClick={() => setQbPickerOpen(false)}>
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl mt-12" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-lg font-semibold text-hunter">📒 Pick a QuickBooks customer</h3>
-              <button type="button" onClick={() => setQbPickerOpen(false)} className="text-hunter/60 hover:text-hunter text-xl">×</button>
-            </div>
-            {!qbCusts ? (
-              <div className="text-sm text-hunter/60">Loading…</div>
-            ) : qbCusts.length === 0 ? (
-              <div className="text-sm text-hunter/60">No customers found, or QB pull failed.</div>
-            ) : (
-              <QbCustomerList customers={qbCusts} onPick={pickQbCustomer} />
-            )}
-          </div>
-        </div>
-      )}
+      <Modal open={qbPickerOpen} onClose={() => setQbPickerOpen(false)} title="📒 Pick a QuickBooks customer">
+        {!qbCusts ? (
+          <div className="text-sm text-hunter/60">Loading…</div>
+        ) : qbCusts.length === 0 ? (
+          <div className="text-sm text-hunter/60">No customers found, or QB pull failed.</div>
+        ) : (
+          <QbCustomerList customers={qbCusts} onPick={pickQbCustomer} />
+        )}
+      </Modal>
 
     </form>
   );
@@ -407,14 +418,24 @@ function NumFieldRanged({ label, value, onChange, placeholder, warnAbove, warnAb
   const aboveWarn = warnAbove && num > 0 && num > warnAbove;
   const belowWarn = warnBelow && num > 0 && num < warnBelow;
   const warning = aboveWarn ? warnAboveMsg : belowWarn ? warnBelowMsg : null;
+  const fieldId = useId();
+  const warnId = `${fieldId}-warn`;
   return (
-    <Field label={label}>
-      <input type="number" min="0" step="any"
+    <label className="block">
+      <span className="text-sm font-medium text-hunter mb-1 block">{label}</span>
+      <input
+        id={fieldId}
+        type="number" min="0" step="any"
+        aria-invalid={!!warning}
+        aria-describedby={warning ? warnId : undefined}
         className={`input ${warning ? 'border-burnt ring-1 ring-burnt/40' : ''}`}
-        value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} />
+        value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
+      />
       {warning && (
-        <div className="text-xs text-burnt mt-1">⚠ {warning}</div>
+        <div id={warnId} role="status" className="text-xs text-burnt mt-1">
+          <span aria-hidden="true">⚠ </span>{warning}
+        </div>
       )}
-    </Field>
+    </label>
   );
 }
