@@ -1,0 +1,1514 @@
+{
+  "_source": "Clear Fork Materials \u2014 Sands/Soils/Mulches + River Rocks/Cobble/Crushed Stone + Slabs/Pool Coping/Travertine + Sawn/Chop Stone/Brick",
+  "_location": "Granbury, TX (presumed \u2014 Clear Fork name + Texas products)",
+  "_catalog_date": "2025-11-01",
+  "_ingested": "2026-05-28",
+  "_method": "Manual transcription from 8 photos of binder catalog pages \u2014 best-effort, flagged uncertainties in per-item _note fields. Verify with rep before quoting.",
+  "_note": "Wholesale at-the-quarry pricing. Bearcat retail markup = 1.75\u00d7 per components.json plant_install pattern. Spread labor = $60/ton flat. Catalog is monthly \u2014 replace this file with a new dated snapshot each refresh.",
+  "_ocr_caveats": [
+    "IMG_1051 (Sawn/Chop page 1) had right-edge prices partially cropped on several rows \u2014 those items are tagged with a _note flagging verification.",
+    "Some price/description alignments on River Rocks page 1 had ambiguous rows (notable: Black Polished Pebbles 3-5\" $175 vs other sizes $1400 \u2014 almost certainly a misread, verify).",
+    "A handful of items showed $0.00 in the source (Brick Sand - Regular) \u2014 likely a placeholder for call-for-price.",
+    "Categories inferred from page header text; unit (ton/yard/piece) inferred from description when not explicitly stated."
+  ],
+  "_count": 212,
+  "items": [
+    {
+      "description": "Arena Sand",
+      "price": 40.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_4ffbc7bd"
+    },
+    {
+      "description": "Azalea Sand",
+      "price": 66.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_1a562a16"
+    },
+    {
+      "description": "Bedding Soil (bulk)",
+      "price": 46.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_b2ae02bc"
+    },
+    {
+      "description": "Bedding Soil w/ Lava Sand",
+      "price": 51.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_eb6e26d7"
+    },
+    {
+      "description": "Bedding Soil Mix - 50% Topsoil, 50% Compost & Sand",
+      "price": 115.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_f6853357"
+    },
+    {
+      "description": "Bedding Soil w/ Lava Sand (10%)",
+      "price": 51.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_a5a1e7fc"
+    },
+    {
+      "description": "Black Brick Sand",
+      "price": 10.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_fcd943f7"
+    },
+    {
+      "description": "Black Gumbo Clay",
+      "price": 58.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_a5be33d7"
+    },
+    {
+      "description": "Black Hardwood Mulch (bulk)",
+      "price": 56.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_a8a41636"
+    },
+    {
+      "description": "Brick Sand - Regular",
+      "price": 0.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "note": "Price shown as $0.00 \u2014 verify with rep before quoting",
+      "id": "cfm_80e1817e"
+    },
+    {
+      "description": "CFM River Sand",
+      "price": 42.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_b9044386"
+    },
+    {
+      "description": "Clay - Red Bail Mix 60/40 (yard)",
+      "price": 42.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_163e5652"
+    },
+    {
+      "description": "Clay - Red Bail Mix 70/30 (yard)",
+      "price": 39.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_7ae58e65"
+    },
+    {
+      "description": "Clay - Red Bail Clay",
+      "price": 42.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_75fc213d"
+    },
+    {
+      "description": "Clay - Red Bail Mix 80/20 (yard)",
+      "price": 38.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_f2124313"
+    },
+    {
+      "description": "CFM Screened Compost",
+      "price": 50.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_d44eb53c"
+    },
+    {
+      "description": "Compost w/ Lava Sand (85% Compost / 15% Lava Sand)",
+      "price": 65.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_1406ffca"
+    },
+    {
+      "description": "Concrete Sand",
+      "price": 47.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_000462df"
+    },
+    {
+      "description": "Dairy Manure Compost (screened)",
+      "price": 47.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_120fca02"
+    },
+    {
+      "description": "Dark Hardwood Mulch (bulk)",
+      "price": 10.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_83bb475f"
+    },
+    {
+      "description": "Downfall Topsoil",
+      "price": 12.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_943c6cc1"
+    },
+    {
+      "description": "Fill - Common Fill (yard)",
+      "price": 12.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_5cbb06c7"
+    },
+    {
+      "description": "Fill - Select Fill (yard)",
+      "price": 52.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_dc46b172"
+    },
+    {
+      "description": "Garden Mix Soil (bulk)",
+      "price": 17.5,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_0ee1fd23"
+    },
+    {
+      "description": "Grey Clay - Tank Clay",
+      "price": 130.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_57cf9d85"
+    },
+    {
+      "description": "Lava Sand - 1/4\" minus (yard)",
+      "price": 88.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_15cc2b63"
+    },
+    {
+      "description": "Mushroom Compost",
+      "price": 30.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_40abdb6b"
+    },
+    {
+      "description": "Native Double Grind Mulch",
+      "price": 37.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_6e602ed2"
+    },
+    {
+      "description": "Pecan Shells Mulch (bulk)",
+      "price": 46.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_81a22fa0"
+    },
+    {
+      "description": "Pine Bark Mulch 1/2\" Red",
+      "price": 46.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_a34da194"
+    },
+    {
+      "description": "Pine Nuggets Mulch 2\"",
+      "price": 49.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_ca7e0d2c"
+    },
+    {
+      "description": "Play Ground Mulch",
+      "price": 37.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_854e2733"
+    },
+    {
+      "description": "Sandy Topsoil",
+      "price": 30.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_362dc02b"
+    },
+    {
+      "description": "Screened Cushion Sand",
+      "price": 30.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_4d935c1b"
+    },
+    {
+      "description": "Screened Topsoil (bulk / Reg)",
+      "price": 45.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_34b2ba78"
+    },
+    {
+      "description": "Shredded Cedar Mulch (bulk, 1 cubic yard)",
+      "price": 47.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_3c957b83"
+    },
+    {
+      "description": "Top Dressing / Mixing Sand",
+      "price": 15.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_2e829e0e"
+    },
+    {
+      "description": "Fresh Tree Trimmings",
+      "price": 15.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_c0db44bd"
+    },
+    {
+      "description": "Unscreened Topsoil",
+      "price": 23.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_f7003c3a"
+    },
+    {
+      "description": "CFM Unscreened Cushion Sand",
+      "price": 15.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_df1b960a"
+    },
+    {
+      "description": "White Brick Sand",
+      "price": 110.0,
+      "unit": "yard",
+      "category": "Sands/Soils/Mulches",
+      "id": "cfm_6d289cc5"
+    },
+    {
+      "description": "Amber Gold Decomposed Granite 3/8\"",
+      "price": 130.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_e1a953a3"
+    },
+    {
+      "description": "Apache River Rock - LG",
+      "price": 160.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_1b983be6"
+    },
+    {
+      "description": "Apache River Rock - SM",
+      "price": 160.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_393a7465"
+    },
+    {
+      "description": "Arctic White Pebbles 1/2\"",
+      "price": 1100.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_7280a257"
+    },
+    {
+      "description": "Arctic White Pebbles 2-3\"",
+      "price": 1100.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_53f960ff"
+    },
+    {
+      "description": "Arctic White Pebbles 3-5\"",
+      "price": 1100.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_558941d7"
+    },
+    {
+      "description": "Arizona River Rock 1\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_084a6677"
+    },
+    {
+      "description": "Arizona River Rock 1-3\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_473708d7"
+    },
+    {
+      "description": "Arizona River Rock 1/2\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_18442509"
+    },
+    {
+      "description": "Arizona River Rock 3-6\"",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_3cc23a09"
+    },
+    {
+      "description": "Baltic Grey River Rock 1\"",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_23b9fdf7"
+    },
+    {
+      "description": "Baltic Grey River Rock 1/2\"",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_5a147203"
+    },
+    {
+      "description": "Baltic Grey River Rock 2-4\"",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_99e8e930"
+    },
+    {
+      "description": "Baltic Grey River Rock 1/2\" SM",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_953a9fd6"
+    },
+    {
+      "description": "Baltic Grey River Rock 2x4 LG (ton)",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_0f19fb1c"
+    },
+    {
+      "description": "Black Crushed Limestone 1\"",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c07308ef"
+    },
+    {
+      "description": "Black Crushed Limestone 1.5\"",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_34d6c8d3"
+    },
+    {
+      "description": "Black Crushed Limestone 3/8\"",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b46181f2"
+    },
+    {
+      "description": "Black Crushed Limestone Screenings",
+      "price": 280.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_19073aa4"
+    },
+    {
+      "description": "Black Obsidian Gravel",
+      "price": 1400.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_3753a16e"
+    },
+    {
+      "description": "Black Polished Pebbles 1/2\"",
+      "price": 1400.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_bfe108f0"
+    },
+    {
+      "description": "Black Polished Pebbles 2-3\"",
+      "price": 1400.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_e3adc6be"
+    },
+    {
+      "description": "Black Polished Pebbles 3-5\"",
+      "price": 175.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "note": "Price gap vs other Black Polished sizes is large \u2014 verify",
+      "id": "cfm_4c568e93"
+    },
+    {
+      "description": "Blue Decomposed Granite 3/8\"",
+      "price": 175.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_84521efa"
+    },
+    {
+      "description": "Blue Decomposed Granite 5/8\"",
+      "price": 62.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "note": "Price gap vs 3/8\" is unusual \u2014 verify",
+      "id": "cfm_7e6980e1"
+    },
+    {
+      "description": "Brazos 1\" River Rock",
+      "price": 55.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b1c60fd9"
+    },
+    {
+      "description": "Brazos 1/2\" River Rock",
+      "price": 105.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_935b2bf0"
+    },
+    {
+      "description": "Brazos 1-3\" River Rock",
+      "price": 55.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_54802a07"
+    },
+    {
+      "description": "Brazos 2-6\" River Rock",
+      "price": 70.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_33edcea7"
+    },
+    {
+      "description": "Brazos 3/8\" Pea Gravel",
+      "price": 55.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_a310b4b7"
+    },
+    {
+      "description": "Buff Mexican Beach Pebbles 1/2\"",
+      "price": 780.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_de5151df"
+    },
+    {
+      "description": "Buff Mexican Beach Pebbles 2-3\"",
+      "price": 780.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c3497e19"
+    },
+    {
+      "description": "Canyon Creek Cobble 1/2\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_82f2370d"
+    },
+    {
+      "description": "Canyon Creek Cobble 2-4\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b7451056"
+    },
+    {
+      "description": "Colorado Multi Color 1/2\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b62c2b7a"
+    },
+    {
+      "description": "Colorado Multi Color 1/2\"-1\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_3530792b"
+    },
+    {
+      "description": "Colorado Multi Color 2-4\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_7c9db5f5"
+    },
+    {
+      "description": "Colorado Multi Color 4-8\"",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_e14972ef"
+    },
+    {
+      "description": "Crushed Limestone 1\" Gravel",
+      "price": 56.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_42f3eb4d"
+    },
+    {
+      "description": "Crushed Limestone 1-1/2\" Gravel",
+      "price": 52.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_9f816de5"
+    },
+    {
+      "description": "Crushed Limestone 1/2\" Gravel",
+      "price": 81.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "note": "Price gap vs 1\" sizes \u2014 verify",
+      "id": "cfm_f00841b3"
+    },
+    {
+      "description": "Crushed Limestone 2-4\" rock",
+      "price": 50.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_5e34d861"
+    },
+    {
+      "description": "Crushed Limestone 3/8\" Gravel",
+      "price": 50.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_213dc7f6"
+    },
+    {
+      "description": "Crushed Limestone Screenings",
+      "price": 50.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_f86c5ceb"
+    },
+    {
+      "description": "Crushed Limestone 1-3/4\" Crushed Limestone",
+      "price": 53.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_a2d8b846"
+    },
+    {
+      "description": "Decomposed Granite 1/2\" minus",
+      "price": 85.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_71c2a180"
+    },
+    {
+      "description": "Decomposed Granite 1/4\" minus",
+      "price": 90.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_99d0860e"
+    },
+    {
+      "description": "Desert Marble 1-3\"",
+      "price": 120.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_80dde9ef"
+    },
+    {
+      "description": "Desert Marble 1/2\"",
+      "price": 112.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_1b119529"
+    },
+    {
+      "description": "Desert Marble 1\"",
+      "price": 290.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "note": "Possible OCR confusion \u2014 verify",
+      "id": "cfm_11f7f621"
+    },
+    {
+      "description": "Driftwood 1\" Crushed",
+      "price": 295.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_d69408d3"
+    },
+    {
+      "description": "Golden Sunset 1g 1/2\" River Rock",
+      "price": 295.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_0c673bb1"
+    },
+    {
+      "description": "Golden Sunset Sm 3/8\" minus River rock",
+      "price": 295.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_da5b2d68"
+    },
+    {
+      "description": "Mexican Beach Buttons",
+      "price": 880.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_f59df4f8"
+    },
+    {
+      "description": "Mexican Beach Pebbles 1-2\"",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c4b1d0f1"
+    },
+    {
+      "description": "Mexican Beach Pebbles 1/2\"",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_ac9ac3ab"
+    },
+    {
+      "description": "Mexican Beach Pebbles 2-3\"",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_df4f5156"
+    },
+    {
+      "description": "Mexican Beach Pebbles 3-5\"",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_25135981"
+    },
+    {
+      "description": "Mexican Beach Pebbles 8-12\"",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_eb528a31"
+    },
+    {
+      "description": "Mexican Beach Pebbles Mixed 1-2",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b992313e"
+    },
+    {
+      "description": "Mexican Beach Pebbles Mixed 2-3",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c366b125"
+    },
+    {
+      "description": "Mexican Swirl Beach Pebbles 1-2",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_8b298185"
+    },
+    {
+      "description": "Mexican Swirl Beach Pebbles 2-3",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_5bda4cc3"
+    },
+    {
+      "description": "Mexican Swirl Beach Pebbles 3-5",
+      "price": 650.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_234e8fc6"
+    },
+    {
+      "description": "Mexican White Beach Pebbles 1-2",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_3c4981f2"
+    },
+    {
+      "description": "Mexican White Beach Pebbles 2-3",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_0515f3c6"
+    },
+    {
+      "description": "New Mexico River Rock 1/2\"",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c1bc6d9d"
+    },
+    {
+      "description": "New Mexico River Rock 1-2",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_92b88c84"
+    },
+    {
+      "description": "New Mexico River Rock 2-4\"",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_0b43bd21"
+    },
+    {
+      "description": "New Mexico River Rock 3/4\"-1.75\"",
+      "price": 180.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_fc3b00cf"
+    },
+    {
+      "description": "New Mexico River Rock 4-8\"",
+      "price": 110.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_b5f4b1a8"
+    },
+    {
+      "description": "Pecos River Rock 2-4\"",
+      "price": 37.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "note": "Low price \u2014 verify against catalog (could be misread)",
+      "id": "cfm_1b2b43e7"
+    },
+    {
+      "description": "Pink Granite Gravel 1/2\"-1\"",
+      "price": 37.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_66d49f22"
+    },
+    {
+      "description": "Road Base",
+      "price": 35.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_0cadcfa5"
+    },
+    {
+      "description": "Road Base - Tx Dot A",
+      "price": 260.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_e04b4874"
+    },
+    {
+      "description": "Road Base 1-1/2\"",
+      "price": 37.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_cd545df8"
+    },
+    {
+      "description": "Salt and Pepper River Rock 1/2\" SM (ton)",
+      "price": 37.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_8378198c"
+    },
+    {
+      "description": "Salt and Pepper River Rock 2-4\"",
+      "price": 260.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_3391d590"
+    },
+    {
+      "description": "Salt and Pepper River Rock 4-8",
+      "price": 260.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_1fd504b1"
+    },
+    {
+      "description": "Sierra Rosa Decomposed Granite 5/8\"",
+      "price": 135.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_022f3f8d"
+    },
+    {
+      "description": "Silvermist Gravel 1\"",
+      "price": 140.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_9ca4ebdd"
+    },
+    {
+      "description": "Silvermist Gravel 1/2\"",
+      "price": 140.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_eea59175"
+    },
+    {
+      "description": "Silvermist Gravel 3\"",
+      "price": 140.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_01730b70"
+    },
+    {
+      "description": "Sunburst Mexican Pebble",
+      "price": 750.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_2e7918f7"
+    },
+    {
+      "description": "Tejas 5/8\"",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_83d7597a"
+    },
+    {
+      "description": "Tejas Black 1\"",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_dd99b700"
+    },
+    {
+      "description": "Tejas Black 2-3\"",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_14a4b2eb"
+    },
+    {
+      "description": "Tx Sunrise 1\"",
+      "price": 140.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_42a12a39"
+    },
+    {
+      "description": "Tx Sunrise 1/2\"",
+      "price": 160.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_99ab36b5"
+    },
+    {
+      "description": "Tx Sunrise 1-3\"",
+      "price": 45.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_d19fa3e6"
+    },
+    {
+      "description": "Tx Sunrise 3/8\"",
+      "price": 170.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_8aafbf0f"
+    },
+    {
+      "description": "Torpedo Gravel",
+      "price": 140.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_9b3fe5da"
+    },
+    {
+      "description": "Twilight - Black 1-3\"",
+      "price": 170.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_dc98e9e9"
+    },
+    {
+      "description": "Twilight - Black 3/8\"",
+      "price": 170.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_7710973d"
+    },
+    {
+      "description": "Twilight - Black 5/8\"",
+      "price": 170.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_c3834139"
+    },
+    {
+      "description": "Tx Sand 4-8\" Cobble",
+      "price": 85.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_ecb347dd"
+    },
+    {
+      "description": "West Texas River Rock 2-4\"",
+      "price": 180.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_d6efb962"
+    },
+    {
+      "description": "West Texas River Rock 4-8\"",
+      "price": 180.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_114276c6"
+    },
+    {
+      "description": "White Marble Crushed Decorative 1-1/2\"",
+      "price": 275.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_28cc5cec"
+    },
+    {
+      "description": "White Quartz 1/2\"",
+      "price": 285.0,
+      "unit": "ton",
+      "category": "River Rocks/Cobble/Crushed Stone",
+      "id": "cfm_f426f16e"
+    },
+    {
+      "description": "Arizona Classic Oak Slabs",
+      "price": 475.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_9467b679"
+    },
+    {
+      "description": "Arkansas Cherry Blend Slabs 2\" (ton)",
+      "price": 450.0,
+      "unit": "ton",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_d1971900"
+    },
+    {
+      "description": "Austin Slabs 2.25\"",
+      "price": 460.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_79007426"
+    },
+    {
+      "description": "Autumn Mist Slabs 72\"x36\"x2\" (piece)",
+      "price": 575.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_bdcbd73f"
+    },
+    {
+      "description": "Buff Lueders Slab 2-2.25\"",
+      "price": 535.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_5ca3b386"
+    },
+    {
+      "description": "Buff Lueders Slab Sawn 2-2.25\" (ton)",
+      "price": 560.0,
+      "unit": "ton",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_e71e6f77"
+    },
+    {
+      "description": "Buff Lueders Slabs 2.25\"x40\"",
+      "price": 640.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_554589e1"
+    },
+    {
+      "description": "Buff Lueders Slabs 1.25\"",
+      "price": 650.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_33f10e80"
+    },
+    {
+      "description": "Chapel Hill Slabs 2.25\"",
+      "price": 675.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_c3491aeb"
+    },
+    {
+      "description": "Charcoal Lueder Slab 1.25\" (ton)",
+      "price": 580.0,
+      "unit": "ton",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_93a9d025"
+    },
+    {
+      "description": "Charcoal Lueder Slab 2.25\"",
+      "price": 575.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_01dc8eed"
+    },
+    {
+      "description": "Grey Mist Slabs",
+      "price": 575.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_578b8e4b"
+    },
+    {
+      "description": "Lime Black Slabs 72\"x36\"x2\" (piece)",
+      "price": 340.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_7dd76c42"
+    },
+    {
+      "description": "Mexico White Slabs",
+      "price": 590.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_a70dc988"
+    },
+    {
+      "description": "Midnight Blue Slabs 2.25\"",
+      "price": 400.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_22ff0738"
+    },
+    {
+      "description": "Oklahoma Brown Lay Down Slabs 1",
+      "price": 440.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_c95a233e"
+    },
+    {
+      "description": "Oklahoma Brown Stand Up Slabs (ton)",
+      "price": 350.0,
+      "unit": "ton",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_8a8beb59"
+    },
+    {
+      "description": "Oklahoma Super Slabs (ton)",
+      "price": 675.0,
+      "unit": "ton",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_dae66a52"
+    },
+    {
+      "description": "Pennsylvania Blue Stand-Up",
+      "price": 580.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_638bb53c"
+    },
+    {
+      "description": "Sandstone Sawn Slabs 2.25\"",
+      "price": 400.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_7c6ce934"
+    },
+    {
+      "description": "Silvermist Slabs Lay down",
+      "price": 437.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_2bdb5cea"
+    },
+    {
+      "description": "Silvermist Stand Up Slabs",
+      "price": 437.0,
+      "unit": "piece",
+      "category": "Slabs/Pool Coping/Travertine",
+      "id": "cfm_1c1d2db9"
+    },
+    {
+      "description": "Almond Lueders Sawn/Chop (ton)",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_a1a15ab9"
+    },
+    {
+      "description": "Antique Lueders Sawn/Chop",
+      "price": 210.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_93d68ebf"
+    },
+    {
+      "description": "Arizona Strip Stone",
+      "price": 575.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_90602c2a"
+    },
+    {
+      "description": "Austin Sawn",
+      "price": 190.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_e700da2a"
+    },
+    {
+      "description": "Austin Nicotine Sawn/Chop (ton)",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_adfea3c1"
+    },
+    {
+      "description": "Austin Quarry Chopped",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_55287275"
+    },
+    {
+      "description": "Austin White Drystack",
+      "price": 190.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_8e517e39"
+    },
+    {
+      "description": "Austin White Sawn/Chop (ton)",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_6e188ad2"
+    },
+    {
+      "description": "Austin White Drystack",
+      "price": 210.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_18111b05"
+    },
+    {
+      "description": "Autumn Blend Sawn/Chop - Sandstone (ton)",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_a37f36c6"
+    },
+    {
+      "description": "Buff Lueders Drystack",
+      "price": 200.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_1a276e6c"
+    },
+    {
+      "description": "Buff Lueders Ledgestone 2\"",
+      "price": 450.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_22f77930"
+    },
+    {
+      "description": "Buff Lueders Sawn/Chop",
+      "price": 190.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_70ef3aff"
+    },
+    {
+      "description": "Caramel Lueders Sawn/Chop (ton)",
+      "price": 225.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_9f34c92d"
+    },
+    {
+      "description": "Chapel Hill End Cuts",
+      "price": 375.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_13c2f28b"
+    },
+    {
+      "description": "Chapel Hill Sawn/Chop (ton)",
+      "price": 175.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_89df13c1"
+    },
+    {
+      "description": "Charcoal Lueders Sawn/Chop (ton)",
+      "price": 210.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_5e8769e7"
+    },
+    {
+      "description": "Chocolate Lueders Sawn/Chop (ton)",
+      "price": 270.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_937399b2"
+    },
+    {
+      "description": "Chocolate Sandstone Sawn/Chop (ton)",
+      "price": 230.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_60c49407"
+    },
+    {
+      "description": "Cimarron Lueders Sawn/Chop (ton)",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_da131fb0"
+    },
+    {
+      "description": "Copper Mountain Sawn/Chop",
+      "price": 275.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_41cc4d01"
+    },
+    {
+      "description": "Granbury Champagne Chopped",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_da41f73e"
+    },
+    {
+      "description": "Granbury Gray Saw Cut",
+      "price": 320.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_2630cd72"
+    },
+    {
+      "description": "Granbury Grey Smoke Chop",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_d5a84ed1"
+    },
+    {
+      "description": "Granbury Multi Color Chop",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_60b625c3"
+    },
+    {
+      "description": "Granbury Plum Chop",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_4b1ad612"
+    },
+    {
+      "description": "Granbury Silver Chop",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_ec036123"
+    },
+    {
+      "description": "Granbury White Chop",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_c12889a1"
+    },
+    {
+      "description": "Grey Lueders Sawn/Chopped",
+      "price": 265.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_d5c25e22"
+    },
+    {
+      "description": "Hawaiiana Lueders Sawn/Chop (ton)",
+      "price": 235.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_325b68fe"
+    },
+    {
+      "description": "Millsap Chopped 4\" Pits",
+      "price": 185.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_c8444f6d"
+    },
+    {
+      "description": "Millsap Chopped 4\"-8\" Pits",
+      "price": 175.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_851a264e"
+    },
+    {
+      "description": "Oklahoma Blue/Brown Chop",
+      "price": 290.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_5cdc5ac3"
+    },
+    {
+      "description": "Oklahoma Brown Chop",
+      "price": 290.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_7c4f85a6"
+    },
+    {
+      "description": "Oklahoma Brown Sawn Top and Bottom",
+      "price": 380.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_d23265f8"
+    },
+    {
+      "description": "Oklahoma Brown Squares & Rectangles",
+      "price": 290.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_601f1fc7"
+    },
+    {
+      "description": "Oklahoma Tumbled Chopped",
+      "price": 325.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_4fb81938"
+    },
+    {
+      "description": "Platinum Lueders Sawn/Chop",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_a923e780"
+    },
+    {
+      "description": "Rattlesnake Chop (ton)",
+      "price": 195.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped on photo \u2014 verify",
+      "id": "cfm_2879826a"
+    },
+    {
+      "description": "Roughback Lueders Sawn/Chop (ton)",
+      "price": 225.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped on photo \u2014 verify",
+      "id": "cfm_c75e9701"
+    },
+    {
+      "description": "San Saba Chop 4\"",
+      "price": 205.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped \u2014 verify",
+      "id": "cfm_9f16dade"
+    },
+    {
+      "description": "San Saba Chop 4\"-8\"",
+      "price": 235.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped \u2014 verify",
+      "id": "cfm_ade4ae79"
+    },
+    {
+      "description": "Santa Fe Chop (ton)",
+      "price": 190.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped \u2014 verify",
+      "id": "cfm_62bf8f3b"
+    },
+    {
+      "description": "Silvermist Chop (ton)",
+      "price": 220.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped \u2014 verify",
+      "id": "cfm_5ba6b105"
+    },
+    {
+      "description": "Texas Blue Sawn/Chop (ton)",
+      "price": 270.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "note": "Right-edge cropped \u2014 verify",
+      "id": "cfm_83d0b5ca"
+    },
+    {
+      "description": "Texas Cobble Baskets (ton)",
+      "price": 190.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_4a129b50"
+    },
+    {
+      "description": "Texas Mix Sawn/Chop (ton)",
+      "price": 225.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_3b38adbd"
+    },
+    {
+      "description": "Tumbled Buff Lueders",
+      "price": 240.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_dd9ed2a1"
+    },
+    {
+      "description": "Wintergreen Sandstone Chop (ton)",
+      "price": 215.0,
+      "unit": "ton",
+      "category": "Sawn/Chop Stone/Brick",
+      "id": "cfm_358a583f"
+    }
+  ]
+}

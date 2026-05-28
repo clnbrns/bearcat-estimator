@@ -44,6 +44,27 @@ git checkout main && git merge feat/cage-labor-fix
 
 Use a **separate Gemini API key for local dev** in `server/.env` so localhost testing doesn't bill against the prod key. Flash's free tier (~1,500 req/day) covers all realistic dev volume for free.
 
+## Rocks / soils / mulches — new product line (May 2026)
+
+Bearcat is selling + installing decorative rock, slabs, and bulk soil/mulch.
+Wholesale catalog lives at `data/rocks/clear_fork_materials_2026_05.json`
+(Clear Fork Materials — 212 SKUs across Sands/Soils/Mulches, River Rocks/
+Cobble/Crushed Stone, Slabs/Pool Coping/Travertine, and Sawn/Chop Stone/Brick).
+
+Pricing model in `components.json` → `rock_install`:
+- `markup_multiplier: 1.75` (lower than plants because rock is heavier, less spoilage)
+- `spread_labor_per_unit: { ton: 60, yard: 45, piece: 0, bag: 8 }` — auto-added per qty
+- `warranty_reserve_pct: 5` — delivery + breakage reserve on marked-up material
+- `custom_quote_units: [piece]` — slabs and pool coping pieces flag for manual labor
+
+The catalog was transcribed from photos of the printed binder catalog
+(Nov 1 2025 page footer). The JSON has an `_ocr_caveats` array calling out
+specific items where the photo was ambiguous — verify those before quoting.
+Right-edge cropping affected several Sawn/Chop prices on IMG_1051.
+
+Catalogs are dated and disposable — same convention as Wolfe Nursery: new
+month → new file (`clear_fork_materials_2026_06.json`), never overwrite.
+
 ## Plants — new product line (May 2026)
 
 Bearcat is starting to sell + install plants. Wholesale catalog lives at

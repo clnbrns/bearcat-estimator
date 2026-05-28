@@ -15,6 +15,11 @@ export async function getPlants() {
   return r.json();
 }
 
+export async function getRocks() {
+  const r = await fetch(`${base}/api/rocks`);
+  return r.json();
+}
+
 export async function calcEstimate(input) {
   const r = await fetch(`${base}/api/estimate`, {
     method: 'POST',

@@ -75,6 +75,19 @@
     },
     "custom_quote_tiers": ["100g", "200g", "B&B", "box"]
   },
+  "rock_install": {
+    "_note": "Rock + stone material from supplier catalogs (e.g. Clear Fork Materials). Each rock's wholesale cost is billed at 1.75× (markup_multiplier) — slightly lower than plants because rock is heavier, less spoilage, and customer expectations for stone-yard markup are tighter than nursery markup. Per-unit spread labor is added separately ($60/ton for hand-spread decorative rock). A 5% delivery + breakage reserve is added on top of marked-up material. Standard project margin_pct wraps the basis like every other component.",
+    "markup_multiplier": 1.75,
+    "warranty_reserve_pct": 5,
+    "_labor_note": "Spread labor benchmarks vary by unit. Ton is the standard for decorative rock; yard for bulk soil/mulch; piece for slab/coping. Heavy slabs, hand-set coping, and dry-stack walls need a custom labor quote — defaults below are a baseline.",
+    "spread_labor_per_unit": {
+      "ton":   60,
+      "yard":  45,
+      "piece": 0,
+      "bag":   8
+    },
+    "custom_quote_units": ["piece"]
+  },
   "settings": {
     "default_margin_pct": 30,
     "card_fee_pct": 3.5,

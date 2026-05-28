@@ -42,6 +42,22 @@ export async function loadPlants(catalogFile) {
   return { ...data, _catalog_file: file };
 }
 
+// Rocks — supplier catalogs stored as dated snapshots under data/rocks/.
+// Same convention as plants: monthly refresh, never overwrite old files.
+export async function loadRocks(catalogFile) {
+  const dir = path.join(DATA_DIR, 'rocks');
+  if (!existsSync(dir)) return { items: [], _source: null };
+  let file = catalogFile;
+  if (!file) {
+    const files = (await readdir(dir)).filter(f => f.endsWith('.json')).sort().reverse();
+    if (!files.length) return { items: [], _source: null };
+    file = files[0];
+  }
+  const raw = await readFile(path.join(dir, file), 'utf8');
+  const data = JSON.parse(raw);
+  return { ...data, _catalog_file: file };
+}
+
 export async function loadPartners() {
   const raw = await readFile(path.join(DATA_DIR, 'partners.json'), 'utf8');
   return JSON.parse(raw).partners;

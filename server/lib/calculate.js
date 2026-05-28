@@ -29,7 +29,7 @@ export function seamLengthFromDims(narrowFt, longFt, rollWidthFt = 15) {
   return (strips - 1) * longFt;
 }
 
-export function calculateEstimate(input, products, components, cimarron = [], plants = []) {
+export function calculateEstimate(input, products, components, cimarron = [], plants = [], rocks = []) {
   const {
     total_sf = 0,
     product_name,
@@ -61,6 +61,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     include_shock_pad,
     cimarron_items = [],
     plant_items = [],
+    rock_items = [],
     custom_line_items = [],
     margin_pct = components.settings.default_margin_pct,
     apply_card_fee = components.settings.card_fee_enabled,
@@ -468,6 +469,62 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
       unit_cost: reserve,
       cost: reserve,
       plant_reserve: true,
+    });
+  }
+
+  // Rocks / stone / mulch — material billed at 1.75× wholesale
+  // (markup_multiplier), per-unit spread labor by unit (ton / yard / piece),
+  // plus a 5% delivery + breakage reserve on marked-up rock material.
+  // Slabs and pool-coping pieces return 0 labor (custom_quote_units) because
+  // hand-set masonry doesn't fit a flat-rate table.
+  const rockCfg = components.rock_install || {};
+  const rockMarkup = rockCfg.markup_multiplier ?? 1.0;
+  const rockLaborTable = rockCfg.spread_labor_per_unit || {};
+  const rockCustomUnits = new Set(rockCfg.custom_quote_units || []);
+  let rockMaterialMarkedUp = 0;
+  for (const ri of rock_items) {
+    const qty = Number(ri.qty) || 0;
+    if (qty <= 0) continue;
+    const rock = rocks.find(r => r.id === ri.id);
+    if (!rock) continue;
+    const unit = rock.unit || 'ton';
+    const unitMaterial = rock.price * rockMarkup;
+    const lineMaterial = qty * unitMaterial;
+    rockMaterialMarkedUp += lineMaterial;
+    lines.push({
+      key: `rock_${rock.id}`,
+      label: `${rock.category?.split('/')[0] || 'Rock'} · ${rock.description} (${rockMarkup}× wholesale)`,
+      qty,
+      unit,
+      unit_cost: unitMaterial,
+      cost: lineMaterial,
+      rock: true,
+      wholesale_unit: rock.price,
+    });
+    const laborPer = rockCustomUnits.has(unit) ? 0 : (rockLaborTable[unit] ?? 0);
+    if (laborPer > 0) {
+      lines.push({
+        key: `rock_labor_${rock.id}`,
+        label: `Spread labor — ${rock.description} ($${laborPer}/${unit})`,
+        qty,
+        unit,
+        unit_cost: laborPer,
+        cost: qty * laborPer,
+        rock_labor: true,
+      });
+    }
+  }
+  const rockReservePct = rockCfg.warranty_reserve_pct || 0;
+  if (rockMaterialMarkedUp > 0 && rockReservePct > 0) {
+    const reserve = rockMaterialMarkedUp * (rockReservePct / 100);
+    lines.push({
+      key: 'rock_delivery_reserve',
+      label: `Delivery + breakage reserve (${rockReservePct}% of rock material)`,
+      qty: rockReservePct,
+      unit: '%',
+      unit_cost: reserve,
+      cost: reserve,
+      rock_reserve: true,
     });
   }
 

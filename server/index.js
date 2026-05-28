@@ -23,7 +23,7 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
-import { loadProducts, loadComponents, loadCimarron, loadPlants, saveEstimate, listEstimates, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
+import { loadProducts, loadComponents, loadCimarron, loadPlants, loadRocks, saveEstimate, listEstimates, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
 import { calculateEstimate } from './lib/calculate.js';
 import { parseMeasurement } from './lib/parseMeasurement.js';
 import { parseVoiceIntake } from './lib/parseVoiceIntake.js';
@@ -79,6 +79,10 @@ app.get('/api/plants', async (req, res, next) => {
   try { res.json(await loadPlants(req.query.catalog)); } catch (e) { next(e); }
 });
 
+app.get('/api/rocks', async (req, res, next) => {
+  try { res.json(await loadRocks(req.query.catalog)); } catch (e) { next(e); }
+});
+
 // ── Partner portal endpoints ─────────────────────────────
 app.get('/api/partners', async (_req, res, next) => {
   try { res.json(await loadPartners()); } catch (e) { next(e); }
@@ -114,10 +118,10 @@ app.get('/api/partner-jobs', async (_req, res, next) => {
 
 app.post('/api/estimate', async (req, res, next) => {
   try {
-    const [products, components, cimarron, plants] = await Promise.all([
-      loadProducts(), loadComponents(), loadCimarron(), loadPlants(),
+    const [products, components, cimarron, plants, rocks] = await Promise.all([
+      loadProducts(), loadComponents(), loadCimarron(), loadPlants(), loadRocks(),
     ]);
-    res.json(calculateEstimate(req.body, products, components, cimarron, plants.items || []));
+    res.json(calculateEstimate(req.body, products, components, cimarron, plants.items || [], rocks.items || []));
   } catch (e) { next(e); }
 });
 
