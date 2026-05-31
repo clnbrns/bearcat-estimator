@@ -62,6 +62,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     cimarron_items = [],
     plant_items = [],
     rock_items = [],
+    tree_removal_items = [],
     custom_line_items = [],
     margin_pct = components.settings.default_margin_pct,
     apply_card_fee = components.settings.card_fee_enabled,
@@ -525,6 +526,24 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
       unit_cost: reserve,
       cost: reserve,
       rock_reserve: true,
+    });
+  }
+
+  // Tree & stump removal — subcontracted service, entered as sub cost.
+  // Project margin applies on top (same as all other cost lines).
+  // Each item: { description, sub_cost, qty }
+  for (const ti of tree_removal_items) {
+    const qty = Number(ti.qty) || 1;
+    const subCost = Number(ti.sub_cost) || 0;
+    if (subCost <= 0) continue;
+    lines.push({
+      key: `tree_removal_${ti.description?.replace(/\W+/g, '_') || lines.length}`,
+      label: `Tree & stump removal — ${ti.description || 'tree/stump'}`,
+      qty,
+      unit: 'EA',
+      unit_cost: subCost,
+      cost: qty * subCost,
+      tree_removal: true,
     });
   }
 
