@@ -85,8 +85,8 @@
   "labor": {
     "label": "Installation labor",
     "cost_per_sf": 3.0,
-    "min_day_rate": 850,
-    "_note": "$3/SF or min day rate, whichever higher. Min covers 2-man crew + truck for small jobs."
+    "min_day_rate": 1800,
+    "_note": "$3/SF install labor, $1,800/day floor (2-man crew + overhead). Floor triggers on jobs under ~600 SF."
   },
   "putting_green_labor": {
     "label": "Putting green labor",
