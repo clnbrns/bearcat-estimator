@@ -3,6 +3,7 @@ import { calcEstimate, fmt } from '../lib/api.js';
 import CimarronPicker from './CimarronPicker.jsx';
 import PlantPicker from './PlantPicker.jsx';
 import RockPicker from './RockPicker.jsx';
+import TreeRemovalPicker from './TreeRemovalPicker.jsx';
 
 export default function EstimateBuilder({ intake, products, components, onBack, onComplete }) {
   const defaults = {
@@ -27,6 +28,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     cimarron_items: intake.cage_config?._items || [],
     plant_items: [],
     rock_items: [],
+    tree_removal_items: [],
     no_turf: !!intake.no_turf,
     equipment_install_fee: intake.cage_config?._suggested_labor
       ?? (Number(intake.equipment_install_fee) || 0),
@@ -71,6 +73,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     cimarron_items: opts.cimarron_items || [],
     plant_items: opts.plant_items || [],
     rock_items: opts.rock_items || [],
+    tree_removal_items: opts.tree_removal_items || [],
     no_turf: !!opts.no_turf,
     equipment_install_fee: Number(opts.equipment_install_fee) || 0,
     turf_overage_pct: Number(opts.turf_overage_pct) || 0,
@@ -139,6 +142,8 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
         <PlantPicker items={opts.plant_items} onChange={v => set('plant_items', v)} />
 
         <RockPicker items={opts.rock_items} onChange={v => set('rock_items', v)} />
+
+        <TreeRemovalPicker items={opts.tree_removal_items} onChange={v => set('tree_removal_items', v)} />
 
         <Check checked={opts.supply_only} onChange={() => toggle('supply_only')}
           label="Supply only / no install (skips labor, sub-base, demo, grading)" />

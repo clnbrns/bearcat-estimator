@@ -1,92 +1,207 @@
 {
   "flex_base": {
     "label": "Crushed recycled concrete sub-base",
-    "cost_per_cubic_yard": 33.00,
-    "delivery_fee": 150.00,
+    "cost_per_cubic_yard": 33.0,
+    "delivery_fee": 150.0,
     "yards_per_delivery": 10,
     "default_depth_inches": 3,
     "yards_per_1000_sf": 10,
     "_note": "$480 per truck delivered = $33/yd material + $150 delivery. Rule of thumb: 10 yd per 1000 SF turf. Each truck holds 10 yd; partial loads still incur full $150 delivery."
   },
-  "weed_barrier": { "label": "15-year weed barrier", "cost_per_sf": 0.055, "_note": "TurfHub Weed Fabric 6x300' = $99/roll ÷ 1,800 SF coverage" },
-  "seam_tape": { "label": "Seam tape", "cost_per_lf": 0.34, "bulk_cost_per_lf": 0.24, "bulk_threshold_lf": 300, "fallback_cost_per_sf": 0.05, "_note": "TurfHub: 100' rolls $0.34/LF; 1000' bulk rolls $0.24/LF. Auto-switch to bulk above 300 LF." },
-  "glue": { "label": "Turf Claw glue", "cost_per_gallon": 65.00, "lf_per_gallon": 200, "_note": "1 gal covers ~200 LF of seams" },
-  "turf_roll": { "width_ft": 15, "_note": "TurfHub turf sold in 15' wide rolls cut to length." },
-  "bender_board": { "label": "Bender board (black or brown)", "cost_per_lf": 1.2975, "stick_length_lf": 20, "cost_per_stick": 25.95, "_note": "BendaBoard BP Texturized 1\"x4\"x20' = $25.95/stick (TurfHub AccBendaBP-BL, confirmed 2026-05-27, was $24.95). Sold only in 20' increments." },
-  "lumber_2x4": { "label": "2x4 lumber", "cost_per_lf": 0.65, "_note": "Placeholder default; verify and update" },
-  "silica_sand_infill": { "label": "Silica sand infill", "cost_per_sf": 0.12, "_note": "Premium Silica 12/20 ~$6/bag, ~50 SF coverage per bag" },
-  "nails": { "label": "5\" nails", "cost_per_box": 59.00, "sf_per_box": 1800, "_note": "Auto-scaled: 1 box per 1,800 SF. Price verified 2026-04. Was $55 in Jan." },
-  "bender_board_stakes": { "label": "Pre-drilled stakes (12\")", "cost_per_stake": 0.79, "lf_per_stake": 2, "_note": "Auto-added when bender board included: 1 stake per 2 LF" },
-  "antimicrobial_infill_upcharge": { "label": "Antimicrobial / pet-friendly infill upcharge", "cost_per_sf": 0.11, "_note": "Envirofill ~$0.23/SF total minus silica $0.12/SF baseline" },
-  "demo": { "label": "Sod removal / demo", "cost_per_sf": 0.35 },
-  "laser_grading": { "label": "Laser grading", "cost_per_sf": 0.15 },
-  "cleanup": { "label": "Cleanup", "cost": 0, "included": true },
-  "french_drain": { "label": "French drain", "cost_per_lf": 28.00 },
-  "labor": { "label": "Installation labor", "cost_per_sf": 3.00, "min_day_rate": 850, "_note": "$3/SF or min day rate, whichever higher. Min covers 2-man crew + truck for small jobs." },
-  "putting_green_labor": { "label": "Putting green labor", "cost_per_sf": 4.00, "_note": "Replaces standard labor for PG portion only" },
+  "weed_barrier": {
+    "label": "15-year weed barrier",
+    "cost_per_sf": 0.055,
+    "_note": "TurfHub Weed Fabric 6x300' = $99/roll \u00f7 1,800 SF coverage"
+  },
+  "seam_tape": {
+    "label": "Seam tape",
+    "cost_per_lf": 0.34,
+    "bulk_cost_per_lf": 0.24,
+    "bulk_threshold_lf": 300,
+    "fallback_cost_per_sf": 0.05,
+    "_note": "TurfHub: 100' rolls $0.34/LF; 1000' bulk rolls $0.24/LF. Auto-switch to bulk above 300 LF."
+  },
+  "glue": {
+    "label": "Turf Claw glue",
+    "cost_per_gallon": 65.0,
+    "lf_per_gallon": 200,
+    "_note": "1 gal covers ~200 LF of seams"
+  },
+  "turf_roll": {
+    "width_ft": 15,
+    "_note": "TurfHub turf sold in 15' wide rolls cut to length."
+  },
+  "bender_board": {
+    "label": "Bender board (black or brown)",
+    "cost_per_lf": 1.2975,
+    "stick_length_lf": 20,
+    "cost_per_stick": 25.95,
+    "_note": "BendaBoard BP Texturized 1\"x4\"x20' = $25.95/stick (TurfHub AccBendaBP-BL, confirmed 2026-05-27, was $24.95). Sold only in 20' increments."
+  },
+  "lumber_2x4": {
+    "label": "2x4 lumber",
+    "cost_per_lf": 0.65,
+    "_note": "Placeholder default; verify and update"
+  },
+  "silica_sand_infill": {
+    "label": "Silica sand infill",
+    "cost_per_sf": 0.12,
+    "_note": "Premium Silica 12/20 ~$6/bag, ~50 SF coverage per bag"
+  },
+  "nails": {
+    "label": "5\" nails",
+    "cost_per_box": 59.0,
+    "sf_per_box": 1800,
+    "_note": "Auto-scaled: 1 box per 1,800 SF. Price verified 2026-04. Was $55 in Jan."
+  },
+  "bender_board_stakes": {
+    "label": "Pre-drilled stakes (12\")",
+    "cost_per_stake": 0.79,
+    "lf_per_stake": 2,
+    "_note": "Auto-added when bender board included: 1 stake per 2 LF"
+  },
+  "antimicrobial_infill_upcharge": {
+    "label": "Antimicrobial / pet-friendly infill upcharge",
+    "cost_per_sf": 0.11,
+    "_note": "Envirofill ~$0.23/SF total minus silica $0.12/SF baseline"
+  },
+  "demo": {
+    "label": "Sod removal / demo",
+    "cost_per_sf": 0.35
+  },
+  "laser_grading": {
+    "label": "Laser grading",
+    "cost_per_sf": 0.15
+  },
+  "cleanup": {
+    "label": "Cleanup",
+    "cost": 0,
+    "included": true
+  },
+  "french_drain": {
+    "label": "French drain",
+    "cost_per_lf": 28.0
+  },
+  "labor": {
+    "label": "Installation labor",
+    "cost_per_sf": 3.0,
+    "min_day_rate": 850,
+    "_note": "$3/SF or min day rate, whichever higher. Min covers 2-man crew + truck for small jobs."
+  },
+  "putting_green_labor": {
+    "label": "Putting green labor",
+    "cost_per_sf": 4.0,
+    "_note": "Replaces standard labor for PG portion only"
+  },
   "cage_install": {
     "day_rate": 1800,
     "concrete_upcharge": 1800,
     "default_margin_pct": 23,
     "target_margin_pct": 20,
-    "_margin_note": "23% gross margin = 20% target margin + 3.5% credit card fee buffer. Math: net after card fee = sell × 0.965; want net margin 20% → sell = cost/(0.80×0.965) = cost/0.772 → 22.8% gross → round to 23%.",
+    "_margin_note": "23% gross margin = 20% target margin + 3.5% credit card fee buffer. Math: net after card fee = sell \u00d7 0.965; want net margin 20% \u2192 sell = cost/(0.80\u00d70.965) = cost/0.772 \u2192 22.8% gross \u2192 round to 23%.",
     "tiers": [
-      { "max_length_ft": 40, "days": 2, "label": "Small (30–40')" },
-      { "max_length_ft": 60, "days": 3, "label": "Mid (50–60')" },
-      { "max_length_ft": 9999, "days": 4, "label": "Large (70')" }
+      {
+        "max_length_ft": 40,
+        "days": 2,
+        "label": "Small (30\u201340')"
+      },
+      {
+        "max_length_ft": 60,
+        "days": 3,
+        "label": "Mid (50\u201360')"
+      },
+      {
+        "max_length_ft": 9999,
+        "days": 4,
+        "label": "Large (70')"
+      }
     ],
     "_note": "Day-based install pricing benchmarked against assemblyandrepair.com, lfssportsnetting.com, battingcagesinc.com. Concrete-set HD frames add 1 day of labor."
   },
-  "putting_green_upcharge": { "label": "Putting green specialty labor (cup-cutter rent, base detail, fringe seam)", "cost_per_sf": 1.50, "_note": "Reduced from $3 since hardware is now itemized below" },
-  "pg_cup_4in":   { "label": "4\" Aluminum Cup", "cost_each": 17.50 },
-  "pg_cup_6in":   { "label": "6\" Aluminum Cup", "cost_each": 19.50 },
-  "pg_flag_pole": { "label": "30\" Flag Pole (ball-retriever base)", "cost_each": 16.00 },
-  "pg_flag_nylon":{ "label": "6\"x8\" Nylon Flag", "cost_each": 9.50 },
-  "hitting_mat":  { "label": "Hitting Mat (clay)", "cost_each": 319.00 },
-  "shock_pad":    { "label": "Shock pad 8mm (fall-rated)", "cost_per_sf": 0.69, "_note": "Required for Playground (fall-height rating); optional upsell for Pet Turf" },
+  "putting_green_upcharge": {
+    "label": "Putting green specialty labor (cup-cutter rent, base detail, fringe seam)",
+    "cost_per_sf": 1.5,
+    "_note": "Reduced from $3 since hardware is now itemized below"
+  },
+  "pg_cup_4in": {
+    "label": "4\" Aluminum Cup",
+    "cost_each": 17.5
+  },
+  "pg_cup_6in": {
+    "label": "6\" Aluminum Cup",
+    "cost_each": 19.5
+  },
+  "pg_flag_pole": {
+    "label": "30\" Flag Pole (ball-retriever base)",
+    "cost_each": 16.0
+  },
+  "pg_flag_nylon": {
+    "label": "6\"x8\" Nylon Flag",
+    "cost_each": 9.5
+  },
+  "hitting_mat": {
+    "label": "Hitting Mat (clay)",
+    "cost_each": 319.0
+  },
+  "shock_pad": {
+    "label": "Shock pad 8mm (fall-rated)",
+    "cost_per_sf": 0.69,
+    "_note": "Required for Playground (fall-height rating); optional upsell for Pet Turf"
+  },
   "plant_install": {
-    "_note": "Plant pricing model: each plant's material cost is billed at 2× wholesale (markup_multiplier). Per-pot install labor is added on top, ranging $40–$80 by size. A warranty + delivery reserve of 5% of plant material is added as a separate line covering 60-day replacement and load/dispatch. Standard project margin_pct wraps the whole basis after those line items, same as turf/Cimarron/etc.",
+    "_note": "Plant pricing model: each plant's material cost is billed at 2\u00d7 wholesale (markup_multiplier). Per-pot install labor is added on top, ranging $40\u2013$80 by size. A warranty + delivery reserve of 5% of plant material is added as a separate line covering 60-day replacement and load/dispatch. Standard project margin_pct wraps the whole basis after those line items, same as turf/Cimarron/etc.",
     "markup_multiplier": 2.0,
     "warranty_reserve_pct": 5,
-    "_labor_note": "Per-plant install labor $40–$80 range covers dig, amend, set, backfill, water-in for container plants up to 65g. Anything 100g+, B&B, or Box requires machinery + multi-person crew (and often a 2nd visit for staking) — labor table returns 0 for these sizes; quote them as a custom line per job.",
+    "_labor_note": "Per-plant install labor $40\u2013$80 range covers dig, amend, set, backfill, water-in for container plants up to 65g. Anything 100g+, B&B, or Box requires machinery + multi-person crew (and often a 2nd visit for staking) \u2014 labor table returns 0 for these sizes; quote them as a custom line per job.",
     "install_labor_per_size": {
-      "1g":       40,
-      "2g":       40,
-      "2/3g":     40,
-      "3g":       50,
-      "3/5g":     50,
-      "5g":       50,
-      "6g":       60,
-      "7g":       60,
-      "10g":      70,
-      "10/15g":   70,
-      "15g":      75,
-      "20g":      80,
-      "25g":      80,
-      "30g":      80,
-      "45g":      80,
-      "65g":      80,
-      "100g":     0,
-      "200g":     0,
-      "B&B":      0,
-      "box":      0,
-      "flat":     40,
-      "unknown":  50
+      "1g": 40,
+      "2g": 40,
+      "2/3g": 40,
+      "3g": 50,
+      "3/5g": 50,
+      "5g": 50,
+      "6g": 60,
+      "7g": 60,
+      "10g": 70,
+      "10/15g": 70,
+      "15g": 75,
+      "20g": 80,
+      "25g": 80,
+      "30g": 80,
+      "45g": 80,
+      "65g": 80,
+      "100g": 0,
+      "200g": 0,
+      "B&B": 0,
+      "box": 0,
+      "flat": 40,
+      "unknown": 50
     },
-    "custom_quote_tiers": ["100g", "200g", "B&B", "box"]
+    "custom_quote_tiers": [
+      "100g",
+      "200g",
+      "B&B",
+      "box"
+    ]
   },
   "rock_install": {
-    "_note": "Rock + stone material from supplier catalogs (e.g. Clear Fork Materials). Each rock's wholesale cost is billed at 1.75× (markup_multiplier) — slightly lower than plants because rock is heavier, less spoilage, and customer expectations for stone-yard markup are tighter than nursery markup. Per-unit spread labor is added separately ($60/ton for hand-spread decorative rock). A 5% delivery + breakage reserve is added on top of marked-up material. Standard project margin_pct wraps the basis like every other component.",
+    "_note": "Rock + stone material from supplier catalogs (e.g. Clear Fork Materials). Each rock's wholesale cost is billed at 1.75\u00d7 (markup_multiplier) \u2014 slightly lower than plants because rock is heavier, less spoilage, and customer expectations for stone-yard markup are tighter than nursery markup. Per-unit spread labor is added separately ($60/ton for hand-spread decorative rock). A 5% delivery + breakage reserve is added on top of marked-up material. Standard project margin_pct wraps the basis like every other component.",
     "markup_multiplier": 1.75,
     "warranty_reserve_pct": 5,
-    "_labor_note": "Spread labor benchmarks vary by unit. Ton is the standard for decorative rock; yard for bulk soil/mulch; piece for slab/coping. Heavy slabs, hand-set coping, and dry-stack walls need a custom labor quote — defaults below are a baseline.",
+    "_labor_note": "Spread labor benchmarks vary by unit. Ton is the standard for decorative rock; yard for bulk soil/mulch; piece for slab/coping. Heavy slabs, hand-set coping, and dry-stack walls need a custom labor quote \u2014 defaults below are a baseline.",
     "spread_labor_per_unit": {
-      "ton":   60,
-      "yard":  45,
+      "ton": 60,
+      "yard": 45,
       "piece": 0,
-      "bag":   8
+      "bag": 8
     },
-    "custom_quote_units": ["piece"]
+    "custom_quote_units": [
+      "piece"
+    ]
+  },
+  "tree_removal": {
+    "_note": "Subcontracted tree/stump removal. Enter sub cost; project margin applies on top (no extra multiplier). At 30% margin a $1,000 sub bill sells for ~$1,430.",
+    "label": "Tree & stump removal (subcontracted)"
   },
   "settings": {
     "default_margin_pct": 30,
@@ -96,20 +211,52 @@
     "ytd_avg_margin_pct": 27,
     "min_price_per_sf_warning": 7.85,
     "sf_floor_tiers": [
-      { "max_sf": 500, "floor": 9.00, "label": "<500 SF" },
-      { "max_sf": 1500, "floor": 8.50, "label": "500–1,499 SF" },
-      { "max_sf": 3000, "floor": 7.50, "label": "1,500–2,999 SF" },
-      { "max_sf": 999999, "floor": 6.50, "label": "3,000+ SF" }
+      {
+        "max_sf": 500,
+        "floor": 9.0,
+        "label": "<500 SF"
+      },
+      {
+        "max_sf": 1500,
+        "floor": 8.5,
+        "label": "500\u20131,499 SF"
+      },
+      {
+        "max_sf": 3000,
+        "floor": 7.5,
+        "label": "1,500\u20132,999 SF"
+      },
+      {
+        "max_sf": 999999,
+        "floor": 6.5,
+        "label": "3,000+ SF"
+      }
     ],
     "size_benchmarks": [
-      { "max_sf": 500, "median_psf": 9.39, "label": "<500 SF" },
-      { "max_sf": 1500, "median_psf": 9.17, "label": "500–1,499 SF" },
-      { "max_sf": 3000, "median_psf": 7.85, "label": "1,500–2,999 SF" },
-      { "max_sf": 999999, "median_psf": 7.00, "label": "3,000+ SF" }
+      {
+        "max_sf": 500,
+        "median_psf": 9.39,
+        "label": "<500 SF"
+      },
+      {
+        "max_sf": 1500,
+        "median_psf": 9.17,
+        "label": "500\u20131,499 SF"
+      },
+      {
+        "max_sf": 3000,
+        "median_psf": 7.85,
+        "label": "1,500\u20132,999 SF"
+      },
+      {
+        "max_sf": 999999,
+        "median_psf": 7.0,
+        "label": "3,000+ SF"
+      }
     ],
     "type_floors": {
-      "Putting Green": 9.00,
-      "Playground": 9.00
+      "Putting Green": 9.0,
+      "Playground": 9.0
     },
     "_floors_note": "Tiered floors and benchmarks calibrated from 82 closed-won estimates ($458k revenue). Floor = warn-below; benchmark = median realized $/SF for that size bucket.",
     "_note": "Defaults calibrated from 2026 YTD P&L: 24 jobs, avg margin 27.06%, 'other' costs ~9.3% of revenue (~10% of direct cost)"
