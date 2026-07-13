@@ -1,7 +1,7 @@
 {
   "_source": "src/data/cimarron/products.ts (Cimarron 2024 Price List)",
-  "_note": "wholesale2024 = Bearcat dealer cost. map2024 = Minimum Advertised Price.",
-  "count": 284,
+  "_note": "wholesale2024 = Bearcat dealer cost. map2024 = Minimum Advertised Price. Includes replacement/repair parts, lacrosse, and soccer items added 2026-07-13 from the same 2024 price list (previously missing from this catalog); those repair-part SKUs list only one price in the source sheet, used here as wholesale2024.",
+  "count": 329,
   "products": [
     {
       "sku": "302024TP",
@@ -2446,6 +2446,284 @@
       "name": "Cimarron 20x1 Poly Archery Netting – Minimum order of 10'",
       "wholesale2024": 12.49,
       "map2024": 17.99
+    },
+    {
+      "sku": "554284TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 55x14x12 #84 4.0mm Twisted Poly Batting Cage Net",
+      "wholesale2024": 1499,
+      "length": 55,
+      "width": 14,
+      "height": 12,
+      "gauge": 84
+    },
+    {
+      "sku": "704284TP",
+      "category": "Batting Cage Nets Only",
+      "name": "Cimarron 70x14x12 #84 4.0mm Twisted Poly Batting Cage Net",
+      "wholesale2024": 1899,
+      "length": 70,
+      "width": 14,
+      "height": 12,
+      "gauge": 84
+    },
+    {
+      "sku": "667LN5",
+      "category": "Lacrosse",
+      "name": "Cimarron 6' H x 6' W x 7' D Lacrosse Net - 5mm",
+      "wholesale2024": 49
+    },
+    {
+      "sku": "667LN7",
+      "category": "Lacrosse",
+      "name": "Cimarron 6' H x 6' W x 7' D Lacrosse Net - 7mm",
+      "wholesale2024": 59
+    },
+    {
+      "sku": "667LNG5",
+      "category": "Lacrosse",
+      "name": "Cimarron 6' H x 6' W x 7' D Lacrosse Net and Goal -5 mm",
+      "wholesale2024": 179
+    },
+    {
+      "sku": "667LNG7",
+      "category": "Lacrosse",
+      "name": "Cimarron 6' H x 6' W x 7' D Lacrosse Net and Goal -7 mm",
+      "wholesale2024": 189
+    },
+    {
+      "sku": "667LG",
+      "category": "Lacrosse",
+      "name": "Cimarron 6' H x 6' W x 7' D Lacrosse Goal",
+      "wholesale2024": 149
+    },
+    {
+      "sku": "824385SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 8' H x 24' W x 3' D x 8.5' B Soccer Net Pair - 4mm",
+      "wholesale2024": 179
+    },
+    {
+      "sku": "824410SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 8' H x 24' W x 4' D x 10' B Soccer Net Pair – 4mm",
+      "wholesale2024": 199
+    },
+    {
+      "sku": "721375SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 7' H x 21' W x 3' D x 7.5' B Soccer Net Pair – 4mm",
+      "wholesale2024": 159
+    },
+    {
+      "sku": "72127SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 7' H x 21' W x 2' D x 7' B Soccer Net Pair – 4mm",
+      "wholesale2024": 149
+    },
+    {
+      "sku": "6518527SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 6.5' H x 18.5' W x 2' D x 7' B Soccer Net Pair – 4mm",
+      "wholesale2024": 149
+    },
+    {
+      "sku": "651227SN",
+      "category": "Soccer Nets",
+      "name": "Cimarron 6.5' H x 12' W x 2' D x 7' B Soccer Net Pair – 4mm",
+      "wholesale2024": 129
+    },
+    {
+      "sku": "ELC2-225",
+      "category": "Replacement Parts - Baseball",
+      "name": "2-1/4\" 2-Way Arch",
+      "wholesale2024": 33
+    },
+    {
+      "sku": "AST",
+      "category": "Replacement Parts - Baseball",
+      "name": "1 3/4\" Angle Support Top & Muffler Clamp",
+      "wholesale2024": 28
+    },
+    {
+      "sku": "GSC225",
+      "category": "Replacement Parts - Baseball",
+      "name": "2-1/4\" Ground Sleeve",
+      "wholesale2024": 22
+    },
+    {
+      "sku": "ASGS",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-3/4\" Angle Support Ground Sleeve",
+      "wholesale2024": 16
+    },
+    {
+      "sku": "ELSA-3L",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" 3-Way Left Arch",
+      "wholesale2024": 42
+    },
+    {
+      "sku": "ELSA-3R",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" 3-Way Right Arch",
+      "wholesale2024": 42
+    },
+    {
+      "sku": "ELSA-4",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" 4-Way Arch Fitting",
+      "wholesale2024": 42
+    },
+    {
+      "sku": "GStSA2",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" Ground Stake with pipe",
+      "wholesale2024": 19
+    },
+    {
+      "sku": "GSSA2",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" Ground Sleeve - 19-3/4\"",
+      "wholesale2024": 14
+    },
+    {
+      "sku": "SAFFOOT2",
+      "category": "Replacement Parts - Baseball",
+      "name": "2\" Anchor Plate",
+      "wholesale2024": 19
+    },
+    {
+      "sku": "ELSA1.5-3L",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" 3-Way Left Arch",
+      "wholesale2024": 40
+    },
+    {
+      "sku": "ELSA1.5-3R",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" 3-Way Right Arch",
+      "wholesale2024": 40
+    },
+    {
+      "sku": "ELSA1.5-4",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" 4-Way Arch Fitting",
+      "wholesale2024": 40
+    },
+    {
+      "sku": "GSA15",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" Ground Stake with pipe",
+      "wholesale2024": 16
+    },
+    {
+      "sku": "GSSA15",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" Ground Sleeve - 19-3/4\"",
+      "wholesale2024": 15
+    },
+    {
+      "sku": "SAFFOOT15",
+      "category": "Replacement Parts - Baseball",
+      "name": "1.5\" Anchor Plate",
+      "wholesale2024": 17
+    },
+    {
+      "sku": "BB153",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2\" 3-way corner",
+      "wholesale2024": 16
+    },
+    {
+      "sku": "BB154",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2\" 4-way corner",
+      "wholesale2024": 18
+    },
+    {
+      "sku": "PEXT16",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2\" 16\" pole with 4\" swedge",
+      "wholesale2024": 6
+    },
+    {
+      "sku": "PEXT28",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2\" 28\" pole with 4\" swedge",
+      "wholesale2024": 8
+    },
+    {
+      "sku": "PEXT52",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2” 52\" pole with 4\" swedge",
+      "wholesale2024": 17
+    },
+    {
+      "sku": "PEXT60",
+      "category": "Replacement Parts - Baseball",
+      "name": "1-1/2” 60\" pole",
+      "wholesale2024": 19
+    },
+    {
+      "sku": "Stakes15",
+      "category": "Replacement Parts - Baseball",
+      "name": "1 1/2\" Ground Stake",
+      "wholesale2024": 14
+    },
+    {
+      "sku": "ROPESTK",
+      "category": "Replacement Parts - Baseball",
+      "name": "1 1/2\" Rope Stake",
+      "wholesale2024": 10
+    },
+    {
+      "sku": "G2WC",
+      "category": "Replacement Parts - Golf",
+      "name": "Golf 2-Way Corner",
+      "wholesale2024": 6
+    },
+    {
+      "sku": "G3WC",
+      "category": "Replacement Parts - Golf",
+      "name": "Golf 3-Way Corner",
+      "wholesale2024": 10
+    },
+    {
+      "sku": "FRMTEES1",
+      "category": "Replacement Parts - Golf",
+      "name": "Small Tee - Baffle",
+      "wholesale2024": 7
+    },
+    {
+      "sku": "MasPole60",
+      "category": "Replacement Parts - Golf",
+      "name": "58.3\" Pole w swedge on both ends",
+      "wholesale2024": 10
+    },
+    {
+      "sku": "MasPole64",
+      "category": "Replacement Parts - Golf",
+      "name": "63.9\" Pole w swedge on one end",
+      "wholesale2024": 11
+    },
+    {
+      "sku": "MasCrossBar",
+      "category": "Replacement Parts - Golf",
+      "name": "58.3\" Pole w swedge on both ends and crossbar connection",
+      "wholesale2024": 13
+    },
+    {
+      "sku": "G4WC",
+      "category": "Replacement Parts - Golf",
+      "name": "Golf 4-Way Corner",
+      "wholesale2024": 12
+    },
+    {
+      "sku": "20FRMTEES1",
+      "category": "Replacement Parts - Golf",
+      "name": "Golf Baffle Tees for 20' Golf Frame",
+      "wholesale2024": 11
     }
   ]
 }
