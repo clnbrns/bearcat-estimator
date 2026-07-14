@@ -58,6 +58,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     pg_cup_size = '6in',
     pg_flag_count = 0,
     hitting_mat_count = 0,
+    cage_pole_count = 0,
     include_shock_pad,
     cimarron_items = [],
     plant_items = [],
@@ -226,6 +227,27 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
       unit: 'EA',
       unit_cost: components.hitting_mat.cost_each,
       cost: hitting_mat_count * components.hitting_mat.cost_each,
+    });
+  }
+
+  // Batting cage poles — ground-set poles for stand-alone frames, billed
+  // separately from the frame combo itself (pole + concrete-set per pole).
+  if (cage_pole_count > 0) {
+    lines.push({
+      key: 'cage_pole',
+      label: components.cage_pole.label,
+      qty: cage_pole_count,
+      unit: 'EA',
+      unit_cost: components.cage_pole.cost_each,
+      cost: cage_pole_count * components.cage_pole.cost_each,
+    });
+    lines.push({
+      key: 'cage_pole_concrete',
+      label: components.cage_pole_concrete.label,
+      qty: cage_pole_count,
+      unit: 'EA',
+      unit_cost: components.cage_pole_concrete.cost_each,
+      cost: cage_pole_count * components.cage_pole_concrete.cost_each,
     });
   }
   if (include_antimicrobial_infill && !no_turf) {
