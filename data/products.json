@@ -1,12 +1,29 @@
 {
   "products": [
     { "name": "Maui 85", "cost_per_sf": 0.88, "use": "Budget residential", "_note": "Discontinued — still in stock" },
+    { "name": "Bermuda Light", "cost_per_sf": 0.89, "use": "Budget residential" },
     { "name": "Pet Paver 81", "cost_per_sf": 1.04, "use": "Pet turf / paver-friendly" },
     { "name": "Triblend 96", "cost_per_sf": 1.15, "use": "Residential blend" },
     { "name": "Coastal 86", "cost_per_sf": 1.15, "use": "Residential blend" },
+    { "name": "TH Pet", "cost_per_sf": 1.19, "use": "Pet turf" },
+    { "name": "TH Play", "cost_per_sf": 1.19, "use": "Playground turf" },
+    { "name": "Bermuda Blend", "cost_per_sf": 1.19, "use": "Residential blend" },
+    { "name": "Sierra Blend", "cost_per_sf": 1.19, "use": "Residential blend" },
+    { "name": "Santa Barbara Blend", "cost_per_sf": 1.19, "use": "Residential blend" },
+    { "name": "Natural Blend", "cost_per_sf": 1.29, "use": "Premium natural look" },
     { "name": "Jupiter 76", "cost_per_sf": 1.29, "use": "Residential" },
+    { "name": "TH Select", "cost_per_sf": 1.39, "use": "Mid-tier residential" },
     { "name": "Playscape 110", "cost_per_sf": 1.39, "use": "Playground / play area" },
     { "name": "Plateau 126", "cost_per_sf": 1.45, "use": "Heavy-duty residential" },
-    { "name": "Eagle Pro", "cost_per_sf": 1.59, "use": "Premium residential" }
+    { "name": "Bermuda Pro", "cost_per_sf": 1.59, "use": "Premium residential" },
+    { "name": "Sierra Pro", "cost_per_sf": 1.59, "use": "Premium residential" },
+    { "name": "Natural Blend Pro", "cost_per_sf": 1.59, "use": "Premium residential" },
+    { "name": "Tour Pro", "cost_per_sf": 1.59, "use": "Putting green" },
+    { "name": "Eagle Pro", "cost_per_sf": 1.59, "use": "Premium residential" },
+    { "name": "Santa Barbara Pro", "cost_per_sf": 1.69, "use": "Premium residential" },
+    { "name": "Tour Elite", "cost_per_sf": 1.69, "use": "Premium putting green", "_note": "TurfHub TurfTourElite — confirmed 2026-05-27, was $1.89" },
+    { "name": "TH Ultra", "cost_per_sf": 1.79, "use": "High-performance residential" },
+    { "name": "Coastal Blend Elite", "cost_per_sf": 2.29, "use": "Premium coastal blend" },
+    { "name": "Performance Pro 5mm Black", "cost_per_sf": 2.59, "use": "Batting cage / hitting" }
   ]
 }
