@@ -143,6 +143,14 @@
     "label": "Hitting Mat (clay)",
     "cost_each": 319.0
   },
+  "cage_pole": {
+    "label": "Batting cage pole",
+    "cost_each": 140.0
+  },
+  "cage_pole_concrete": {
+    "label": "Pole concrete set",
+    "cost_each": 100.0
+  },
   "shock_pad": {
     "label": "Shock pad 8mm (fall-rated)",
     "cost_per_sf": 0.69,

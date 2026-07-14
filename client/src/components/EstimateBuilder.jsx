@@ -23,6 +23,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     pg_cup_size: '6in',
     pg_flag_count: intake.project_type === 'Putting Green' ? 1 : 0,
     hitting_mat_count: 0,
+    cage_pole_count: 0,
     include_shock_pad: intake.project_type === 'Playground',
     // If a cage config came from intake, prefill cimarron_items, labor, margin
     cimarron_items: intake.cage_config?._items || [],
@@ -69,6 +70,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     pg_cup_size: opts.pg_cup_size,
     pg_flag_count: Number(opts.pg_flag_count) || 0,
     hitting_mat_count: Number(opts.hitting_mat_count) || 0,
+    cage_pole_count: Number(opts.cage_pole_count) || 0,
     include_shock_pad: !!opts.include_shock_pad,
     cimarron_items: opts.cimarron_items || [],
     plant_items: opts.plant_items || [],
@@ -132,6 +134,14 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
             onChange={v => set('pg_flag_count', v)} />
           <NumField label="Hitting mats (batting cage)" value={opts.hitting_mat_count}
             onChange={v => set('hitting_mat_count', v)} />
+          <Field label="Batting cage poles — set in concrete ($140/pole + $100/pole concrete)">
+            <select value={opts.cage_pole_count} onChange={e => set('cage_pole_count', Number(e.target.value))}
+              className="border border-sageMuted rounded px-3 py-2 w-full bg-offwhite focus:outline-none focus:ring-2 focus:ring-sage">
+              {Array.from({ length: 13 }, (_, i) => i).map(n => (
+                <option key={n} value={n}>{n === 0 ? 'None' : `${n} pole${n > 1 ? 's' : ''}`}</option>
+              ))}
+            </select>
+          </Field>
         </div>
 
         <Check checked={opts.include_shock_pad} onChange={() => toggle('include_shock_pad')}
