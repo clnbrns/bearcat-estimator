@@ -2,10 +2,12 @@
 // Currency formatting and rounding for display happens on the client.
 
 export function flexBaseYards(sf, depthInches = 3, yardsPer1000Sf = 10) {
-  // Use installer rule of thumb (10 yd per 1000 SF) when at default 3" depth.
-  // Otherwise fall back to geometric calc: SF * depth_ft / 27.
-  if (Math.abs(depthInches - 3) < 0.01) return (sf / 1000) * yardsPer1000Sf;
-  return (sf * (depthInches / 12)) / 27;
+  // Geometric volume (SF × depth_ft / 27), calibrated so the 3" default lands
+  // exactly on the installer rule of thumb (10 yd per 1,000 SF) and scales
+  // smoothly at every other depth — no discontinuity when depth moves off 3".
+  const geometricYards = (sf * (depthInches / 12)) / 27;
+  const geometricAt3PerK = (1000 * (3 / 12)) / 27; // ≈ 9.259 yd per 1,000 SF
+  return geometricYards * (yardsPer1000Sf / geometricAt3PerK);
 }
 
 export function perimeterFromSf(sf) {
@@ -13,23 +15,79 @@ export function perimeterFromSf(sf) {
   return Math.sqrt(sf) * 4;
 }
 
-// Improvement A: roll-width optimizer.
-// Returns the SF you actually have to BUY given a 15'-wide roll cut to length.
-// strips = ceil(narrow / rollWidth); orderedSf = strips * rollWidth * long
-export function turfOrderSfFromDims(narrowFt, longFt, rollWidthFt = 15) {
-  const strips = Math.ceil(narrowFt / rollWidthFt);
-  return strips * rollWidthFt * longFt;
+// Roll-width optimizer. Turf comes on rollWidth-wide rolls cut to length;
+// strips can run parallel to either dimension. Evaluate both orientations
+// and take the one that buys less material (tie-break: less seam length).
+// Returns { strips, orderedSf, seamLf, runFt, rotated } where runFt is the
+// dimension the strips run along and rotated=true means strips run along
+// the narrow dimension instead of the long one.
+export function turfLayoutFromDims(narrowFt, longFt, rollWidthFt = 15) {
+  const layout = (acrossFt, runFt, rotated) => {
+    const strips = Math.ceil(acrossFt / rollWidthFt);
+    return {
+      strips,
+      orderedSf: strips * rollWidthFt * runFt,
+      seamLf: Math.max(0, strips - 1) * runFt,
+      runFt,
+      rotated,
+    };
+  };
+  const standard = layout(narrowFt, longFt, false); // strips run the long dim
+  const rotated = layout(longFt, narrowFt, true);   // strips run the narrow dim
+  if (rotated.orderedSf < standard.orderedSf) return rotated;
+  if (standard.orderedSf < rotated.orderedSf) return standard;
+  return standard.seamLf <= rotated.seamLf ? standard : rotated;
 }
 
-// Improvement B: seam length from dimensions.
-// (strips - 1) interior seams, each running the long dimension.
-export function seamLengthFromDims(narrowFt, longFt, rollWidthFt = 15) {
-  const strips = Math.ceil(narrowFt / rollWidthFt);
-  if (strips <= 1) return 0;
-  return (strips - 1) * longFt;
+// Coerce and clamp raw API input so bad values (NaN, negatives, strings,
+// non-arrays) can never reach the math. Client casts most of this already,
+// but /api/estimate is also hit by the partner portal and direct callers.
+export function sanitizeEstimateInput(raw, components) {
+  const input = { ...(raw || {}) };
+  const num = (v, def = 0, min = 0, max = Infinity) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? Math.max(min, Math.min(max, n)) : def;
+  };
+  // Optional fields: absent/blank stays undefined (auto-compute downstream)
+  const optNum = (v, min = 0) => {
+    if (v === undefined || v === null || v === '') return undefined;
+    const n = Number(v);
+    return Number.isFinite(n) ? Math.max(min, n) : undefined;
+  };
+  const count = (v) => Math.round(num(v, 0, 0, 10000));
+
+  input.total_sf = num(input.total_sf, 0, 0);
+  input.narrow_dim_ft = num(input.narrow_dim_ft, 0, 0);
+  input.long_dim_ft = num(input.long_dim_ft, 0, 0);
+  input.perimeter_lf = optNum(input.perimeter_lf);
+  input.seam_lf = optNum(input.seam_lf);
+  input.bender_board_lf = optNum(input.bender_board_lf);
+  input.turf_overage_pct = num(input.turf_overage_pct, 10, 0, 100);
+  input.equipment_install_fee = num(input.equipment_install_fee, 0, 0);
+  input.lumber_2x4_lf = num(input.lumber_2x4_lf, 0, 0);
+  input.putting_green_sf = num(input.putting_green_sf, 0, 0);
+  input.french_drain_lf = num(input.french_drain_lf, 0, 0);
+  input.pg_cup_count = count(input.pg_cup_count);
+  input.pg_flag_count = count(input.pg_flag_count);
+  input.hitting_mat_count = count(input.hitting_mat_count);
+  input.cage_pole_count = count(input.cage_pole_count);
+  // Depth of 0 (e.g. a cleared field) means "use the default", not "no base".
+  const defaultDepth = components?.flex_base?.default_depth_inches ?? 3;
+  const depth = Number(input.flex_base_depth_in);
+  input.flex_base_depth_in = Number.isFinite(depth) && depth > 0
+    ? Math.max(0.5, Math.min(12, depth))
+    : defaultDepth;
+  input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, 0, 95);
+  input.card_fee_pct = num(input.card_fee_pct, components?.settings?.card_fee_pct ?? 0, 0, 100);
+  input.other_costs_pct = num(input.other_costs_pct, 0, 0, 100);
+  for (const k of ['cimarron_items', 'plant_items', 'rock_items', 'tree_removal_items', 'custom_line_items']) {
+    if (!Array.isArray(input[k])) input[k] = [];
+  }
+  return input;
 }
 
-export function calculateEstimate(input, products, components, cimarron = [], plants = [], rocks = []) {
+export function calculateEstimate(rawInput, products, components, cimarron = [], plants = [], rocks = []) {
+  const input = sanitizeEstimateInput(rawInput, components);
   const {
     total_sf = 0,
     product_name,
@@ -59,6 +117,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     pg_flag_count = 0,
     hitting_mat_count = 0,
     cage_pole_count = 0,
+    cage_concrete_set = false,
     include_shock_pad,
     cimarron_items = [],
     plant_items = [],
@@ -74,19 +133,11 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
   const product = no_turf ? null : products.find(p => p.name === product_name);
   if (!no_turf && !product) throw new Error(`Unknown product: ${product_name}`);
 
-  const perimeter = perimeter_lf ?? perimeterFromSf(total_sf);
-  const baseYards = flexBaseYards(total_sf, flex_base_depth_in, components.flex_base.yards_per_1000_sf);
-  const baseDeliveries = Math.ceil(baseYards / components.flex_base.yards_per_delivery);
-  const baseMaterialCost = baseYards * components.flex_base.cost_per_cubic_yard;
-  const baseDeliveryCost = baseDeliveries * components.flex_base.delivery_fee;
-
-  const lines = [];
-
   const rollWidth = components.turf_roll?.width_ft ?? 15;
   const haveDims = narrow_dim_ft > 0 && long_dim_ft > 0;
   // "Irregular shape" detection: if actual SF is much smaller than the bounding-box
   // dims imply, the yard is non-rectangular and we should NOT order the full
-  // strips × rollWidth × long (that would massively over-order). Threshold: yard
+  // strips × rollWidth × run (that would massively over-order). Threshold: yard
   // fills ≥85% of its bounding box → treat as rectangular; else flat overage.
   const boundingBoxArea = haveDims ? narrow_dim_ft * long_dim_ft : 0;
   const fillRatio = boundingBoxArea > 0 ? total_sf / boundingBoxArea : 1;
@@ -96,19 +147,35 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
   //   Bounding box UNDER-orders by ignoring the other zones.
   // In both cases, fall back to flat per-SF overage on actual total.
   const useBoundingBox = haveDims && fillRatio >= 0.85 && fillRatio <= 1.05;
-  const turfOrderSf = no_turf ? 0 : (useBoundingBox
-    ? turfOrderSfFromDims(narrow_dim_ft, long_dim_ft, rollWidth)
+
+  // Real dims beat the square approximation for perimeter (a 15×100 strip is
+  // 230 LF, not sqrt(1500)×4 ≈ 155 LF — that's 4 sticks of bender board).
+  const perimeter = perimeter_lf ?? (useBoundingBox
+    ? 2 * (narrow_dim_ft + long_dim_ft)
+    : perimeterFromSf(total_sf));
+  const baseYards = flexBaseYards(total_sf, flex_base_depth_in, components.flex_base.yards_per_1000_sf);
+  const baseDeliveries = Math.ceil(baseYards / components.flex_base.yards_per_delivery);
+  const baseMaterialCost = baseYards * components.flex_base.cost_per_cubic_yard;
+  const baseDeliveryCost = baseDeliveries * components.flex_base.delivery_fee;
+
+  const lines = [];
+
+  const turfLayout = useBoundingBox ? turfLayoutFromDims(narrow_dim_ft, long_dim_ft, rollWidth) : null;
+  // Bill whole square feet: one rounded number drives qty AND cost so the
+  // printed Qty × Unit always reconciles with the line total.
+  const turfOrderSf = no_turf ? 0 : Math.ceil(useBoundingBox
+    ? turfLayout.orderedSf
     : total_sf * (1 + turf_overage_pct / 100));
   const turfWastePct = total_sf > 0 && !no_turf ? round(((turfOrderSf - total_sf) / total_sf) * 100, 1) : 0;
   const multiZone = haveDims && fillRatio > 1.05;
   const turfLabel = no_turf ? '' : (useBoundingBox
-    ? `Turf material — ${product.name} (${narrow_dim_ft}'×${long_dim_ft}' from ${rollWidth}' rolls, ${turfWastePct}% waste)`
+    ? `Turf material — ${product.name} (${narrow_dim_ft}'×${long_dim_ft}' from ${rollWidth}' rolls, ${turfLayout.strips} strip${turfLayout.strips > 1 ? 's' : ''} run the ${turfLayout.rotated ? 'narrow' : 'long'} dim, ${turfWastePct}% waste)`
     : `Turf material — ${product.name} (${total_sf} SF + ${turf_overage_pct}% waste${multiZone ? ', multi-zone — dims cover only one zone' : haveDims ? ', irregular shape' : ''})`);
   if (!no_turf) {
     lines.push({
       key: 'turf',
       label: turfLabel,
-      qty: round(turfOrderSf, 0),
+      qty: turfOrderSf,
       unit: 'SF',
       unit_cost: product.cost_per_sf,
       cost: turfOrderSf * product.cost_per_sf,
@@ -134,7 +201,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     const glue = components.glue;
     const computedSeamLf = seam_lf != null
       ? seam_lf
-      : (useBoundingBox ? seamLengthFromDims(narrow_dim_ft, long_dim_ft, rollWidth) : null);
+      : (useBoundingBox ? turfLayout.seamLf : null);
     if (computedSeamLf != null) {
       // Auto-switch to bulk pricing when seam length crosses threshold
       const useBulk = computedSeamLf >= st.bulk_threshold_lf;
@@ -349,12 +416,19 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
   let effectiveInstallFee = equipment_install_fee;
   let autoCageLabor = null;
   if (!(effectiveInstallFee > 0) && components.cage_install && cimarron_items?.length) {
+    // Only full net+frame combos need assembly labor. Matching the broader
+    // /Batting Cage/i categories here used to bolt multi-day labor onto a
+    // replacement-net-only or frame-parts sale.
     const cageProducts = cimarron_items
       .map(ci => ({ ci, product: cimarron.find(p => p.sku === ci.sku) }))
-      .filter(({ product }) => product && /Batting Cage/i.test(product.category) && product.length);
+      .filter(({ product }) => product
+        && product.category === 'Batting Cage Net + Frame Combos'
+        && product.length);
     if (cageProducts.length) {
       const maxLen = Math.max(...cageProducts.map(({ product }) => product.length));
-      const isHd = cageProducts.some(({ product }) =>
+      // HD concrete-set: from the SKU pattern, or the explicit flag set by
+      // Cage Quick Setup's checkbox (single source of truth for +1 day).
+      const isHd = cage_concrete_set || cageProducts.some(({ product }) =>
         product.sku && product.sku.includes('CF1.5') && !product.sku.endsWith('SP'));
       const tier = components.cage_install.tiers.find(t => maxLen <= t.max_length_ft)
         || components.cage_install.tiers[components.cage_install.tiers.length - 1];
@@ -409,19 +483,6 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     included: true,
   });
 
-  if (other_costs_pct > 0) {
-    const directCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
-    const otherCost = directCost * (other_costs_pct / 100);
-    lines.push({
-      key: 'other_costs',
-      label: `Other costs (equipment, dump fees, fuel, contingency)`,
-      qty: other_costs_pct,
-      unit: '%',
-      unit_cost: otherCost,
-      cost: otherCost,
-    });
-  }
-
   // Cimarron equipment — bills at dealer cost; standard project margin applies
   for (const ci of cimarron_items) {
     const qty = Number(ci.qty) || 0;
@@ -448,11 +509,13 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
   const plantMarkup = plantCfg.markup_multiplier ?? 1.0;
   const laborTable = plantCfg.install_labor_per_size || {};
   let plantMaterialMarkedUp = 0;
+  const unknownPlantTiers = new Set();
   for (const pi of plant_items) {
     const qty = Number(pi.qty) || 0;
     if (qty <= 0) continue;
     const plant = plants.find(p => p.id === pi.id);
     if (!plant) continue;
+    if (!(plant.size_tier in laborTable)) unknownPlantTiers.add(plant.size_tier || '(none)');
     const unitMaterial = plant.price * plantMarkup;
     const lineMaterial = qty * unitMaterial;
     plantMaterialMarkedUp += lineMaterial;
@@ -569,15 +632,32 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
     });
   }
 
-  for (const item of custom_line_items) {
+  for (const [ci, item] of custom_line_items.entries()) {
+    const qty = Number(item.qty) || 1;
+    const unitCost = Number(item.unit_cost ?? item.cost) || 0;
     lines.push({
-      key: `custom_${item.label}`,
+      key: `custom_${ci}_${item.label}`,
       label: item.label,
-      qty: item.qty ?? 1,
+      qty,
       unit: item.unit ?? '',
-      unit_cost: item.unit_cost ?? item.cost ?? 0,
-      cost: (item.qty ?? 1) * (item.unit_cost ?? item.cost ?? 0),
+      unit_cost: unitCost,
+      cost: qty * unitCost,
       custom: true,
+    });
+  }
+
+  // Other costs % — must be the LAST cost line so its basis covers every
+  // direct cost above (turf, labor, Cimarron, plants, rocks, subs, custom).
+  if (other_costs_pct > 0) {
+    const directCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
+    const otherCost = directCost * (other_costs_pct / 100);
+    lines.push({
+      key: 'other_costs',
+      label: `Other costs (equipment, dump fees, fuel, contingency)`,
+      qty: other_costs_pct,
+      unit: '%',
+      unit_cost: otherCost,
+      cost: otherCost,
     });
   }
 
@@ -622,7 +702,7 @@ export function calculateEstimate(input, products, components, cimarron = [], pl
       type_floor: typeFloor,
       project_type,
     } : null,
-    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin }),
+    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }),
   };
 }
 
@@ -641,8 +721,12 @@ function priceAtMargin(cost, marginPct) {
   return round(cost / (1 - m), 2);
 }
 
-function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin }) {
+function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }) {
   const w = [];
+  if (unknownPlantTiers?.size) {
+    const fallback = components.plant_install?.install_labor_per_size?.unknown ?? 0;
+    w.push(`Plant size tier${unknownPlantTiers.size > 1 ? 's' : ''} not in the labor table (${[...unknownPlantTiers].join(', ')}) — install labor defaulted to $${fallback}/ea. Verify.`);
+  }
   if (total_sf > 50000) w.push('Large project (>50,000 SF) — recommend manual review.');
   if (total_sf > 0 && total_sf < 100) w.push('Very small project (<100 SF) — verify minimums.');
 

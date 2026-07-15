@@ -44,6 +44,13 @@ export async function listEstimates() {
   return r.json();
 }
 
+// Full record (attachments + line items) — the list endpoint returns a slim index.
+export async function getEstimate(id) {
+  const r = await fetch(`${base}/api/estimates/${encodeURIComponent(id)}`);
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || 'Estimate not found');
+  return r.json();
+}
+
 export async function getPartner(slug) {
   const r = await fetch(`${base}/api/partners/${slug}`);
   if (!r.ok) throw new Error((await r.json()).error || 'Partner not found');

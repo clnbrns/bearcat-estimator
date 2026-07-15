@@ -54,7 +54,7 @@ export default function PartnerPortal() {
         project_type: form.project_type,
         narrow_dim_ft: Number(form.narrow_dim_ft) || 0,
         long_dim_ft: Number(form.long_dim_ft) || 0,
-        turf_overage_pct: form.yard_shape === 'curves' ? 20 : 10,
+        turf_overage_pct: components.settings.shape_overage_pct?.[form.yard_shape] ?? 10,
         margin_pct: partner.margin_pct,  // ← partner-specific margin
         include_weed_barrier: true,
         include_seam_tape: true,
@@ -74,15 +74,14 @@ export default function PartnerPortal() {
     setSubmitting(true);
     try {
       const total_sf = Number(form.total_sf) || (Number(form.narrow_dim_ft) * Number(form.long_dim_ft)) || 0;
+      // Status (auto-approved vs pending) is decided by the server from the
+      // partner's threshold — a client-posted status would be spoofable.
       const job = await submitPartnerJob({
         partner_slug: partner.slug,
         partner_name: partner.name,
         intake: { ...form, total_sf },
         estimate,
         partner_price: estimate.totals.final_price,
-        // Auto-approve threshold per partner
-        status: total_sf <= (partner.auto_approve_under_sf || 0)
-          ? 'auto_approved' : 'pending',
       });
       setSubmitted(job);
     } catch (e) {

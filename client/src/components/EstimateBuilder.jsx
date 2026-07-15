@@ -5,7 +5,7 @@ import PlantPicker from './PlantPicker.jsx';
 import RockPicker from './RockPicker.jsx';
 import TreeRemovalPicker from './TreeRemovalPicker.jsx';
 
-export default function EstimateBuilder({ intake, products, components, onBack, onComplete }) {
+export default function EstimateBuilder({ intake, products, components, initialOpts, onBack, onComplete }) {
   const defaults = {
     total_sf: intake.total_sf,
     product_name: intake.product_name,
@@ -14,7 +14,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     narrow_dim_ft: intake.narrow_dim_ft || '',
     long_dim_ft: intake.long_dim_ft || '',
     seam_lf: '',
-    turf_overage_pct: intake.yard_shape === 'curves' ? 20 : 10,
+    turf_overage_pct: components.settings.shape_overage_pct?.[intake.yard_shape] ?? 10,
     perimeter_lf: '',
     bender_board_lf: '',
     lumber_2x4_lf: '',
@@ -24,15 +24,17 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     pg_flag_count: intake.project_type === 'Putting Green' ? 1 : 0,
     hitting_mat_count: 0,
     cage_pole_count: 0,
+    // Concrete-set travels as a flag; the server owns the labor math.
+    cage_concrete_set: !!intake.cage_config?.concrete_set,
     include_shock_pad: intake.project_type === 'Playground',
-    // If a cage config came from intake, prefill cimarron_items, labor, margin
+    // If a cage config came from intake, prefill cimarron_items + margin.
+    // Cage assembly labor is auto-computed server-side from these items.
     cimarron_items: intake.cage_config?._items || [],
     plant_items: [],
     rock_items: [],
     tree_removal_items: [],
     no_turf: !!intake.no_turf,
-    equipment_install_fee: intake.cage_config?._suggested_labor
-      ?? (Number(intake.equipment_install_fee) || 0),
+    equipment_install_fee: Number(intake.equipment_install_fee) || 0,
     flex_base_depth_in: components.flex_base.default_depth_inches,
     include_demo: false,
     include_laser_grading: false,
@@ -51,7 +53,17 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     other_costs_pct: components.settings.other_costs_pct,
   };
 
-  const [opts, setOpts] = useState(defaults);
+  // Re-opening an existing estimate (saved record, or Back from Output):
+  // hydrate from its input so margin, toggles, and picked items survive
+  // instead of snapping back to defaults.
+  const [opts, setOpts] = useState(() => {
+    if (!initialOpts) return defaults;
+    const merged = { ...defaults };
+    for (const k of Object.keys(defaults)) {
+      if (initialOpts[k] !== undefined && initialOpts[k] !== null) merged[k] = initialOpts[k];
+    }
+    return merged;
+  });
   const [result, setResult] = useState(null);
   const [err, setErr] = useState(null);
 
@@ -71,6 +83,7 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
     pg_flag_count: Number(opts.pg_flag_count) || 0,
     hitting_mat_count: Number(opts.hitting_mat_count) || 0,
     cage_pole_count: Number(opts.cage_pole_count) || 0,
+    cage_concrete_set: !!opts.cage_concrete_set,
     include_shock_pad: !!opts.include_shock_pad,
     cimarron_items: opts.cimarron_items || [],
     plant_items: opts.plant_items || [],
@@ -86,10 +99,13 @@ export default function EstimateBuilder({ intake, products, components, onBack, 
 
   useEffect(() => {
     let cancelled = false;
-    calcEstimate(payload)
-      .then(r => { if (!cancelled) { setResult(r); setErr(null); } })
-      .catch(e => { if (!cancelled) setErr(e.message); });
-    return () => { cancelled = true; };
+    // Debounce: don't fire a calc round-trip on every keystroke.
+    const timer = setTimeout(() => {
+      calcEstimate(payload)
+        .then(r => { if (!cancelled) { setResult(r); setErr(null); } })
+        .catch(e => { if (!cancelled) setErr(e.message); });
+    }, 250);
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [payload]);
 
   const set = (k, v) => setOpts({ ...opts, [k]: v });

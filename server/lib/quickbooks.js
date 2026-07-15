@@ -128,7 +128,20 @@ export async function exchangeCodeForTokens({ code, redirectUri, realmId }) {
   return tokens;
 }
 
-async function refreshAccessToken(tokens) {
+// Intuit ROTATES the refresh token on every refresh. If two concurrent API
+// calls both hit an expired access token and refresh independently, the loser
+// persists a refresh token Intuit just invalidated and the integration dies
+// until manual reconnect. Single-flight: concurrent callers share one refresh.
+let inflightRefresh = null;
+function refreshAccessToken(tokens) {
+  if (!inflightRefresh) {
+    inflightRefresh = doRefreshAccessToken(tokens)
+      .finally(() => { inflightRefresh = null; });
+  }
+  return inflightRefresh;
+}
+
+async function doRefreshAccessToken(tokens) {
   const body = new URLSearchParams({
     grant_type: 'refresh_token',
     refresh_token: tokens.refresh_token,

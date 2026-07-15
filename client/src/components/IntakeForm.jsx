@@ -33,8 +33,6 @@ const empty = {
   notes: '',
 };
 
-const SHAPE_OVERAGE = { squares: 0.10, curves: 0.20 };
-
 export default function IntakeForm({ products, initial, onSubmit }) {
   const [form, setForm] = useState(initial || { ...empty, product_name: products[0]?.name || '' });
   const [parsing, setParsing] = useState(false);

@@ -57,24 +57,29 @@ export default function CageQuickSetup({ value, onChange }) {
     const detailed = items.map(it => ({ ...it, product: catalog.find(p => p.sku === it.sku) })).filter(it => it.product);
     const hardwareCost = detailed.reduce((s, it) => s + it.qty * it.product.wholesale2024, 0);
 
-    // Day-based labor calculation
+    // Labor PREVIEW only — the estimate itself gets cage labor from the
+    // server (calculate.js), which applies the same cage-labor-matrix math
+    // (tier days, +1 day concrete-set, width multiplier). Mirror it here so
+    // the preview matches: concrete-set HD = +1 day at the day rate.
     const tier = settings.tiers.find(t => combo.length <= t.max_length_ft) || settings.tiers[settings.tiers.length - 1];
-    const concreteAdd = config.concrete_set ? settings.concrete_upcharge : 0;
-    const baseDays = tier.days;
-    const baseLabor = baseDays * settings.day_rate;
-    const totalLabor = baseLabor + concreteAdd;
+    const tierDays = tier.days;
+    const totalDays = tierDays + (config.concrete_set ? 1 : 0);
+    const concreteAdd = config.concrete_set ? settings.day_rate : 0;
+    const baseLabor = tierDays * settings.day_rate;
+    const totalLabor = totalDays * settings.day_rate;
 
-    return { items, detailed, hardwareCost, tier, baseDays, baseLabor, concreteAdd, totalLabor };
+    return { items, detailed, hardwareCost, tier, tierDays, totalDays, baseLabor, concreteAdd, totalLabor };
   }, [catalog, settings, config, cableKits]);
 
-  // Push computed values up
+  // Push the item list up. Labor is intentionally NOT pushed — the server
+  // computes it from cimarron_items + concrete_set so there's exactly one
+  // cage-labor formula in the system.
   useEffect(() => {
     if (!built) return;
     onChange({
       ...config,
       _items: built.items,
       _hardware_cost: built.hardwareCost,
-      _suggested_labor: built.totalLabor,
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.combo_sku, config.include_cable_kit, config.include_accessories, config.concrete_set, catalog, settings]);
@@ -146,7 +151,7 @@ export default function CageQuickSetup({ value, onChange }) {
           <div>
             <div className="text-xs uppercase text-hunter/60 mb-1">Install labor — {built.tier.label}</div>
             <div className="flex justify-between text-hunter">
-              <span>{built.baseDays} days × ${built.tier.label && '1,800'}/day</span>
+              <span>{built.tierDays} days × {fmt(settings.day_rate)}/day</span>
               <span>{fmt(built.baseLabor)}</span>
             </div>
             {built.concreteAdd > 0 && (
@@ -156,7 +161,7 @@ export default function CageQuickSetup({ value, onChange }) {
               </div>
             )}
             <div className="border-t border-sageMuted mt-1 pt-1 flex justify-between font-semibold text-hunter">
-              <span>Labor cost (auto-fill)</span><span>{fmt(built.totalLabor)}</span>
+              <span>Labor (auto-added on the estimate)</span><span>{fmt(built.totalLabor)}</span>
             </div>
           </div>
         </div>

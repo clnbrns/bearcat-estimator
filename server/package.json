@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.10"
   }
 }

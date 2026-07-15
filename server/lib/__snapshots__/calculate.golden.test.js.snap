@@ -1,0 +1,392 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`representative job snapshots (regression net) > cage quick setup (HD combo) 1`] = `
+{
+  "lines": [
+    {
+      "cost": 5400,
+      "key": "equipment_install",
+      "qty": 1,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+    {
+      "cost": 1159,
+      "key": "cimarron_302024TPCF1.5",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 6559,
+    "final_price": 8518.18,
+    "margin_pct": 23,
+    "price_per_sf": 0,
+    "profit": 1959.18,
+    "sell_price": 8518.18,
+  },
+  "warnings": [],
+}
+`;
+
+exports[`representative job snapshots (regression net) > irregular curves yard (fill < 0.85) 1`] = `
+{
+  "lines": [
+    {
+      "cost": 1908,
+      "key": "turf",
+      "qty": 1200,
+    },
+    {
+      "cost": 630,
+      "key": "flex_base",
+      "qty": 10,
+    },
+    {
+      "cost": 55,
+      "key": "weed_barrier",
+      "qty": 1000,
+    },
+    {
+      "cost": 50,
+      "key": "seam_tape",
+      "qty": 1000,
+    },
+    {
+      "cost": 181.65,
+      "key": "bender_board",
+      "qty": 140,
+    },
+    {
+      "cost": 55.3,
+      "key": "bender_board_stakes",
+      "qty": 70,
+    },
+    {
+      "cost": 120,
+      "key": "silica_sand_infill",
+      "qty": 1000,
+    },
+    {
+      "cost": 3000,
+      "key": "labor",
+      "qty": 1000,
+    },
+    {
+      "cost": 59,
+      "key": "nails",
+      "qty": 1,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 6058.95,
+    "final_price": 8655.64,
+    "margin_pct": 30,
+    "price_per_sf": 8.66,
+    "profit": 2596.69,
+    "sell_price": 8655.64,
+  },
+  "warnings": [],
+}
+`;
+
+exports[`representative job snapshots (regression net) > multi-zone (fill > 1.05) 1`] = `
+{
+  "lines": [
+    {
+      "cost": 3498,
+      "key": "turf",
+      "qty": 2200,
+    },
+    {
+      "cost": 1110,
+      "key": "flex_base",
+      "qty": 20,
+    },
+    {
+      "cost": 110,
+      "key": "weed_barrier",
+      "qty": 2000,
+    },
+    {
+      "cost": 100,
+      "key": "seam_tape",
+      "qty": 2000,
+    },
+    {
+      "cost": 233.55,
+      "key": "bender_board",
+      "qty": 180,
+    },
+    {
+      "cost": 71.1,
+      "key": "bender_board_stakes",
+      "qty": 90,
+    },
+    {
+      "cost": 240,
+      "key": "silica_sand_infill",
+      "qty": 2000,
+    },
+    {
+      "cost": 6000,
+      "key": "labor",
+      "qty": 2000,
+    },
+    {
+      "cost": 118,
+      "key": "nails",
+      "qty": 2,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 11480.65,
+    "final_price": 16400.93,
+    "margin_pct": 30,
+    "price_per_sf": 8.2,
+    "profit": 4920.28,
+    "sell_price": 16400.93,
+  },
+  "warnings": [
+    "Total SF exceeds narrow×long bounding box — treating as multi-zone job. Dims cover only one zone; turf material uses flat overage on actual total SF.",
+  ],
+}
+`;
+
+exports[`representative job snapshots (regression net) > putting green 1`] = `
+{
+  "lines": [
+    {
+      "cost": 1014,
+      "key": "turf",
+      "qty": 600,
+    },
+    {
+      "cost": 348,
+      "key": "flex_base",
+      "qty": 6,
+    },
+    {
+      "cost": 33,
+      "key": "weed_barrier",
+      "qty": 600,
+    },
+    {
+      "cost": 6.8,
+      "key": "seam_tape",
+      "qty": 20,
+    },
+    {
+      "cost": 65,
+      "key": "glue",
+      "qty": 1,
+    },
+    {
+      "cost": 129.75,
+      "key": "bender_board",
+      "qty": 100,
+    },
+    {
+      "cost": 39.5,
+      "key": "bender_board_stakes",
+      "qty": 50,
+    },
+    {
+      "cost": 72,
+      "key": "silica_sand_infill",
+      "qty": 600,
+    },
+    {
+      "cost": 2400,
+      "key": "putting_green_labor",
+      "qty": 600,
+    },
+    {
+      "cost": 900,
+      "key": "putting_green_upcharge",
+      "qty": 600,
+    },
+    {
+      "cost": 58.5,
+      "key": "pg_cups",
+      "qty": 3,
+    },
+    {
+      "cost": 76.5,
+      "key": "pg_flags",
+      "qty": 3,
+    },
+    {
+      "cost": 59,
+      "key": "nails",
+      "qty": 1,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 5202.05,
+    "final_price": 7431.5,
+    "margin_pct": 30,
+    "price_per_sf": 12.39,
+    "profit": 2229.45,
+    "sell_price": 7431.5,
+  },
+  "warnings": [],
+}
+`;
+
+exports[`representative job snapshots (regression net) > residential 28x50 1`] = `
+{
+  "lines": [
+    {
+      "cost": 2385,
+      "key": "turf",
+      "qty": 1500,
+    },
+    {
+      "cost": 762,
+      "key": "flex_base",
+      "qty": 14,
+    },
+    {
+      "cost": 77,
+      "key": "weed_barrier",
+      "qty": 1400,
+    },
+    {
+      "cost": 17,
+      "key": "seam_tape",
+      "qty": 50,
+    },
+    {
+      "cost": 65,
+      "key": "glue",
+      "qty": 1,
+    },
+    {
+      "cost": 207.6,
+      "key": "bender_board",
+      "qty": 160,
+    },
+    {
+      "cost": 63.2,
+      "key": "bender_board_stakes",
+      "qty": 80,
+    },
+    {
+      "cost": 168,
+      "key": "silica_sand_infill",
+      "qty": 1400,
+    },
+    {
+      "cost": 4200,
+      "key": "labor",
+      "qty": 1400,
+    },
+    {
+      "cost": 59,
+      "key": "nails",
+      "qty": 1,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 8003.8,
+    "final_price": 11434,
+    "margin_pct": 30,
+    "price_per_sf": 8.17,
+    "profit": 3430.2,
+    "sell_price": 11434,
+  },
+  "warnings": [
+    "Below size-tier floor: $8.17/SF for 500–1,499 SF jobs (floor $8.50/SF based on closed-won data).",
+  ],
+}
+`;
+
+exports[`representative job snapshots (regression net) > supply only 1`] = `
+{
+  "lines": [
+    {
+      "cost": 2385,
+      "key": "turf",
+      "qty": 1500,
+    },
+    {
+      "cost": 77,
+      "key": "weed_barrier",
+      "qty": 1400,
+    },
+    {
+      "cost": 17,
+      "key": "seam_tape",
+      "qty": 50,
+    },
+    {
+      "cost": 65,
+      "key": "glue",
+      "qty": 1,
+    },
+    {
+      "cost": 207.6,
+      "key": "bender_board",
+      "qty": 160,
+    },
+    {
+      "cost": 63.2,
+      "key": "bender_board_stakes",
+      "qty": 80,
+    },
+    {
+      "cost": 168,
+      "key": "silica_sand_infill",
+      "qty": 1400,
+    },
+    {
+      "cost": 59,
+      "key": "nails",
+      "qty": 1,
+    },
+    {
+      "cost": 0,
+      "key": "cleanup",
+      "qty": 1,
+    },
+  ],
+  "totals": {
+    "card_fee": 0,
+    "cost": 3041.8,
+    "final_price": 4345.43,
+    "margin_pct": 30,
+    "price_per_sf": 3.1,
+    "profit": 1303.63,
+    "sell_price": 4345.43,
+  },
+  "warnings": [],
+}
+`;

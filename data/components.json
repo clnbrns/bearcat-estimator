@@ -183,8 +183,10 @@
       "B&B": 0,
       "box": 0,
       "flat": 40,
+      "material": 0,
       "unknown": 50
     },
+    "_material_note": "size_tier 'material' = bagged/bulk landscape goods from the nursery catalog — no dig-and-plant labor; sold as material only.",
     "custom_quote_tiers": [
       "100g",
       "200g",
@@ -213,6 +215,11 @@
   },
   "settings": {
     "default_margin_pct": 30,
+    "shape_overage_pct": {
+      "squares": 10,
+      "curves": 20
+    },
+    "_shape_note": "Turf waste allowance by yard shape when no usable dims are given. Single source of truth — the internal builder and partner portal both read this.",
     "card_fee_pct": 3.5,
     "card_fee_enabled": false,
     "other_costs_pct": 0,

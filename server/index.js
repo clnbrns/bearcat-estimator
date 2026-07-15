@@ -23,7 +23,7 @@ import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
-import { loadProducts, loadComponents, loadCimarron, loadPlants, loadRocks, saveEstimate, listEstimates, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
+import { loadProducts, loadComponents, loadCimarron, loadPlants, loadRocks, saveEstimate, listEstimates, getEstimate, loadPartners, getPartner, savePartners, savePartnerJob, listPartnerJobs } from './lib/data.js';
 import { calculateEstimate } from './lib/calculate.js';
 import { parseMeasurement } from './lib/parseMeasurement.js';
 import { parseVoiceIntake } from './lib/parseVoiceIntake.js';
@@ -41,10 +41,33 @@ app.get('/api/health', (_req, res) => res.json({ ok: true }));
 // ── HTTP Basic Auth ─────────────────────────────────────
 // Set APP_USER and APP_PASS in env to enable. /api/health is registered
 // above so Render's health check doesn't need credentials.
+//
+// The partner-portal surface is exempt: partners get a /partners/<slug>
+// link, NOT the internal credential. Everything they can reach without
+// auth is scoped to their own quoting flow — the estimate archive, partner
+// admin (margins!), other partners' jobs, and QuickBooks stay locked.
+const PARTNER_PUBLIC_API = [
+  { method: 'GET', re: /^\/api\/partners\/[^/]+$/ },   // own partner record by slug
+  { method: 'POST', re: /^\/api\/partner-jobs$/ },     // submit a job (status set server-side)
+  { method: 'POST', re: /^\/api\/estimate$/ },         // stateless quote calc
+  { method: 'GET', re: /^\/api\/products$/ },
+  { method: 'GET', re: /^\/api\/components$/ },
+];
+function isPartnerPublic(req) {
+  if (req.method === 'GET' && !req.path.startsWith('/api/')) {
+    // Static shell for the partner SPA route + its assets. API data stays gated.
+    return req.path.startsWith('/partners/')
+      || req.path.startsWith('/assets/')
+      || req.path === '/favicon.ico';
+  }
+  return PARTNER_PUBLIC_API.some(r => r.method === req.method && r.re.test(req.path));
+}
+
 const APP_USER = process.env.APP_USER;
 const APP_PASS = process.env.APP_PASS;
 if (APP_USER && APP_PASS) {
   app.use((req, res, next) => {
+    if (isPartnerPublic(req)) return next();
     const hdr = req.headers.authorization || '';
     if (hdr.startsWith('Basic ')) {
       const [u, p] = Buffer.from(hdr.slice(6), 'base64').toString().split(':');
@@ -53,7 +76,7 @@ if (APP_USER && APP_PASS) {
     res.set('WWW-Authenticate', 'Basic realm="Bearcat Estimator"');
     res.status(401).send('Authentication required');
   });
-  console.log('Basic auth enabled');
+  console.log('Basic auth enabled (partner portal surface open)');
 } else {
   console.log('⚠️  APP_USER/APP_PASS not set — running with NO auth (dev only)');
 }
@@ -107,7 +130,12 @@ app.post('/api/partner-jobs', async (req, res, next) => {
   try {
     const partner = await getPartner(req.body.partner_slug);
     if (!partner) return res.status(400).json({ error: 'Invalid partner' });
-    const job = await savePartnerJob(req.body);
+    // Auto-approval is decided HERE from the partner record — never trust a
+    // client-posted status (the portal endpoint is reachable without auth).
+    const totalSf = Number(req.body?.intake?.total_sf) || 0;
+    const status = partner.auto_approve_under_sf > 0 && totalSf <= partner.auto_approve_under_sf
+      ? 'auto_approved' : 'pending';
+    const job = await savePartnerJob({ ...req.body, status });
     res.json(job);
   } catch (e) { next(e); }
 });
@@ -131,6 +159,14 @@ app.post('/api/estimates', async (req, res, next) => {
 
 app.get('/api/estimates', async (_req, res, next) => {
   try { res.json(await listEstimates()); } catch (e) { next(e); }
+});
+
+app.get('/api/estimates/:id', async (req, res, next) => {
+  try {
+    const record = await getEstimate(req.params.id);
+    if (!record) return res.status(404).json({ error: 'Estimate not found' });
+    res.json(record);
+  } catch (e) { next(e); }
 });
 
 app.post('/api/parse-voice-intake', async (req, res, next) => {
@@ -229,8 +265,7 @@ app.post('/api/qb/push-estimate', async (req, res, next) => {
   try {
     const { estimate_id, summary_description, summary_only } = req.body || {};
     if (!estimate_id) return res.status(400).json({ error: 'estimate_id required' });
-    const all = await listEstimates();
-    const record = all.find(r => r.id === estimate_id);
+    const record = await getEstimate(estimate_id);
     if (!record) return res.status(404).json({ error: 'Estimate not found' });
     const result = await qb.pushEstimate(record, { summary_description, summary_only });
     res.json(result);

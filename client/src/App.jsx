@@ -4,7 +4,15 @@ import EstimateBuilder from './components/EstimateBuilder.jsx';
 import EstimateOutput from './components/EstimateOutput.jsx';
 import EstimateHistory from './components/EstimateHistory.jsx';
 import { Link } from 'react-router-dom';
-import { getProducts, getComponents } from './lib/api.js';
+import { getProducts, getComponents, getEstimate } from './lib/api.js';
+
+// Did the user actually change the intake (ignoring attachments)? If yes, the
+// builder should rebuild from the new intake; if not, keep their tweaks.
+const intakeChanged = (a, b) => {
+  if (!a || !b) return true;
+  const strip = (x) => JSON.stringify({ ...x, attachments: undefined });
+  return strip(a) !== strip(b);
+};
 
 const STEPS = ['Intake', 'Estimate', 'Output'];
 
@@ -26,11 +34,18 @@ export default function App() {
   if (error) return <div className="p-8 text-red-700">API error: {error}. Make sure the server is running on :4000.</div>;
   if (!components) return <div className="p-8">Loading…</div>;
 
-  const openSavedEstimate = (record) => {
-    setIntake(record.intake);
-    setEstimate(record.estimate);
-    setShowHistory(false);
-    setStep(2);
+  // History returns a slim index — fetch the full record (line items,
+  // attachments) before opening it.
+  const openSavedEstimate = async (record) => {
+    try {
+      const full = await getEstimate(record.id);
+      setIntake(full.intake);
+      setEstimate(full.estimate);
+      setShowHistory(false);
+      setStep(2);
+    } catch (e) {
+      window.alert(`Could not open estimate: ${e.message}`);
+    }
   };
 
   const newEstimate = () => {
@@ -125,7 +140,13 @@ export default function App() {
               <IntakeForm
                 products={products}
                 initial={intake}
-                onSubmit={(data) => { setIntake(data); setStep(1); }}
+                onSubmit={(data) => {
+                  // Revised intake → rebuild the estimate from it. Untouched
+                  // intake → keep the builder tweaks (margin, items, overrides).
+                  if (intakeChanged(intake, data)) setEstimate(null);
+                  setIntake(data);
+                  setStep(1);
+                }}
               />
             )}
             {step === 1 && intake && (
@@ -133,6 +154,7 @@ export default function App() {
                 intake={intake}
                 products={products}
                 components={components}
+                initialOpts={estimate?.input}
                 onBack={() => setStep(0)}
                 onComplete={(e) => { setEstimate(e); setStep(2); }}
               />
