@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
   flexBaseYards,
   perimeterFromSf,
   turfLayoutFromDims,
   sanitizeEstimateInput,
+  calculateEstimate,
 } from './calculate.js';
 
 describe('flexBaseYards', () => {
@@ -99,5 +101,33 @@ describe('sanitizeEstimateInput', () => {
     expect(s.cimarron_items).toEqual([]);
     expect(s.plant_items).toEqual([]);
     expect(s.rock_items).toEqual([]);
+  });
+});
+
+describe('per-line margin override on custom line items', () => {
+  const components = JSON.parse(
+    readFileSync(new URL('../../data/components.json', import.meta.url), 'utf8'),
+  );
+  const base = { no_turf: true, margin_pct: 22, include_shock_pad: false };
+
+  it('prices an override line at its own margin and the rest at the estimate margin', () => {
+    const r = calculateEstimate({
+      ...base,
+      custom_line_items: [
+        { label: 'Own work', qty: 1, unit_cost: 780 },
+        { label: 'Sub bid', qty: 1, unit_cost: 950, margin_pct: 5 },
+      ],
+    }, [], components);
+    expect(r.totals.cost).toBe(1730);
+    expect(r.totals.sell_price).toBeCloseTo(780 / 0.78 + 950 / 0.95, 2); // 1000 + 1000
+    expect(r.totals.profit).toBeCloseTo(270, 2);
+  });
+
+  it('leaves pricing unchanged when no line has an override', () => {
+    const r = calculateEstimate({
+      ...base,
+      custom_line_items: [{ label: 'Own work', qty: 2, unit_cost: 390 }],
+    }, [], components);
+    expect(r.totals.sell_price).toBeCloseTo(1000, 2);
   });
 });

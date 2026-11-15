@@ -643,6 +643,9 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       unit_cost: unitCost,
       cost: qty * unitCost,
       custom: true,
+      // Optional per-line margin (e.g. 5% on pass-through subcontractor bids).
+      // Omitted/blank → line is priced at the estimate-wide margin_pct.
+      ...(lineMargin(item.margin_pct) != null ? { margin_pct: lineMargin(item.margin_pct) } : {}),
     });
   }
 
@@ -663,16 +666,22 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
 
   const totalCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
   const margin = clamp(margin_pct, 0, 95) / 100;
-  const sellPrice = totalCost / (1 - margin);
+  // Lines with their own margin_pct are priced separately; everything else uses
+  // the estimate-wide margin.
+  const overrideLines = lines.filter(l => l.margin_pct != null);
+  const overrideCost = overrideLines.reduce((s, l) => s + (l.cost || 0), 0);
+  const overrideSell = overrideLines.reduce((s, l) => s + (l.cost || 0) / (1 - l.margin_pct / 100), 0);
+  const baseCost = totalCost - overrideCost;
+  const sellPrice = baseCost / (1 - margin) + overrideSell;
   const cardFee = apply_card_fee ? sellPrice * (card_fee_pct / 100) : 0;
   const finalPrice = sellPrice + cardFee;
   const profit = sellPrice - totalCost;
   const pricePerSf = total_sf > 0 ? finalPrice / total_sf : 0;
 
   const tiers = {
-    good: priceAtMargin(totalCost, 25),
-    better: priceAtMargin(totalCost, 30),
-    best: priceAtMargin(totalCost, 35),
+    good: priceAtMargin(baseCost, 25) + round(overrideSell, 2),
+    better: priceAtMargin(baseCost, 30) + round(overrideSell, 2),
+    best: priceAtMargin(baseCost, 35) + round(overrideSell, 2),
   };
 
   // Size-tiered floor + benchmark from real won-estimate data
@@ -783,5 +792,10 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
   return w;
 }
 
+function lineMargin(v) {
+  if (v === undefined || v === null || v === '') return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? clamp(n, 0, 95) : null;
+}
 function round(n, dp = 2) { const p = 10 ** dp; return Math.round(n * p) / p; }
 function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
