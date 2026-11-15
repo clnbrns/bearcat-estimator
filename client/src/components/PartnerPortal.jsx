@@ -55,6 +55,7 @@ export default function PartnerPortal() {
         narrow_dim_ft: Number(form.narrow_dim_ft) || 0,
         long_dim_ft: Number(form.long_dim_ft) || 0,
         turf_overage_pct: components.settings.shape_overage_pct?.[form.yard_shape] ?? 10,
+        partner_slug: slug,  // server validates → exempts from the 30% margin floor
         margin_pct: partner.margin_pct,  // ← partner-specific margin
         include_weed_barrier: true,
         include_seam_tape: true,

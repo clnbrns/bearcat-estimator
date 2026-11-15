@@ -71,7 +71,7 @@ exports[`representative job snapshots (regression net) > irregular curves yard (
       "qty": 1000,
     },
     {
-      "cost": 3000,
+      "cost": 3100,
       "key": "labor",
       "qty": 1000,
     },
@@ -88,12 +88,12 @@ exports[`representative job snapshots (regression net) > irregular curves yard (
   ],
   "totals": {
     "card_fee": 0,
-    "cost": 6058.95,
-    "final_price": 8655.64,
+    "cost": 6158.95,
+    "final_price": 8798.5,
     "margin_pct": 30,
-    "price_per_sf": 8.66,
-    "profit": 2596.69,
-    "sell_price": 8655.64,
+    "price_per_sf": 8.8,
+    "profit": 2639.55,
+    "sell_price": 8798.5,
   },
   "warnings": [],
 }
@@ -138,7 +138,7 @@ exports[`representative job snapshots (regression net) > multi-zone (fill > 1.05
       "qty": 2000,
     },
     {
-      "cost": 6000,
+      "cost": 6200,
       "key": "labor",
       "qty": 2000,
     },
@@ -155,12 +155,12 @@ exports[`representative job snapshots (regression net) > multi-zone (fill > 1.05
   ],
   "totals": {
     "card_fee": 0,
-    "cost": 11480.65,
-    "final_price": 16400.93,
+    "cost": 11680.65,
+    "final_price": 16686.64,
     "margin_pct": 30,
-    "price_per_sf": 8.2,
-    "profit": 4920.28,
-    "sell_price": 16400.93,
+    "price_per_sf": 8.34,
+    "profit": 5005.99,
+    "sell_price": 16686.64,
   },
   "warnings": [
     "Total SF exceeds narrow×long bounding box — treating as multi-zone job. Dims cover only one zone; turf material uses flat overage on actual total SF.",
@@ -299,7 +299,7 @@ exports[`representative job snapshots (regression net) > residential 28x50 1`] =
       "qty": 1400,
     },
     {
-      "cost": 4200,
+      "cost": 4340,
       "key": "labor",
       "qty": 1400,
     },
@@ -316,16 +316,14 @@ exports[`representative job snapshots (regression net) > residential 28x50 1`] =
   ],
   "totals": {
     "card_fee": 0,
-    "cost": 8003.8,
-    "final_price": 11434,
+    "cost": 8143.8,
+    "final_price": 11634,
     "margin_pct": 30,
-    "price_per_sf": 8.17,
-    "profit": 3430.2,
-    "sell_price": 11434,
+    "price_per_sf": 8.31,
+    "profit": 3490.2,
+    "sell_price": 11634,
   },
-  "warnings": [
-    "Below size-tier floor: $8.17/SF for 500–1,499 SF jobs (floor $8.50/SF based on closed-won data).",
-  ],
+  "warnings": [],
 }
 `;
 

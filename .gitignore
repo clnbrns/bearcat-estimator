@@ -6,6 +6,9 @@ node_modules/
 # Customer + partner data — contains PII, never commit
 data/estimates/*.json
 data/partner-jobs/*.json
+# Bulk pricing-review drop folder — contains PII, never commit
+data/pricing-review/*
+!data/pricing-review/.gitkeep
 # OAuth tokens (QuickBooks)
 data/qb_tokens.json
 

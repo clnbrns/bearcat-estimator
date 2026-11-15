@@ -42,7 +42,20 @@ export function turfLayoutFromDims(narrowFt, longFt, rollWidthFt = 15) {
 // Coerce and clamp raw API input so bad values (NaN, negatives, strings,
 // non-arrays) can never reach the math. Client casts most of this already,
 // but /api/estimate is also hit by the partner portal and direct callers.
-export function sanitizeEstimateInput(raw, components) {
+// Batting-cage jobs (Cimarron cage products or ground-set poles) price off the
+// cage-labor matrix margin (23%), so they are exempt from the margin floor.
+export function isCageJob(input, cimarron = []) {
+  if (Number(input?.cage_pole_count) > 0) return true;
+  const items = Array.isArray(input?.cimarron_items) ? input.cimarron_items : [];
+  return items.some(ci => {
+    const p = cimarron.find(x => x.sku === ci?.sku);
+    return p && /Batting Cage/i.test(p.category || '');
+  });
+}
+
+// `margin_floor_exempt` is only honored when set by the server (valid partner
+// slug, see /api/estimate) — index.js overwrites any client-supplied value.
+export function sanitizeEstimateInput(raw, components, cimarron = []) {
   const input = { ...(raw || {}) };
   const num = (v, def = 0, min = 0, max = Infinity) => {
     const n = Number(v);
@@ -67,6 +80,8 @@ export function sanitizeEstimateInput(raw, components) {
   input.lumber_2x4_lf = num(input.lumber_2x4_lf, 0, 0);
   input.putting_green_sf = num(input.putting_green_sf, 0, 0);
   input.french_drain_lf = num(input.french_drain_lf, 0, 0);
+  input.downspout_drain_lf = num(input.downspout_drain_lf, 0, 0);
+  input.paver_count = count(input.paver_count);
   input.pg_cup_count = count(input.pg_cup_count);
   input.pg_flag_count = count(input.pg_flag_count);
   input.hitting_mat_count = count(input.hitting_mat_count);
@@ -77,7 +92,10 @@ export function sanitizeEstimateInput(raw, components) {
   input.flex_base_depth_in = Number.isFinite(depth) && depth > 0
     ? Math.max(0.5, Math.min(12, depth))
     : defaultDepth;
-  input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, 0, 95);
+  const exempt = input.margin_floor_exempt === true || isCageJob(input, cimarron);
+  input.margin_floor_exempt = exempt;
+  const minMargin = exempt ? 0 : (components?.settings?.min_margin_pct ?? 0);
+  input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, minMargin, 95);
   input.card_fee_pct = num(input.card_fee_pct, components?.settings?.card_fee_pct ?? 0, 0, 100);
   input.other_costs_pct = num(input.other_costs_pct, 0, 0, 100);
   for (const k of ['cimarron_items', 'plant_items', 'rock_items', 'tree_removal_items', 'custom_line_items']) {
@@ -87,7 +105,7 @@ export function sanitizeEstimateInput(raw, components) {
 }
 
 export function calculateEstimate(rawInput, products, components, cimarron = [], plants = [], rocks = []) {
-  const input = sanitizeEstimateInput(rawInput, components);
+  const input = sanitizeEstimateInput(rawInput, components, cimarron);
   const {
     total_sf = 0,
     product_name,
@@ -111,6 +129,8 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
     include_silica_infill = true,
     include_antimicrobial_infill = false,
     french_drain_lf = 0,
+    downspout_drain_lf = 0,
+    paver_count = 0,
     putting_green_sf = 0,
     pg_cup_count = 0,
     pg_cup_size = '6in',
@@ -334,6 +354,28 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       unit: 'LF',
       unit_cost: components.french_drain.cost_per_lf,
       cost: french_drain_lf * components.french_drain.cost_per_lf,
+    });
+  }
+  // Downspout / gutter tie-ins to underground drain (won jobs bill $10-20/LF)
+  if (downspout_drain_lf > 0 && components.downspout_drain) {
+    lines.push({
+      key: 'downspout_drain',
+      label: components.downspout_drain.label,
+      qty: downspout_drain_lf,
+      unit: 'LF',
+      unit_cost: components.downspout_drain.cost_per_lf,
+      cost: downspout_drain_lf * components.downspout_drain.cost_per_lf,
+    });
+  }
+  // 24x24 pavers set along walkways / house sides (won jobs bill ~$55 each)
+  if (paver_count > 0 && components.paver) {
+    lines.push({
+      key: 'paver',
+      label: components.paver.label,
+      qty: paver_count,
+      unit: 'EA',
+      unit_cost: components.paver.cost_each,
+      cost: paver_count * components.paver.cost_each,
     });
   }
   const pgSf = (supply_only || no_turf) ? 0 : Math.min(Math.max(putting_green_sf, 0), total_sf);
@@ -643,6 +685,9 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       unit_cost: unitCost,
       cost: qty * unitCost,
       custom: true,
+      // Optional per-line margin (e.g. 5% on pass-through subcontractor bids).
+      // Omitted/blank → line is priced at the estimate-wide margin_pct.
+      ...(lineMargin(item.margin_pct) != null ? { margin_pct: lineMargin(item.margin_pct) } : {}),
     });
   }
 
@@ -662,17 +707,26 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
   }
 
   const totalCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
-  const margin = clamp(margin_pct, 0, 95) / 100;
-  const sellPrice = totalCost / (1 - margin);
+  const minMarginPct = input.margin_floor_exempt ? 0 : (components.settings?.min_margin_pct ?? 0);
+  const margin = clamp(margin_pct, minMarginPct, 95) / 100;
+  // Lines with their own margin_pct are priced separately; everything else uses
+  // the estimate-wide margin.
+  const overrideLines = lines.filter(l => l.margin_pct != null);
+  const overrideCost = overrideLines.reduce((s, l) => s + (l.cost || 0), 0);
+  const overrideSell = overrideLines.reduce((s, l) => s + (l.cost || 0) / (1 - l.margin_pct / 100), 0);
+  const baseCost = totalCost - overrideCost;
+  const sellPrice = baseCost / (1 - margin) + overrideSell;
   const cardFee = apply_card_fee ? sellPrice * (card_fee_pct / 100) : 0;
   const finalPrice = sellPrice + cardFee;
   const profit = sellPrice - totalCost;
   const pricePerSf = total_sf > 0 ? finalPrice / total_sf : 0;
 
+  // Tiers start at the margin floor (never sell a tier below it).
+  const tierBase = Math.max(25, minMarginPct);
   const tiers = {
-    good: priceAtMargin(totalCost, 25),
-    better: priceAtMargin(totalCost, 30),
-    best: priceAtMargin(totalCost, 35),
+    good: priceAtMargin(baseCost, tierBase) + round(overrideSell, 2),
+    better: priceAtMargin(baseCost, tierBase + 5) + round(overrideSell, 2),
+    best: priceAtMargin(baseCost, tierBase + 10) + round(overrideSell, 2),
   };
 
   // Size-tiered floor + benchmark from real won-estimate data
@@ -682,6 +736,7 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
 
   return {
     input,
+    margin_floor_pct: minMarginPct,
     perimeter_lf: round(perimeter, 2),
     flex_base_yards: round(baseYards, 2),
     lines,
@@ -702,7 +757,7 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       type_floor: typeFloor,
       project_type,
     } : null,
-    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }),
+    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers, exemptFromFloor: input.margin_floor_exempt }),
   };
 }
 
@@ -721,7 +776,7 @@ function priceAtMargin(cost, marginPct) {
   return round(cost / (1 - m), 2);
 }
 
-function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }) {
+function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers, exemptFromFloor }) {
   const w = [];
   if (unknownPlantTiers?.size) {
     const fallback = components.plant_install?.install_labor_per_size?.unknown ?? 0;
@@ -758,6 +813,12 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
       w.push('Batting cage hardware is on the estimate but no cage assembly labor is billed. Add an Equipment install fee or use Quick Cage Setup.');
     }
   }
+  // Per-line margin overrides bypass the estimate-wide floor — flag any below it.
+  const floorPct = exemptFromFloor ? 0 : (components.settings?.min_margin_pct ?? 0);
+  const lowLines = (lines || []).filter(l => l.margin_pct != null && l.margin_pct < floorPct);
+  if (lowLines.length) {
+    w.push(`${lowLines.length} line${lowLines.length > 1 ? 's' : ''} priced below the ${floorPct}% margin floor via per-line override (${lowLines.map(l => `${l.label} @ ${l.margin_pct}%`).join('; ')}).`);
+  }
   // MAP-floor check: if standard margin pushes any Cimarron line below its MAP, warn
   if (lines && margin != null && margin < 1) {
     const violators = [];
@@ -783,5 +844,10 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
   return w;
 }
 
+function lineMargin(v) {
+  if (v === undefined || v === null || v === '') return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? clamp(n, 0, 95) : null;
+}
 function round(n, dp = 2) { const p = 10 ** dp; return Math.round(n * p) / p; }
 function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }

@@ -149,7 +149,12 @@ app.post('/api/estimate', async (req, res, next) => {
     const [products, components, cimarron, plants, rocks] = await Promise.all([
       loadProducts(), loadComponents(), loadCimarron(), loadPlants(), loadRocks(),
     ]);
-    res.json(calculateEstimate(req.body, products, components, cimarron, plants.items || [], rocks.items || []));
+    // Partner quotes use the partner's own margin and are exempt from the
+    // margin floor. Decided here from the partner record; any client-supplied
+    // margin_floor_exempt is overwritten so it can't be spoofed.
+    const partner = req.body?.partner_slug ? await getPartner(String(req.body.partner_slug)) : null;
+    const body = { ...req.body, margin_floor_exempt: !!partner };
+    res.json(calculateEstimate(body, products, components, cimarron, plants.items || [], rocks.items || []));
   } catch (e) { next(e); }
 });
 
