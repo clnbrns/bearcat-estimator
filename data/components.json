@@ -235,6 +235,7 @@
     "card_fee_pct": 3.5,
     "card_fee_enabled": false,
     "other_costs_pct": 0,
+    "_other_costs_note": "Deliberately 0 (decided Nov 2026): overhead (~10% of direct cost per 2026 P&L) is meant to be absorbed by the margin, not added as a line. Won jobs realized ~25% gross margin vs the 30% target, so raising this would push quotes above what has actually been won.",
     "ytd_avg_margin_pct": 27,
     "min_price_per_sf_warning": 7.85,
     "sf_floor_tiers": [
@@ -245,17 +246,17 @@
       },
       {
         "max_sf": 1500,
-        "floor": 8.5,
+        "floor": 7.25,
         "label": "500\u20131,499 SF"
       },
       {
         "max_sf": 3000,
-        "floor": 7.5,
+        "floor": 6.75,
         "label": "1,500\u20132,999 SF"
       },
       {
         "max_sf": 999999,
-        "floor": 6.5,
+        "floor": 6.0,
         "label": "3,000+ SF"
       }
     ],
@@ -285,7 +286,7 @@
       "Putting Green": 9.0,
       "Playground": 9.0
     },
-    "_floors_note": "Tiered floors and benchmarks calibrated from 82 closed-won estimates ($458k revenue). Floor = warn-below; benchmark = median realized $/SF for that size bucket.",
+    "_floors_note": "Floors reset Nov 2026 to ~25th percentile of $/sf on won QuickBooks estimates (21 turf installs; 8 had been below the old floors). Tiered floors and benchmarks calibrated from 82 closed-won estimates ($458k revenue). Floor = warn-below; benchmark = median realized $/SF for that size bucket.",
     "_note": "Defaults calibrated from 2026 YTD P&L: 24 jobs, avg margin 27.06%, 'other' costs ~9.3% of revenue (~10% of direct cost)"
   },
   "company": {

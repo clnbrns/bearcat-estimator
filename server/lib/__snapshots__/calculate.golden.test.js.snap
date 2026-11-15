@@ -323,9 +323,7 @@ exports[`representative job snapshots (regression net) > residential 28x50 1`] =
     "profit": 3490.2,
     "sell_price": 11634,
   },
-  "warnings": [
-    "Below size-tier floor: $8.31/SF for 500–1,499 SF jobs (floor $8.50/SF based on closed-won data).",
-  ],
+  "warnings": [],
 }
 `;
 
