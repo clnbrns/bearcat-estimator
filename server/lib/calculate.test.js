@@ -180,3 +180,23 @@ describe('margin floor exemptions', () => {
     expect(r.margin_floor_pct).toBe(30);
   });
 });
+
+describe('downspout drain and paver lines', () => {
+  const components = JSON.parse(
+    readFileSync(new URL('../../data/components.json', import.meta.url), 'utf8'),
+  );
+  const base = { no_turf: true, margin_pct: 30, include_shock_pad: false };
+
+  it('adds drain and paver lines priced from components', () => {
+    const r = calculateEstimate({ ...base, downspout_drain_lf: 48, paver_count: 12 }, [], components);
+    const drain = r.lines.find(l => l.key === 'downspout_drain');
+    const paver = r.lines.find(l => l.key === 'paver');
+    expect(drain.cost).toBeCloseTo(48 * components.downspout_drain.cost_per_lf, 2);
+    expect(paver.cost).toBeCloseTo(12 * components.paver.cost_each, 2);
+  });
+
+  it('adds nothing when counts are zero or invalid', () => {
+    const r = calculateEstimate({ ...base, downspout_drain_lf: -5, paver_count: 'x' }, [], components);
+    expect(r.lines.some(l => l.key === 'downspout_drain' || l.key === 'paver')).toBe(false);
+  });
+});

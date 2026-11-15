@@ -80,6 +80,8 @@ export function sanitizeEstimateInput(raw, components, cimarron = []) {
   input.lumber_2x4_lf = num(input.lumber_2x4_lf, 0, 0);
   input.putting_green_sf = num(input.putting_green_sf, 0, 0);
   input.french_drain_lf = num(input.french_drain_lf, 0, 0);
+  input.downspout_drain_lf = num(input.downspout_drain_lf, 0, 0);
+  input.paver_count = count(input.paver_count);
   input.pg_cup_count = count(input.pg_cup_count);
   input.pg_flag_count = count(input.pg_flag_count);
   input.hitting_mat_count = count(input.hitting_mat_count);
@@ -127,6 +129,8 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
     include_silica_infill = true,
     include_antimicrobial_infill = false,
     french_drain_lf = 0,
+    downspout_drain_lf = 0,
+    paver_count = 0,
     putting_green_sf = 0,
     pg_cup_count = 0,
     pg_cup_size = '6in',
@@ -350,6 +354,28 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       unit: 'LF',
       unit_cost: components.french_drain.cost_per_lf,
       cost: french_drain_lf * components.french_drain.cost_per_lf,
+    });
+  }
+  // Downspout / gutter tie-ins to underground drain (won jobs bill $10-20/LF)
+  if (downspout_drain_lf > 0 && components.downspout_drain) {
+    lines.push({
+      key: 'downspout_drain',
+      label: components.downspout_drain.label,
+      qty: downspout_drain_lf,
+      unit: 'LF',
+      unit_cost: components.downspout_drain.cost_per_lf,
+      cost: downspout_drain_lf * components.downspout_drain.cost_per_lf,
+    });
+  }
+  // 24x24 pavers set along walkways / house sides (won jobs bill ~$55 each)
+  if (paver_count > 0 && components.paver) {
+    lines.push({
+      key: 'paver',
+      label: components.paver.label,
+      qty: paver_count,
+      unit: 'EA',
+      unit_cost: components.paver.cost_each,
+      cost: paver_count * components.paver.cost_each,
     });
   }
   const pgSf = (supply_only || no_turf) ? 0 : Math.min(Math.max(putting_green_sf, 0), total_sf);

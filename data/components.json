@@ -82,6 +82,16 @@
     "label": "French drain",
     "cost_per_lf": 28.0
   },
+  "downspout_drain": {
+    "label": "Downspout / gutter drain tie-in (trench, pipe, fittings, pop-up emitter)",
+    "cost_per_lf": 7.0,
+    "_note": "PLACEHOLDER - verify. Back-solved from won estimates (QB print, Nov 2026) that bill $10-20/LF: $10/LF sell at 30% margin = $7 cost. Distinct from french_drain ($28/LF, perforated pipe + gravel)."
+  },
+  "paver": {
+    "label": "24x24 paver, set (installed)",
+    "cost_each": 38.5,
+    "_note": "PLACEHOLDER - verify. Back-solved from won estimates billing ~$55 each installed: $55 at 30% margin = $38.50 cost (material + set labor)."
+  },
   "labor": {
     "label": "Installation labor",
     "cost_per_sf": 3.1,

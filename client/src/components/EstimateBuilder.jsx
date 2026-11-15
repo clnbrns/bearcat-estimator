@@ -44,6 +44,8 @@ export default function EstimateBuilder({ intake, products, components, initialO
     include_silica_infill: true,
     include_antimicrobial_infill: intake.project_type === 'Pet Turf',
     french_drain_lf: 0,
+    downspout_drain_lf: 0,
+    paver_count: 0,
     custom_line_items: [],
     margin_pct: intake.cage_config?._items?.length
       ? (components.cage_install?.default_margin_pct ?? 23)  // Cage default = 23% (20% target + 3.5% card fee buffer)
@@ -93,6 +95,8 @@ export default function EstimateBuilder({ intake, products, components, initialO
     equipment_install_fee: Number(opts.equipment_install_fee) || 0,
     turf_overage_pct: Number(opts.turf_overage_pct) || 0,
     french_drain_lf: Number(opts.french_drain_lf) || 0,
+    downspout_drain_lf: Number(opts.downspout_drain_lf) || 0,
+    paver_count: Number(opts.paver_count) || 0,
     margin_pct: Number(opts.margin_pct),
     flex_base_depth_in: Number(opts.flex_base_depth_in),
   }), [opts]);
@@ -124,6 +128,10 @@ export default function EstimateBuilder({ intake, products, components, initialO
             onChange={v => set('flex_base_depth_in', Number(v))} />
           <NumField label="French drain LF" value={opts.french_drain_lf}
             onChange={v => set('french_drain_lf', Number(v))} />
+          <NumField label="Downspout drain LF" value={opts.downspout_drain_lf}
+            onChange={v => set('downspout_drain_lf', Number(v))} />
+          <NumField label="24x24 pavers (count)" value={opts.paver_count}
+            onChange={v => set('paver_count', Number(v))} />
           <NumField label="Bender board LF (blank = perimeter, billed in 20' sticks)"
             value={opts.bender_board_lf} onChange={v => set('bender_board_lf', v)}
             placeholder={result ? String(result.perimeter_lf) : ''} />
