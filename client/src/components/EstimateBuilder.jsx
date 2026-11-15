@@ -189,7 +189,7 @@ export default function EstimateBuilder({ intake, products, components, initialO
 
         <div>
           <label className="font-medium text-hunter">Margin: {opts.margin_pct}%</label>
-          <input type="range" min={components.settings?.min_margin_pct ?? 0} max="60" value={opts.margin_pct}
+          <input type="range" min={result?.margin_floor_pct ?? components.settings?.min_margin_pct ?? 0} max="60" value={opts.margin_pct}
             onChange={e => set('margin_pct', Number(e.target.value))} className="w-full accent-burnt" />
           <div className="flex gap-2 mt-1">
             {[30, 35, 40].map(p => (

@@ -42,7 +42,20 @@ export function turfLayoutFromDims(narrowFt, longFt, rollWidthFt = 15) {
 // Coerce and clamp raw API input so bad values (NaN, negatives, strings,
 // non-arrays) can never reach the math. Client casts most of this already,
 // but /api/estimate is also hit by the partner portal and direct callers.
-export function sanitizeEstimateInput(raw, components) {
+// Batting-cage jobs (Cimarron cage products or ground-set poles) price off the
+// cage-labor matrix margin (23%), so they are exempt from the margin floor.
+export function isCageJob(input, cimarron = []) {
+  if (Number(input?.cage_pole_count) > 0) return true;
+  const items = Array.isArray(input?.cimarron_items) ? input.cimarron_items : [];
+  return items.some(ci => {
+    const p = cimarron.find(x => x.sku === ci?.sku);
+    return p && /Batting Cage/i.test(p.category || '');
+  });
+}
+
+// `margin_floor_exempt` is only honored when set by the server (valid partner
+// slug, see /api/estimate) — index.js overwrites any client-supplied value.
+export function sanitizeEstimateInput(raw, components, cimarron = []) {
   const input = { ...(raw || {}) };
   const num = (v, def = 0, min = 0, max = Infinity) => {
     const n = Number(v);
@@ -77,7 +90,9 @@ export function sanitizeEstimateInput(raw, components) {
   input.flex_base_depth_in = Number.isFinite(depth) && depth > 0
     ? Math.max(0.5, Math.min(12, depth))
     : defaultDepth;
-  const minMargin = components?.settings?.min_margin_pct ?? 0;
+  const exempt = input.margin_floor_exempt === true || isCageJob(input, cimarron);
+  input.margin_floor_exempt = exempt;
+  const minMargin = exempt ? 0 : (components?.settings?.min_margin_pct ?? 0);
   input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, minMargin, 95);
   input.card_fee_pct = num(input.card_fee_pct, components?.settings?.card_fee_pct ?? 0, 0, 100);
   input.other_costs_pct = num(input.other_costs_pct, 0, 0, 100);
@@ -88,7 +103,7 @@ export function sanitizeEstimateInput(raw, components) {
 }
 
 export function calculateEstimate(rawInput, products, components, cimarron = [], plants = [], rocks = []) {
-  const input = sanitizeEstimateInput(rawInput, components);
+  const input = sanitizeEstimateInput(rawInput, components, cimarron);
   const {
     total_sf = 0,
     product_name,
@@ -666,7 +681,7 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
   }
 
   const totalCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
-  const minMarginPct = components.settings?.min_margin_pct ?? 0;
+  const minMarginPct = input.margin_floor_exempt ? 0 : (components.settings?.min_margin_pct ?? 0);
   const margin = clamp(margin_pct, minMarginPct, 95) / 100;
   // Lines with their own margin_pct are priced separately; everything else uses
   // the estimate-wide margin.
@@ -695,6 +710,7 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
 
   return {
     input,
+    margin_floor_pct: minMarginPct,
     perimeter_lf: round(perimeter, 2),
     flex_base_yards: round(baseYards, 2),
     lines,
@@ -715,7 +731,7 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
       type_floor: typeFloor,
       project_type,
     } : null,
-    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }),
+    warnings: buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers, exemptFromFloor: input.margin_floor_exempt }),
   };
 }
 
@@ -734,7 +750,7 @@ function priceAtMargin(cost, marginPct) {
   return round(cost / (1 - m), 2);
 }
 
-function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers }) {
+function buildWarnings({ total_sf, pricePerSf, components, labor_floored, computedLabor, minDay, haveDims, multiZone, supply_only, sizeFloor, typeFloor, project_type, lines, margin, unknownPlantTiers, exemptFromFloor }) {
   const w = [];
   if (unknownPlantTiers?.size) {
     const fallback = components.plant_install?.install_labor_per_size?.unknown ?? 0;
@@ -772,7 +788,7 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
     }
   }
   // Per-line margin overrides bypass the estimate-wide floor — flag any below it.
-  const floorPct = components.settings?.min_margin_pct ?? 0;
+  const floorPct = exemptFromFloor ? 0 : (components.settings?.min_margin_pct ?? 0);
   const lowLines = (lines || []).filter(l => l.margin_pct != null && l.margin_pct < floorPct);
   if (lowLines.length) {
     w.push(`${lowLines.length} line${lowLines.length > 1 ? 's' : ''} priced below the ${floorPct}% margin floor via per-line override (${lowLines.map(l => `${l.label} @ ${l.margin_pct}%`).join('; ')}).`);

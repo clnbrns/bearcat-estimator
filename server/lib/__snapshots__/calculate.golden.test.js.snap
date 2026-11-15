@@ -22,11 +22,11 @@ exports[`representative job snapshots (regression net) > cage quick setup (HD co
   "totals": {
     "card_fee": 0,
     "cost": 6559,
-    "final_price": 9370,
-    "margin_pct": 30,
+    "final_price": 8518.18,
+    "margin_pct": 23,
     "price_per_sf": 0,
-    "profit": 2811,
-    "sell_price": 9370,
+    "profit": 1959.18,
+    "sell_price": 8518.18,
   },
   "warnings": [],
 }

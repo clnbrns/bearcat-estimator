@@ -155,3 +155,28 @@ describe('minimum margin floor', () => {
     expect(r.warnings.some(w => /below the 30% margin floor/.test(w))).toBe(true);
   });
 });
+
+describe('margin floor exemptions', () => {
+  const components = JSON.parse(
+    readFileSync(new URL('../../data/components.json', import.meta.url), 'utf8'),
+  );
+  const cimarron = [{ sku: 'CAGE1', name: 'Cage', category: 'Batting Cage Net + Frame Combos', length: 40, wholesale2024: 1000, map2024: 0 }];
+  const base = { no_turf: true, include_shock_pad: false, custom_line_items: [{ label: 'x', qty: 1, unit_cost: 770 }] };
+
+  it('honors a below-floor margin on batting cage jobs', () => {
+    const r = calculateEstimate({ ...base, margin_pct: 23, cimarron_items: [{ sku: 'CAGE1', qty: 1 }] }, [], components, cimarron);
+    expect(r.totals.margin_pct).toBe(23);
+    expect(r.margin_floor_pct).toBe(0);
+  });
+
+  it('honors a below-floor margin when the server flags a partner', () => {
+    const r = calculateEstimate({ ...base, margin_pct: 20, margin_floor_exempt: true }, [], components);
+    expect(r.totals.sell_price).toBeCloseTo((770) / 0.8, 2);
+  });
+
+  it('still floors ordinary jobs', () => {
+    const r = calculateEstimate({ ...base, margin_pct: 20 }, [], components);
+    expect(r.totals.margin_pct).toBe(30);
+    expect(r.margin_floor_pct).toBe(30);
+  });
+});
