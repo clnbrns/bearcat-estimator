@@ -77,7 +77,8 @@ export function sanitizeEstimateInput(raw, components) {
   input.flex_base_depth_in = Number.isFinite(depth) && depth > 0
     ? Math.max(0.5, Math.min(12, depth))
     : defaultDepth;
-  input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, 0, 95);
+  const minMargin = components?.settings?.min_margin_pct ?? 0;
+  input.margin_pct = num(input.margin_pct, components?.settings?.default_margin_pct ?? 30, minMargin, 95);
   input.card_fee_pct = num(input.card_fee_pct, components?.settings?.card_fee_pct ?? 0, 0, 100);
   input.other_costs_pct = num(input.other_costs_pct, 0, 0, 100);
   for (const k of ['cimarron_items', 'plant_items', 'rock_items', 'tree_removal_items', 'custom_line_items']) {
@@ -665,7 +666,8 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
   }
 
   const totalCost = lines.reduce((s, l) => s + (l.cost || 0), 0);
-  const margin = clamp(margin_pct, 0, 95) / 100;
+  const minMarginPct = components.settings?.min_margin_pct ?? 0;
+  const margin = clamp(margin_pct, minMarginPct, 95) / 100;
   // Lines with their own margin_pct are priced separately; everything else uses
   // the estimate-wide margin.
   const overrideLines = lines.filter(l => l.margin_pct != null);
@@ -678,10 +680,12 @@ export function calculateEstimate(rawInput, products, components, cimarron = [],
   const profit = sellPrice - totalCost;
   const pricePerSf = total_sf > 0 ? finalPrice / total_sf : 0;
 
+  // Tiers start at the margin floor (never sell a tier below it).
+  const tierBase = Math.max(25, minMarginPct);
   const tiers = {
-    good: priceAtMargin(baseCost, 25) + round(overrideSell, 2),
-    better: priceAtMargin(baseCost, 30) + round(overrideSell, 2),
-    best: priceAtMargin(baseCost, 35) + round(overrideSell, 2),
+    good: priceAtMargin(baseCost, tierBase) + round(overrideSell, 2),
+    better: priceAtMargin(baseCost, tierBase + 5) + round(overrideSell, 2),
+    best: priceAtMargin(baseCost, tierBase + 10) + round(overrideSell, 2),
   };
 
   // Size-tiered floor + benchmark from real won-estimate data
@@ -766,6 +770,12 @@ function buildWarnings({ total_sf, pricePerSf, components, labor_floored, comput
     if (hasCageProduct && !hasCageLabor) {
       w.push('Batting cage hardware is on the estimate but no cage assembly labor is billed. Add an Equipment install fee or use Quick Cage Setup.');
     }
+  }
+  // Per-line margin overrides bypass the estimate-wide floor — flag any below it.
+  const floorPct = components.settings?.min_margin_pct ?? 0;
+  const lowLines = (lines || []).filter(l => l.margin_pct != null && l.margin_pct < floorPct);
+  if (lowLines.length) {
+    w.push(`${lowLines.length} line${lowLines.length > 1 ? 's' : ''} priced below the ${floorPct}% margin floor via per-line override (${lowLines.map(l => `${l.label} @ ${l.margin_pct}%`).join('; ')}).`);
   }
   // MAP-floor check: if standard margin pushes any Cimarron line below its MAP, warn
   if (lines && margin != null && margin < 1) {

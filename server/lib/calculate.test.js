@@ -108,26 +108,50 @@ describe('per-line margin override on custom line items', () => {
   const components = JSON.parse(
     readFileSync(new URL('../../data/components.json', import.meta.url), 'utf8'),
   );
-  const base = { no_turf: true, margin_pct: 22, include_shock_pad: false };
+  const base = { no_turf: true, margin_pct: 30, include_shock_pad: false };
 
   it('prices an override line at its own margin and the rest at the estimate margin', () => {
     const r = calculateEstimate({
       ...base,
       custom_line_items: [
-        { label: 'Own work', qty: 1, unit_cost: 780 },
+        { label: 'Own work', qty: 1, unit_cost: 700 },
         { label: 'Sub bid', qty: 1, unit_cost: 950, margin_pct: 5 },
       ],
     }, [], components);
-    expect(r.totals.cost).toBe(1730);
-    expect(r.totals.sell_price).toBeCloseTo(780 / 0.78 + 950 / 0.95, 2); // 1000 + 1000
-    expect(r.totals.profit).toBeCloseTo(270, 2);
+    expect(r.totals.cost).toBe(1650);
+    expect(r.totals.sell_price).toBeCloseTo(700 / 0.7 + 950 / 0.95, 2); // 1000 + 1000
+    expect(r.totals.profit).toBeCloseTo(350, 2);
   });
 
   it('leaves pricing unchanged when no line has an override', () => {
     const r = calculateEstimate({
       ...base,
-      custom_line_items: [{ label: 'Own work', qty: 2, unit_cost: 390 }],
+      custom_line_items: [{ label: 'Own work', qty: 2, unit_cost: 350 }],
     }, [], components);
     expect(r.totals.sell_price).toBeCloseTo(1000, 2);
+  });
+});
+
+describe('minimum margin floor', () => {
+  const components = JSON.parse(
+    readFileSync(new URL('../../data/components.json', import.meta.url), 'utf8'),
+  );
+  const input = { no_turf: true, include_shock_pad: false, custom_line_items: [{ label: 'x', qty: 1, unit_cost: 700 }] };
+
+  it('clamps a requested margin below the floor up to the floor', () => {
+    const r = calculateEstimate({ ...input, margin_pct: 20 }, [], components);
+    expect(r.totals.sell_price).toBeCloseTo(1000, 2);
+  });
+
+  it('starts Good/Better/Best at the floor', () => {
+    const r = calculateEstimate({ ...input, margin_pct: 30 }, [], components);
+    expect(r.tiers.good).toBeCloseTo(700 / 0.7, 2);
+    expect(r.tiers.better).toBeCloseTo(700 / 0.65, 2);
+    expect(r.tiers.best).toBeCloseTo(700 / 0.6, 2);
+  });
+
+  it('warns when a per-line override sits below the floor', () => {
+    const r = calculateEstimate({ ...input, margin_pct: 30, custom_line_items: [{ label: 'Sub', qty: 1, unit_cost: 950, margin_pct: 5 }] }, [], components);
+    expect(r.warnings.some(w => /below the 30% margin floor/.test(w))).toBe(true);
   });
 });

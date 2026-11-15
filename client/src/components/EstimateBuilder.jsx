@@ -189,13 +189,13 @@ export default function EstimateBuilder({ intake, products, components, initialO
 
         <div>
           <label className="font-medium text-hunter">Margin: {opts.margin_pct}%</label>
-          <input type="range" min="0" max="60" value={opts.margin_pct}
+          <input type="range" min={components.settings?.min_margin_pct ?? 0} max="60" value={opts.margin_pct}
             onChange={e => set('margin_pct', Number(e.target.value))} className="w-full accent-burnt" />
           <div className="flex gap-2 mt-1">
-            {[22, 25, 30, 35].map(p => (
+            {[30, 35, 40].map(p => (
               <button key={p} type="button" onClick={() => set('margin_pct', p)}
                 className={`text-xs px-2 py-0.5 rounded border ${opts.margin_pct === p ? 'bg-burnt text-white border-burnt' : 'border-sageMuted text-hunter hover:bg-sageMuted/30'}`}>
-                {p}% {p === 22 ? '(commercial)' : p === 25 ? '(good)' : p === 30 ? '(better)' : '(best)'}
+                {p}% {p === 30 ? '(good)' : p === 35 ? '(better)' : '(best)'}
               </button>
             ))}
           </div>

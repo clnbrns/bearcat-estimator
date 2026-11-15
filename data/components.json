@@ -84,9 +84,9 @@
   },
   "labor": {
     "label": "Installation labor",
-    "cost_per_sf": 3.0,
+    "cost_per_sf": 3.1,
     "min_day_rate": 1800,
-    "_note": "$3/SF install labor, $1,800/day floor (2-man crew + overhead). Floor triggers on jobs under ~600 SF."
+    "_note": "$3.10/SF install labor (raised from $3.00), $1,800/day floor (2-man crew + overhead). Floor triggers on jobs under ~580 SF."
   },
   "putting_green_labor": {
     "label": "Putting green labor",
@@ -215,6 +215,8 @@
   },
   "settings": {
     "default_margin_pct": 30,
+    "min_margin_pct": 30,
+    "_min_margin_note": "Hard floor on gross margin for every estimate (server clamps margin_pct to this). Good/Better/Best tiers are floor, floor+5, floor+10.",
     "shape_overage_pct": {
       "squares": 10,
       "curves": 20
