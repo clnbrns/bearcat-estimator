@@ -17,9 +17,11 @@ const ENDPOINT = (model) =>
  * @param {number} [opts.maxOutputTokens] Optional output cap.
  * @param {string} [opts.model]           Override model.
  * @param {boolean} [opts.json]           If true, force structured JSON output.
+ * @param {number}  [opts.thinkingBudget] Gemini 2.5 thinking tokens (0 = off). Thinking tokens count
+ *                                        against maxOutputTokens and can truncate short outputs.
  * @returns {Promise<{text:string, usage:any, model:string}>}
  */
-export async function geminiGenerate({ system, parts, maxOutputTokens, model, json }) {
+export async function geminiGenerate({ system, parts, maxOutputTokens, model, json, thinkingBudget }) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error('GEMINI_API_KEY not set. Add it to server/.env or your environment.');
   const useModel = model || process.env.GEMINI_MODEL || DEFAULT_MODEL;
@@ -27,6 +29,7 @@ export async function geminiGenerate({ system, parts, maxOutputTokens, model, js
   const generationConfig = {};
   if (maxOutputTokens) generationConfig.maxOutputTokens = maxOutputTokens;
   if (json) generationConfig.responseMimeType = 'application/json';
+  if (thinkingBudget !== undefined) generationConfig.thinkingConfig = { thinkingBudget };
 
   const body = {
     contents: [{ role: 'user', parts }],

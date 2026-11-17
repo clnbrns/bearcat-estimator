@@ -107,6 +107,7 @@ ${JSON.stringify(project, null, 2)}`;
     system: SYSTEM_PROMPT,
     parts: [{ text: userMsg }],
     maxOutputTokens: 1000,
+    thinkingBudget: 0, // thinking tokens count toward the cap and were truncating descriptions mid-sentence
   });
 
   return { description: text.trim(), _model: model, _example_count: Math.min(8, corpus.examples.length) };
